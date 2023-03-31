@@ -1,3 +1,4 @@
+import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/thems/app_colors.dart';
@@ -33,7 +34,15 @@ class RegisterScreen extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: "Already have an account?",
-                      recognizer: TapGestureRecognizer()..onTap = () {},
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignInScreen(),
+                            ),
+                          );
+                        },
                       style: const TextStyle(
                         color: AppColors.primary,
                         height: 1.5,

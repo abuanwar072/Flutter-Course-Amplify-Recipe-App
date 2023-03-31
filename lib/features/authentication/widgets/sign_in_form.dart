@@ -3,36 +3,23 @@ import 'package:flutter/material.dart';
 import '../../../shared/constants/gaps.dart';
 import '../../../shared/utils/form_utils.dart';
 
-class SignUpForm extends StatefulWidget {
-  const SignUpForm({
+class SignInForm extends StatefulWidget {
+  const SignInForm({
     super.key,
   });
 
   @override
-  State<SignUpForm> createState() => _SignUpFormState();
+  State<SignInForm> createState() => _SignInFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
-  late String name, email, password;
+class _SignInFormState extends State<SignInForm> {
+  late String email, password;
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Full Name",
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-          gapH8,
-          TextFormField(
-            onSaved: (fullName) {
-              name = fullName!;
-            },
-            validator: FormUtils.requireFieldValidator,
-            decoration: const InputDecoration(hintText: "Enter your name"),
-          ),
-          gapH16,
           Text(
             "Email address",
             style: Theme.of(context).textTheme.titleSmall,
@@ -43,6 +30,8 @@ class _SignUpFormState extends State<SignUpForm> {
               email = email!;
             },
             validator: FormUtils.emailValidator,
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
             decoration: const InputDecoration(hintText: "test@mail.com"),
           ),
           gapH16,
@@ -62,11 +51,10 @@ class _SignUpFormState extends State<SignUpForm> {
           gapH24,
           ElevatedButton(
             onPressed: () {},
-            child: const Text("Sign up"),
+            child: const Text("Login"),
           ),
         ],
       ),
     );
   }
 }
-
