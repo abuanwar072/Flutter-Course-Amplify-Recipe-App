@@ -1,3 +1,4 @@
+import 'package:amplify_recipe/features/authentication/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/constants.dart';
@@ -35,7 +36,14 @@ class OnboardContent extends StatelessWidget {
             ),
             gapH24,
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RegisterScreen(),
+                  ),
+                );
+              },
               child: const Text("Register"),
             ),
             gapH8,

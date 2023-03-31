@@ -9,7 +9,8 @@ class AppTheme {
     return ThemeData(
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: Colors.white,
-      textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+      textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+          .copyWith(bodyMedium: const TextStyle(color: AppColors.bodyText)),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
@@ -29,6 +30,18 @@ class AppTheme {
           side: const BorderSide(color: AppColors.bodyText),
         ),
       ),
+      inputDecorationTheme: const InputDecorationTheme(
+        filled: true,
+        fillColor: AppColors.inputfieldBg,
+        border: defaultOutlineInputBorder,
+        enabledBorder: defaultOutlineInputBorder,
+        focusedBorder: defaultOutlineInputBorder,
+      ),
     );
   }
 }
+
+const defaultOutlineInputBorder = OutlineInputBorder(
+  borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
+  borderSide: BorderSide.none,
+);
