@@ -30,6 +30,7 @@ class _SignUpFormState extends State<SignUpForm> {
               name = fullName!;
             },
             validator: FormUtils.requireFieldValidator,
+            textInputAction: TextInputAction.next,
             decoration: const InputDecoration(hintText: "Enter your name"),
           ),
           gapH16,
@@ -43,6 +44,8 @@ class _SignUpFormState extends State<SignUpForm> {
               email = email!;
             },
             validator: FormUtils.emailValidator,
+            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
             decoration: const InputDecoration(hintText: "test@mail.com"),
           ),
           gapH16,
@@ -69,4 +72,3 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 }
-
