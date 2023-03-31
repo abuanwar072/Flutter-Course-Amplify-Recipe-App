@@ -1,4 +1,5 @@
 import 'package:amplify_recipe/features/authentication/screens/register_screen.dart';
+import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/constants.dart';
@@ -48,7 +49,14 @@ class OnboardContent extends StatelessWidget {
             ),
             gapH8,
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignInScreen(),
+                  ),
+                );
+              },
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.white,
                 side: const BorderSide(color: Colors.transparent),

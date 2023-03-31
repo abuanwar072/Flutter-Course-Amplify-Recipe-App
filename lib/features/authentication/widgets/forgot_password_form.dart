@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import '../../../shared/constants/gaps.dart';
 import '../../../shared/utils/form_utils.dart';
 
-class SignInForm extends StatefulWidget {
-  const SignInForm({
+class ForgotPassForm extends StatefulWidget {
+  const ForgotPassForm({
     super.key,
   });
 
   @override
-  State<SignInForm> createState() => _SignInFormState();
+  State<ForgotPassForm> createState() => _ForgotPassFormState();
 }
 
-class _SignInFormState extends State<SignInForm> {
-  late String email, password;
+class _ForgotPassFormState extends State<ForgotPassForm> {
+  late String email;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -31,31 +31,15 @@ class _SignInFormState extends State<SignInForm> {
             },
             validator: FormUtils.emailValidator,
             keyboardType: TextInputType.emailAddress,
-            textInputAction: TextInputAction.next,
             decoration: const InputDecoration(hintText: "test@mail.com"),
-          ),
-          gapH16,
-          Text(
-            "Password",
-            style: Theme.of(context).textTheme.titleSmall,
-          ),
-          gapH8,
-          TextFormField(
-            onSaved: (password) {
-              password = password!;
-            },
-            validator: FormUtils.passwordValidator,
-            obscureText: true,
-            decoration: const InputDecoration(hintText: "Enter your password"),
           ),
           gapH24,
           ElevatedButton(
             onPressed: () {},
-            child: const Text("Login"),
+            child: const Text("Reset Password"),
           ),
         ],
       ),
     );
   }
 }
-

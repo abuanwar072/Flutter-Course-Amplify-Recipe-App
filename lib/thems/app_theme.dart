@@ -12,6 +12,15 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.white,
       textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
           .copyWith(bodyMedium: const TextStyle(color: AppColors.bodyText)),
+      appBarTheme: AppBarTheme(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        foregroundColor: AppColors.text,
+        titleTextStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+              fontWeight: FontWeight.normal,
+            ),
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
