@@ -1,3 +1,4 @@
+import 'package:amplify_recipe/features/authentication/screens/resend_email_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/gaps.dart';
@@ -35,7 +36,13 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           ),
           gapH24,
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const EmailResendScreen()),
+              );
+            },
             child: const Text("Reset Password"),
           ),
         ],
