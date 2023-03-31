@@ -1,3 +1,4 @@
+import 'package:amplify_recipe/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/gaps.dart';
@@ -50,7 +51,13 @@ class _SignInFormState extends State<SignInForm> {
           ),
           gapH24,
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                (route) => false,
+              );
+            },
             child: const Text("Login"),
           ),
         ],
@@ -58,4 +65,3 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 }
-
