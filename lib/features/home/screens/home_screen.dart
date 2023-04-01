@@ -1,10 +1,10 @@
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/thems/app_colors.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../shared/widgets/recipe_card.dart';
 import '../widgest/search_container.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,12 +32,12 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
         child: Column(
           children: [
             gapH8,
-            SearchContaner(),
+            const SearchContaner(),
             gapH16,
             Row(
               children: [
@@ -45,13 +45,30 @@ class HomeScreen extends StatelessWidget {
                   "Recipes for you",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                Spacer(),
+                const Spacer(),
                 TextButton(
                   onPressed: () {},
-                  child: Text("See all"),
+                  style:
+                      TextButton.styleFrom(foregroundColor: AppColors.bodyText),
+                  child: const Text("See all"),
                 )
               ],
-            )
+            ),
+            gapH16,
+            ...List.generate(
+              5,
+              (index) => Padding(
+                padding: const EdgeInsets.only(bottom: defaultPadding),
+                child: RecipeCard(
+                  press: () {},
+                  title: "Beef Ramen",
+                  image: "https://i.postimg.cc/wx2wxNRm/Image.png",
+                  category: "Soup",
+                  duration: 30,
+                  serve: 2,
+                ),
+              ),
+            ),
           ],
         ),
       ),
