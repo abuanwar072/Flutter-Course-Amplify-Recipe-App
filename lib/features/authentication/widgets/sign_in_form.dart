@@ -1,3 +1,4 @@
+import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class _SignInFormState extends State<SignInForm> {
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                MaterialPageRoute(builder: (context) => const EntryPoint()),
                 (route) => false,
               );
             },
