@@ -14,8 +14,8 @@ class _EntryPointState extends State<EntryPoint> {
   int _currentPage = 0;
   final List _pages = [
     const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
+    Container(),
+    Container(),
   ];
   final Color _iconColor = const Color(0xffADADAD);
   @override

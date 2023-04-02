@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../shared/widgets/recipe_card.dart';
+import '../../../shared/widgets/section_list_tile.dart';
 import '../widgest/search_container.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -39,20 +40,9 @@ class HomeScreen extends StatelessWidget {
             gapH8,
             const SearchContaner(),
             gapH16,
-            Row(
-              children: [
-                Text(
-                  "Recipes for you",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () {},
-                  style:
-                      TextButton.styleFrom(foregroundColor: AppColors.bodyText),
-                  child: const Text("See all"),
-                )
-              ],
+            SectionListTile(
+              title: "Recipes for you",
+              press: () {},
             ),
             gapH16,
             ...List.generate(
