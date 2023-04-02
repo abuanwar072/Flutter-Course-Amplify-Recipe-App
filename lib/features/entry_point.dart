@@ -1,3 +1,4 @@
+import 'package:amplify_recipe/features/favorite/screens/favorite_screen.dart';
 import 'package:amplify_recipe/features/home/screens/home_screen.dart';
 import 'package:amplify_recipe/thems/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class _EntryPointState extends State<EntryPoint> {
   int _currentPage = 0;
   final List _pages = [
     const HomeScreen(),
-    Container(),
+    const FavoriteScreen(),
     Container(),
   ];
   final Color _iconColor = const Color(0xffADADAD);
