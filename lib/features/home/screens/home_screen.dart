@@ -1,3 +1,4 @@
+import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/thems/app_colors.dart';
@@ -50,7 +51,13 @@ class HomeScreen extends StatelessWidget {
               (index) => Padding(
                 padding: const EdgeInsets.only(bottom: defaultPadding),
                 child: RecipeCard(
-                  press: () {},
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RecipeDetailsScreen()),
+                    );
+                  },
                   title: "Beef Ramen",
                   image: "https://i.postimg.cc/wx2wxNRm/Image.png",
                   category: "Soup",
