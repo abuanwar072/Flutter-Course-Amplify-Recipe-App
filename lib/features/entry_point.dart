@@ -1,5 +1,6 @@
 import 'package:amplify_recipe/features/favorite/screens/favorite_screen.dart';
 import 'package:amplify_recipe/features/home/screens/home_screen.dart';
+import 'package:amplify_recipe/features/profile/screens/profile_screen.dart';
 import 'package:amplify_recipe/thems/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +17,7 @@ class _EntryPointState extends State<EntryPoint> {
   final List _pages = [
     const HomeScreen(),
     const FavoriteScreen(),
-    Container(),
+    const ProfileScreen(),
   ];
   final Color _iconColor = const Color(0xffADADAD);
   @override
