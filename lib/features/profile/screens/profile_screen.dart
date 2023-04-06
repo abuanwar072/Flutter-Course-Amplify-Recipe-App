@@ -1,3 +1,4 @@
+import 'package:amplify_recipe/features/profile/screens/edit_profile_screen.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,14 @@ class ProfileScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: ListTile(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const EditProfileScreen(),
+                  ),
+                );
+              },
               minLeadingWidth: 60,
               leading: CircleAvatar(
                 radius: 30,
