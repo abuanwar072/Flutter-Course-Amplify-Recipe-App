@@ -19,7 +19,8 @@ class _EntryPointState extends State<EntryPoint> {
     const FavoriteScreen(),
     const ProfileScreen(),
   ];
-  final Color _iconColor = const Color(0xffADADAD);
+  static const _iconColor = Color(0xffADADAD);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,33 +38,51 @@ class _EntryPointState extends State<EntryPoint> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/Home.svg",
-              color: _iconColor,
+              colorFilter: const ColorFilter.mode(
+                _iconColor,
+                BlendMode.srcIn,
+              ),
             ),
             activeIcon: SvgPicture.asset(
               "assets/icons/Home.svg",
-              color: AppColors.primary,
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
             ),
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/Bookmark.svg",
-              color: _iconColor,
+              colorFilter: const ColorFilter.mode(
+                _iconColor,
+                BlendMode.srcIn,
+              ),
             ),
             activeIcon: SvgPicture.asset(
               "assets/icons/Bookmark.svg",
-              color: AppColors.primary,
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
             ),
             label: "Bookmarked",
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               "assets/icons/Profile.svg",
-              color: _iconColor,
+              colorFilter: const ColorFilter.mode(
+                _iconColor,
+                BlendMode.srcIn,
+              ),
             ),
             activeIcon: SvgPicture.asset(
               "assets/icons/Profile.svg",
-              color: AppColors.primary,
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary,
+                BlendMode.srcIn,
+              ),
             ),
             label: "Profile",
           ),

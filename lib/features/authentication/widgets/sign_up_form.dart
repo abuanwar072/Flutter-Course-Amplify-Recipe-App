@@ -1,3 +1,6 @@
+import 'package:amplify_recipe/features/authentication/widgets/user_confirmation_form.dart';
+import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
+import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/gaps.dart';
@@ -13,10 +16,24 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  late String name, email, password;
+  late final TextEditingController nameController = TextEditingController();
+  late final TextEditingController emailController = TextEditingController();
+  late final TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool _isEnabled = true;
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,9 +43,7 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           gapH8,
           TextFormField(
-            onSaved: (fullName) {
-              name = fullName!;
-            },
+            controller: nameController,
             validator: FormUtils.requireFieldValidator,
             textInputAction: TextInputAction.next,
             decoration: const InputDecoration(hintText: "Enter your name"),
@@ -40,9 +55,7 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           gapH8,
           TextFormField(
-            onSaved: (email) {
-              email = email!;
-            },
+            controller: emailController,
             validator: FormUtils.emailValidator,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
@@ -55,16 +68,51 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           gapH8,
           TextFormField(
-            onSaved: (password) {
-              password = password!;
-            },
+            controller: passwordController,
             validator: FormUtils.passwordValidator,
             obscureText: true,
             decoration: const InputDecoration(hintText: "Enter your password"),
           ),
           gapH24,
           ElevatedButton(
-            onPressed: () {},
+            onPressed: _isEnabled
+                ? () {
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        _isEnabled = false;
+                      });
+                      getIt
+                          .get<AuthenticationRepository>()
+                          .signUp(
+                            emailController.text,
+                            passwordController.text,
+                            nameController.text,
+                          )
+                          .then((value) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => UserConfirmationForm(
+                              email: emailController.text,
+                            ),
+                          ),
+                          (route) => false,
+                        );
+                      }).onError(
+                        (error, stackTrace) {
+                          setState(() {
+                            _isEnabled = true;
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(error.toString()),
+                            ),
+                          );
+                        },
+                      );
+                    }
+                  }
+                : null,
             child: const Text("Sign up"),
           ),
         ],

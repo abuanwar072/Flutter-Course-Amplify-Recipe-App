@@ -6,7 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/sign_up_form.dart';
-import '../widgets/socal_login_btns.dart';
+import '../widgets/socal_login_buttons.dart';
 import '../widgets/terms_and_policy.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -39,7 +39,7 @@ class RegisterScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SignInScreen(),
+                              builder: (context) => const SignInScreen(),
                             ),
                           );
                         },
@@ -56,7 +56,7 @@ class RegisterScreen extends StatelessWidget {
               gapH20,
               const TermsAndPolicy(),
               gapH16,
-              const SocalLoginBtns()
+              const SocalLoginButtons()
             ],
           ),
         ),

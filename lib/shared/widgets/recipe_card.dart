@@ -14,11 +14,13 @@ class RecipeCard extends StatelessWidget {
     this.serve = 1,
     this.isBookmarked = false,
     required this.press,
+    required this.onBookmarked,
   });
-  final String title, image, category;
-  final int duration, serve;
+  final String title, image, category, duration;
+  final int serve;
   final bool isBookmarked;
   final VoidCallback press;
+  final VoidCallback onBookmarked;
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +65,16 @@ class RecipeCard extends StatelessWidget {
                       .copyWith(color: Colors.white),
                 ),
                 subtitle: Text(
-                  "$duration Min  |  $serve Serve",
+                  "$duration  |  $serve Serve",
                   style: const TextStyle(color: Colors.white),
                 ),
-                trailing: FrostedGlassContainer(
-                  child: Icon(
-                    Icons.bookmark_border,
-                    color: isBookmarked ? AppColors.success : Colors.white,
+                trailing: GestureDetector(
+                  onTap: onBookmarked,
+                  child: FrostedGlassContainer(
+                    child: Icon(
+                      Icons.bookmark_border,
+                      color: isBookmarked ? AppColors.success : Colors.white,
+                    ),
                   ),
                 ),
               ),

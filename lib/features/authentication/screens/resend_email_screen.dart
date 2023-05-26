@@ -45,7 +45,7 @@ class EmailResendScreen extends StatelessWidget {
               gapH24,
               ElevatedButton(
                 onPressed: () {},
-                child: Text("Resend"),
+                child: const Text("Resend"),
               ),
             ],
           ),

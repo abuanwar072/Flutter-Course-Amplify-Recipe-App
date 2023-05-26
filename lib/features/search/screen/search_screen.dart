@@ -1,5 +1,14 @@
+import 'dart:async';
+
+import 'package:amplify_recipe/features/common/data/model/recipe.dart';
+import 'package:amplify_recipe/features/common/data/model/search_item.dart';
+import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
+import 'package:amplify_recipe/features/common/data/search_repository.dart';
+import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
+import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
+import 'package:amplify_recipe/shared/widgets/recipe_card.dart';
 import 'package:amplify_recipe/shared/widgets/section_list_tile.dart';
 import 'package:amplify_recipe/thems/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +16,38 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../widgest/recent_search_tile.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  Timer? debounce;
+
+  void searchWithThrottle(String keyword) {
+    debounce?.cancel();
+    debounce = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
+      if (keyword.isNotEmpty) {
+        getIt.get<SearchRepository>().saveSearchItem(keyword);
+      }
+      debounce?.cancel();
+      setState(() {});
+    });
+  }
+
+  late final TextEditingController _searchFieldController =
+      TextEditingController()
+        ..addListener(() {
+          searchWithThrottle(_searchFieldController.text);
+        });
+
+  @override
+  void dispose() {
+    super.dispose();
+    debounce?.cancel();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +62,9 @@ class SearchScreen extends StatelessWidget {
             Form(
               child: TextFormField(
                 autofocus: true,
+                controller: _searchFieldController,
                 decoration: InputDecoration(
-                  hintText: "Type for find recipes..",
+                  hintText: "Type to find recipes..",
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
@@ -38,23 +78,113 @@ class SearchScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Column(
-              children: [
-                gapH16,
-                SectionListTile(
-                  title: "Recently search",
-                  trailingText: "Delete all",
-                  press: () {},
-                ),
-                ...List.generate(
-                  3,
-                  (index) => RecentSearchTile(
-                    title: "Burger",
-                    onDeleted: () {},
+            if (_searchFieldController.text.isEmpty)
+              Column(
+                children: [
+                  gapH16,
+                  SectionListTile(
+                    title: "Recently searched",
+                    trailingText: "Delete all",
+                    press: () {
+                      getIt.get<SearchRepository>().deleteAllSearchItems();
+                    },
                   ),
-                ),
-              ],
-            )
+                  StreamBuilder<List<SearchItem>>(
+                    stream: getIt.get<SearchRepository>().listenSearchItems(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final searchItems = snapshot.data!;
+                        if (searchItems.isEmpty) {
+                          return const Text("No recent searches");
+                        }
+                        return Column(
+                          children: searchItems
+                              .map(
+                                (searchItem) => RecentSearchTile(
+                                  title: searchItem.searchItem,
+                                  onTap: () {
+                                    _searchFieldController.text =
+                                        searchItem.searchItem;
+                                  },
+                                  onDeleted: () {
+                                    getIt
+                                        .get<SearchRepository>()
+                                        .deleteSearchItemWithId(searchItem.id);
+                                  },
+                                ),
+                              )
+                              .toList(growable: false),
+                        );
+                      } else if (snapshot.hasError) {
+                        return const Text("Error");
+                      } else {
+                        return const Text("Loading");
+                      }
+                    },
+                  ),
+                ],
+              )
+            else
+              FutureBuilder<List<Recipe>>(
+                future: getIt.get<RecipeRepository>().searchRecipes(
+                      _searchFieldController.text,
+                    ),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: [
+                        gapH16,
+                        SectionListTile(
+                          title: "Search results",
+                          press: () {},
+                        ),
+                        ...List.generate(
+                          snapshot.data!.length,
+                          (index) {
+                            final recipe = snapshot.data![index];
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.only(bottom: defaultPadding),
+                              child: RecipeCard(
+                                press: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          RecipeDetailsScreen(id: recipe.id),
+                                    ),
+                                  );
+                                },
+                                onBookmarked: () {
+                                  getIt
+                                      .get<RecipeRepository>()
+                                      .toggleFavoriteForRecipe(
+                                        id: recipe.id,
+                                        isFavorited: !recipe.isFavorited,
+                                      );
+                                  setState(() {});
+                                },
+                                title: recipe.title,
+                                image: recipe.image,
+                                category: recipe.category,
+                                duration: recipe.duration,
+                                serve: recipe.serve,
+                                isBookmarked: recipe.isFavorited,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    return const Text('Something went wrong');
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
           ],
         ),
       ),

@@ -1,3 +1,5 @@
+import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
+import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/thems/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +18,12 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController _dobController;
 
+  late AuthenticationRepository authenticationRepository;
+
   @override
   void initState() {
-    _dobController = TextEditingController(text: "20 April 1999");
+    _dobController = TextEditingController();
+    authenticationRepository = getIt.get<AuthenticationRepository>();
     super.initState();
   }
 
@@ -43,12 +48,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Laura Harper",
+                    "Name",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   gapH8,
                   TextFormField(
-                    initialValue: "Laura Harper",
+                    initialValue: authenticationRepository.fullName,
                     onSaved: (fullName) {
                       // name = fullName!;
                     },
@@ -64,7 +69,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   gapH8,
                   TextFormField(
-                    initialValue: "Laura@mai.com",
+                    initialValue: authenticationRepository.email,
                     onSaved: (email) {},
                     validator: FormUtils.emailValidator,
                     keyboardType: TextInputType.emailAddress,
@@ -79,10 +84,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   gapH8,
                   TextFormField(
-                    initialValue: "Jakarta",
+                    initialValue: "",
                     onSaved: (birthPlace) {},
                     textInputAction: TextInputAction.next,
-                    decoration: const InputDecoration(hintText: "Jakarta"),
+                    decoration: const InputDecoration(hintText: "E.g. Los Angeles"),
                   ),
                   gapH16,
                   Text(
@@ -107,7 +112,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       }
                     },
                     decoration:
-                        const InputDecoration(hintText: "Enter your DOB"),
+                        const InputDecoration(hintText: "E.g. 30.08.1992"),
                   ),
                   gapH16,
                   Text(
@@ -116,11 +121,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                   gapH8,
                   DefaultTabController(
-                    initialIndex: 0,
-                    length: 2,
+                    initialIndex: 2,
+                    length: 3,
                     child: TabBar(
                       onTap: (index) {
-                        // index == 0 male, 1 means female
+                        // index == 0 male, 1 means female, 2 means not specified
                       },
                       unselectedLabelColor: AppColors.bodyText,
                       labelColor: AppColors.text,
@@ -133,6 +138,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       tabs: const [
                         Tab(text: "Male"),
                         Tab(text: "Female"),
+                        Tab(text: "Not Specified"),
                       ],
                     ),
                   ),
