@@ -1,3 +1,6 @@
+import 'package:amplify_recipe/features/authentication/screens/onboarding_screen.dart';
+import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
+import 'package:amplify_recipe/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -47,7 +50,17 @@ class Settings extends StatelessWidget {
         ),
         gapH8,
         SettingListTile(
-          onTap: () {},
+          onTap: () {
+            getIt.get<AuthenticationRepository>().signOut().then((value) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const OnboardingScreen(),
+                ),
+                (route) => false,
+              );
+            });
+          },
           title: "Log out",
           isLogout: true,
           iconSrc: "assets/icons/Logout.svg",

@@ -5,7 +5,7 @@ import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/thems/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/socal_login_btns.dart';
+import '../widgets/socal_login_buttons.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -46,7 +46,7 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
               gapH16,
-              const SocalLoginBtns()
+              const SocalLoginButtons()
             ],
           ),
         ),

@@ -28,7 +28,8 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               gapH16,
               const Text(
-                  "Enter your email address and we will send you a reset instructions."),
+                "Enter your email address and we will send you a reset instructions.",
+              ),
               gapH24,
               const ForgotPassForm(),
             ],

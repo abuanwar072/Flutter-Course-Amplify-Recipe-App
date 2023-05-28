@@ -33,7 +33,7 @@ class SearchContaner extends StatelessWidget {
           children: [
             SvgPicture.asset("assets/icons/Search.svg"),
             gapW8,
-            const Text("Type for find recipes.."),
+            const Text("Type to find recipes.."),
           ],
         ),
       ),

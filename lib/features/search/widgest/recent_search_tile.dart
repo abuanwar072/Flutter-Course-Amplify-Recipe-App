@@ -8,17 +8,19 @@ class RecentSearchTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.onDeleted,
+    this.onTap,
   });
 
   final String title;
   final VoidCallback onDeleted;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 48,
       child: ListTile(
-        onTap: () {},
+        onTap: onTap,
         contentPadding: EdgeInsets.zero,
         title: Text(
           title,
@@ -26,10 +28,11 @@ class RecentSearchTile extends StatelessWidget {
         ),
         trailing: IconButton(
           onPressed: onDeleted,
-          icon: SvgPicture.asset(
-            "assets/icons/Remove.svg",
-            color: AppColors.bodyText,
-          ),
+          icon: SvgPicture.asset("assets/icons/Remove.svg",
+              colorFilter: const ColorFilter.mode(
+                AppColors.bodyText,
+                BlendMode.srcIn,
+              )),
         ),
       ),
     );
