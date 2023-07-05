@@ -31,9 +31,9 @@ class SearchContaner extends StatelessWidget {
         ),
         child: Row(
           children: [
-            SvgPicture.asset("assets/icons/Search.svg"),
+            SvgPicture.asset('assets/icons/Search.svg'),
             gapW8,
-            const Text("Type to find recipes.."),
+            const Text('Type to find recipes..'),
           ],
         ),
       ),

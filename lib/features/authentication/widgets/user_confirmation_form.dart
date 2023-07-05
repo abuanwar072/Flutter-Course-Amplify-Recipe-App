@@ -39,7 +39,7 @@ class _UserConfirmationFormState extends State<UserConfirmationForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Confirmation Code",
+                  'Confirmation Code',
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 gapH8,
@@ -48,7 +48,7 @@ class _UserConfirmationFormState extends State<UserConfirmationForm> {
                   validator: FormUtils.requireFieldValidator,
                   keyboardType: TextInputType.emailAddress,
                   decoration:
-                      const InputDecoration(hintText: "Confirmation Code"),
+                      const InputDecoration(hintText: 'Confirmation Code'),
                 ),
                 gapH24,
                 ElevatedButton(
@@ -84,16 +84,16 @@ class _UserConfirmationFormState extends State<UserConfirmationForm> {
                           }
                         }
                       : null,
-                  child: const Text("Confirm User"),
+                  child: const Text('Confirm User'),
                 ),
                 gapH24,
                 Text.rich(
                   TextSpan(
                     text:
-                        "Not receiving email? check on promotion page or spam.\n",
+                        'Not receiving email? check on promotion page or spam.\n',
                     children: [
                       TextSpan(
-                        text: "Or click here to send the code again.",
+                        text: 'Or click here to send the code again.',
                         recognizer: TapGestureRecognizer()..onTap = () {},
                         style: const TextStyle(
                           color: AppColors.primary,

@@ -111,7 +111,7 @@ class AmplifyRecipeRepository extends RecipeRepository {
                 e.serve,
                 '${e.duration_unit} ${e.duration.name.toLowerCase()}',
                 e.category.name
-                    .replaceFirst("_", " ")
+                    .replaceFirst('_', ' ')
                     .toLowerCase()
                     .capitalized,
                 e.image,

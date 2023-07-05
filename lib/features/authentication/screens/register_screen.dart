@@ -22,7 +22,7 @@ class RegisterScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Create Account",
+                'Create Account',
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       color: AppColors.text,
                     ),
@@ -30,10 +30,10 @@ class RegisterScreen extends StatelessWidget {
               gapH16,
               Text.rich(
                 TextSpan(
-                  text: "Enter your name, email and password for sign up. ",
+                  text: 'Enter your name, email and password for sign up. ',
                   children: [
                     TextSpan(
-                      text: "Already have an account?",
+                      text: 'Already have an account?',
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.push(

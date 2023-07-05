@@ -28,7 +28,7 @@ class RecentSearchTile extends StatelessWidget {
         ),
         trailing: IconButton(
           onPressed: onDeleted,
-          icon: SvgPicture.asset("assets/icons/Remove.svg",
+          icon: SvgPicture.asset('assets/icons/Remove.svg',
               colorFilter: const ColorFilter.mode(
                 AppColors.bodyText,
                 BlendMode.srcIn,

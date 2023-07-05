@@ -35,7 +35,7 @@ class _OnboardContentState extends State<OnboardContent> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Text(
-              "Cooking with \ngreat experiences",
+              'Cooking with \ngreat experiences',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                     color: Colors.white,
@@ -46,7 +46,7 @@ class _OnboardContentState extends State<OnboardContent> {
             const SizedBox(
               width: 250,
               child: Text(
-                "The best experience is given based on the ingredients you have at home",
+                'The best experience is given based on the ingredients you have at home',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Color(0xFFADADAD)),
               ),
@@ -80,7 +80,7 @@ class _OnboardContentState extends State<OnboardContent> {
                                   ),
                                 );
                               },
-                              child: const Text("Register"),
+                              child: const Text('Register'),
                             ),
                             gapH8,
                             OutlinedButton(
@@ -97,7 +97,7 @@ class _OnboardContentState extends State<OnboardContent> {
                                 side:
                                     const BorderSide(color: Colors.transparent),
                               ),
-                              child: const Text("Sign in"),
+                              child: const Text('Sign in'),
                             ),
                           ],
                         )

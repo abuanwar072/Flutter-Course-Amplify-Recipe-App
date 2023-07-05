@@ -14,14 +14,14 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text('Profile'),
       ),
       body: Column(
         children: [
           Container(
             color: const Color(0xFF757575).withOpacity(0.08),
             child: const ListTile(
-              title: Text("Profile"),
+              title: Text('Profile'),
             ),
           ),
           Padding(
@@ -40,7 +40,7 @@ class ProfileScreen extends StatelessWidget {
                 radius: 30,
                 backgroundColor: Colors.grey.shade300,
                 backgroundImage:
-                    const NetworkImage("https://picsum.photos/200"),
+                    const NetworkImage('https://picsum.photos/200'),
               ),
               title: Text(getIt.get<AuthenticationRepository>().fullName),
               trailing: const Icon(CupertinoIcons.forward),

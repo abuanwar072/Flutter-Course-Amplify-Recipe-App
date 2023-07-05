@@ -21,7 +21,7 @@ extension RecipeExtensions on local.Recipe {
   }
 
   ({Duration duration, int durationUnit}) toRemoteDuration() {
-    final durations = duration.split(" ");
+    final durations = duration.split(' ');
     return (
       duration: toRemoteDurationEnum(durations[1]),
       durationUnit: int.parse(
@@ -32,21 +32,21 @@ extension RecipeExtensions on local.Recipe {
 
   Duration toRemoteDurationEnum(String durationText) {
     return switch (durationText) {
-      "minute" => Duration.MINUTE,
-      "hour" => Duration.HOUR,
-      _ => throw Exception("Unknown duration type")
+      'minute' => Duration.MINUTE,
+      'hour' => Duration.HOUR,
+      _ => throw Exception('Unknown duration type')
     };
   }
 
   Category toRemoteCategoryEnum(String categoryText) {
     return switch (categoryText.trim()) {
-      "Appetizer" => Category.APPETIZER,
-      "Dessert" => Category.DESSERT,
-      "Fish" => Category.FISH,
-      "Main course" => Category.MAIN_COURSE,
-      "Salad" => Category.SALAD,
-      "Soup" => Category.SOUP,
-      _ => throw Exception("Unknown category type")
+      'Appetizer' => Category.APPETIZER,
+      'Dessert' => Category.DESSERT,
+      'Fish' => Category.FISH,
+      'Main course' => Category.MAIN_COURSE,
+      'Salad' => Category.SALAD,
+      'Soup' => Category.SOUP,
+      _ => throw Exception('Unknown category type')
     };
   }
 }

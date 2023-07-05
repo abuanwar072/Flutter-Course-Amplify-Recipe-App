@@ -16,7 +16,7 @@ class AllRecipesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "All Recipes 👾",
+          'All Recipes 👾',
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),

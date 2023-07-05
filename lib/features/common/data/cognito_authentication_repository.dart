@@ -6,18 +6,18 @@ import 'package:amplify_recipe/features/common/data/model/user.dart';
 class CognitoAuthenticationRepository extends AuthenticationRepository {
   @override
   String get name =>
-      currentUser?.name.split(" ").first ??
-      (throw const UserNotFoundException("User has not been retrieved yet"));
+      currentUser?.name.split(' ').first ??
+      (throw const UserNotFoundException('User has not been retrieved yet'));
 
   @override
   String get fullName =>
       currentUser?.name ??
-      (throw const UserNotFoundException("User has not been retrieved yet"));
+      (throw const UserNotFoundException('User has not been retrieved yet'));
 
   @override
   String get email =>
       currentUser?.email ??
-      (throw const UserNotFoundException("User has not been retrieved yet"));
+      (throw const UserNotFoundException('User has not been retrieved yet'));
 
   @override
   Future<bool> forgotPassword(String email) async {
@@ -44,7 +44,7 @@ class CognitoAuthenticationRepository extends AuthenticationRepository {
       );
       if (!result.isSignedIn &&
           result.nextStep.signInStep == AuthSignInStep.confirmSignUp) {
-        throw const UserNotConfirmedException("User not confirmed");
+        throw const UserNotConfirmedException('User not confirmed');
       }
       await generateCurrentUserInformation();
     } on AuthException catch (e) {
