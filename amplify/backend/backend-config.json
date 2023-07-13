@@ -69,7 +69,8 @@
   "notifications": {
     "amplifyrecipe": {
       "channels": [
-        "APNS"
+        "APNS",
+        "FCM"
       ],
       "service": "Pinpoint"
     }

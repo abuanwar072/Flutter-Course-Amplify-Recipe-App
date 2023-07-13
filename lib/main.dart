@@ -39,24 +39,37 @@ void _registerData() {
 
 Future<void> _configureAmplify() async {
   try {
-    final notification = AmplifyPushNotificationsPinpoint()
-      ..onNotificationReceivedInBackground((notification) {
-        safePrint('onNotificationReceivedInBackground: $notification');
-      })
-      ..onNotificationReceivedInForeground.listen((notification) {
-        safePrint('onNotificationReceivedInForeground: $notification');
-      });
     await Amplify.addPlugins([
       AmplifyAuthCognito(),
       AmplifyAPI(modelProvider: ModelProvider.instance),
-      notification
+      AmplifyPushNotificationsPinpoint(),
     ]);
-    await handlePermissions();
     await Amplify.configure(amplifyconfig);
+    await handlePermissions();
+    await listenToNotifications();
   } on AmplifyException catch (e) {
     safePrint(
         'Something wrong with the Amplify configuration. Check this error: $e');
   }
+}
+
+Future<void> listenToNotifications() async {
+  Amplify.Notifications.Push.onTokenReceived.listen((event) {
+    safePrint(event);
+  });
+  Amplify.Notifications.Push.onNotificationReceivedInBackground(
+    (notification) {
+      safePrint('onNotificationReceivedInBackground: $notification');
+    },
+  );
+  Amplify.Notifications.Push.onNotificationReceivedInForeground.listen(
+    (notification) {
+      safePrint('onNotificationOpenedInBackground: $notification');
+    },
+  );
+  // ..onNotificationReceivedInForeground.listen((notification) {
+  //   safePrint('onNotificationReceivedInForeground: $notification');
+  // });
 }
 
 Future<void> handlePermissions() async {
