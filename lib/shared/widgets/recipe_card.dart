@@ -65,7 +65,7 @@ class RecipeCard extends StatelessWidget {
                       .copyWith(color: Colors.white),
                 ),
                 subtitle: Text(
-                  "$duration  |  $serve Serve",
+                  '$duration  |  $serve Serve',
                   style: const TextStyle(color: Colors.white),
                 ),
                 trailing: GestureDetector(

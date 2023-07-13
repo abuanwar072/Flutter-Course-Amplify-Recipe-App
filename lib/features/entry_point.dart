@@ -37,54 +37,54 @@ class _EntryPointState extends State<EntryPoint> {
         items: [
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              "assets/icons/Home.svg",
+              'assets/icons/Home.svg',
               colorFilter: const ColorFilter.mode(
                 _iconColor,
                 BlendMode.srcIn,
               ),
             ),
             activeIcon: SvgPicture.asset(
-              "assets/icons/Home.svg",
+              'assets/icons/Home.svg',
               colorFilter: const ColorFilter.mode(
                 AppColors.primary,
                 BlendMode.srcIn,
               ),
             ),
-            label: "Home",
+            label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              "assets/icons/Bookmark.svg",
+              'assets/icons/Bookmark.svg',
               colorFilter: const ColorFilter.mode(
                 _iconColor,
                 BlendMode.srcIn,
               ),
             ),
             activeIcon: SvgPicture.asset(
-              "assets/icons/Bookmark.svg",
+              'assets/icons/Bookmark.svg',
               colorFilter: const ColorFilter.mode(
                 AppColors.primary,
                 BlendMode.srcIn,
               ),
             ),
-            label: "Bookmarked",
+            label: 'Bookmarked',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              "assets/icons/Profile.svg",
+              'assets/icons/Profile.svg',
               colorFilter: const ColorFilter.mode(
                 _iconColor,
                 BlendMode.srcIn,
               ),
             ),
             activeIcon: SvgPicture.asset(
-              "assets/icons/Profile.svg",
+              'assets/icons/Profile.svg',
               colorFilter: const ColorFilter.mode(
                 AppColors.primary,
                 BlendMode.srcIn,
               ),
             ),
-            label: "Profile",
+            label: 'Profile',
           ),
         ],
       ),

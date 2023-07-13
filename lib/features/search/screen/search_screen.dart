@@ -64,11 +64,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 autofocus: true,
                 controller: _searchFieldController,
                 decoration: InputDecoration(
-                  hintText: "Type to find recipes..",
+                  hintText: 'Type to find recipes..',
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SvgPicture.asset(
-                      "assets/icons/Search.svg",
+                      'assets/icons/Search.svg',
                       colorFilter: const ColorFilter.mode(
                         AppColors.bodyText,
                         BlendMode.srcIn,
@@ -83,8 +83,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 children: [
                   gapH16,
                   SectionListTile(
-                    title: "Recently searched",
-                    trailingText: "Delete all",
+                    title: 'Recently searched',
+                    trailingText: 'Delete all',
                     press: () {
                       getIt.get<SearchRepository>().deleteAllSearchItems();
                     },
@@ -95,7 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       if (snapshot.hasData) {
                         final searchItems = snapshot.data!;
                         if (searchItems.isEmpty) {
-                          return const Text("No recent searches");
+                          return const Text('No recent searches');
                         }
                         return Column(
                           children: searchItems
@@ -116,9 +116,9 @@ class _SearchScreenState extends State<SearchScreen> {
                               .toList(growable: false),
                         );
                       } else if (snapshot.hasError) {
-                        return const Text("Error");
+                        return const Text('Error');
                       } else {
-                        return const Text("Loading");
+                        return const Text('Loading');
                       }
                     },
                   ),
@@ -135,7 +135,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       children: [
                         gapH16,
                         SectionListTile(
-                          title: "Search results",
+                          title: 'Search results',
                           press: () {},
                         ),
                         ...List.generate(

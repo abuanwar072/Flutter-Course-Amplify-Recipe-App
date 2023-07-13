@@ -18,7 +18,7 @@ class OnboardingScreen extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            "assets/images/onboard_image.png",
+            'assets/images/onboard_image.png',
             fit: BoxFit.fitHeight,
           ),
           Container(

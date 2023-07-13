@@ -17,6 +17,21 @@
       },
       "api": {
         "amplifyrecipe": {}
+      },
+      "analytics": {
+        "amplifyrecipe": {},
+        "Pinpoint": {
+          "Name": "amplifyrecipe-dev",
+          "Id": "d4d79d8577b74738978a042239860276",
+          "Region": "eu-central-1"
+        }
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "amplifyrecipe-dev",
+          "Id": "d4d79d8577b74738978a042239860276",
+          "Region": "eu-central-1"
+        }
       }
     }
   }

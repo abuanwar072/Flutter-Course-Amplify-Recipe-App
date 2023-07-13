@@ -23,7 +23,7 @@ class SocalLoginButtons extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: defaultPadding / 1.5),
-              child: Text("or continue with"),
+              child: Text('or continue with'),
             ),
             Expanded(
               child: Divider(),
@@ -52,8 +52,8 @@ class SocalLoginButtons extends StatelessWidget {
               );
             });
           },
-          icon: SvgPicture.asset("assets/icons/Google.svg"),
-          label: const Text("Sign Up with Google"),
+          icon: SvgPicture.asset('assets/icons/Google.svg'),
+          label: const Text('Sign Up with Google'),
         ),
         gapH16,
         OutlinedButton.icon(
@@ -77,8 +77,8 @@ class SocalLoginButtons extends StatelessWidget {
               );
             });
           },
-          icon: SvgPicture.asset("assets/icons/Faceboook.svg"),
-          label: const Text("Sign Up with Facebook"),
+          icon: SvgPicture.asset('assets/icons/Faceboook.svg'),
+          label: const Text('Sign Up with Facebook'),
         ),
       ],
     );

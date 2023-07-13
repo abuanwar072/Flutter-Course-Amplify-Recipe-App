@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         leadingWidth: 0,
         leading: const SizedBox(),
-        title: Text("Hello, ${getIt.get<AuthenticationRepository>().name} 👋"),
+        title: Text('Hello, ${getIt.get<AuthenticationRepository>().name} 👋'),
         centerTitle: false,
         actions: [
           IconButton(
@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
               smallSize: 8,
               backgroundColor: AppColors.success,
               child: SvgPicture.asset(
-                "assets/icons/Notification.svg",
+                'assets/icons/Notification.svg',
                 colorFilter: const ColorFilter.mode(
                   AppColors.bodyText,
                   BlendMode.srcIn,
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
             const SearchContaner(),
             gapH16,
             SectionListTile(
-              title: "Latest Recipes",
+              title: 'Latest Recipes',
               press: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(

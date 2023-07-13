@@ -38,7 +38,7 @@ class _SignUpFormState extends State<SignUpForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Full Name",
+            'Full Name',
             style: Theme.of(context).textTheme.titleSmall,
           ),
           gapH8,
@@ -46,11 +46,11 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: nameController,
             validator: FormUtils.requireFieldValidator,
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(hintText: "Enter your name"),
+            decoration: const InputDecoration(hintText: 'Enter your name'),
           ),
           gapH16,
           Text(
-            "Email address",
+            'Email address',
             style: Theme.of(context).textTheme.titleSmall,
           ),
           gapH8,
@@ -59,11 +59,11 @@ class _SignUpFormState extends State<SignUpForm> {
             validator: FormUtils.emailValidator,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(hintText: "test@mail.com"),
+            decoration: const InputDecoration(hintText: 'test@mail.com'),
           ),
           gapH16,
           Text(
-            "Password",
+            'Password',
             style: Theme.of(context).textTheme.titleSmall,
           ),
           gapH8,
@@ -71,7 +71,7 @@ class _SignUpFormState extends State<SignUpForm> {
             controller: passwordController,
             validator: FormUtils.passwordValidator,
             obscureText: true,
-            decoration: const InputDecoration(hintText: "Enter your password"),
+            decoration: const InputDecoration(hintText: 'Enter your password'),
           ),
           gapH24,
           ElevatedButton(
@@ -113,7 +113,7 @@ class _SignUpFormState extends State<SignUpForm> {
                     }
                   }
                 : null,
-            child: const Text("Sign up"),
+            child: const Text('Sign up'),
           ),
         ],
       ),

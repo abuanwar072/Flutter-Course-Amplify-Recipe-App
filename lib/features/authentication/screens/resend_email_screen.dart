@@ -12,7 +12,7 @@ class EmailResendScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Forgot Password"),
+        title: const Text('Forgot Password'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -21,7 +21,7 @@ class EmailResendScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Email Sent",
+                'Email Sent',
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       color: AppColors.text,
                     ),
@@ -29,10 +29,10 @@ class EmailResendScreen extends StatelessWidget {
               gapH16,
               Text.rich(
                 TextSpan(
-                  text: "Not receiving email? check on promotion page, spam. ",
+                  text: 'Not receiving email? check on promotion page, spam. ',
                   children: [
                     TextSpan(
-                      text: "Having problem?",
+                      text: 'Having problem?',
                       recognizer: TapGestureRecognizer()..onTap = () {},
                       style: const TextStyle(
                         color: AppColors.primary,
@@ -45,7 +45,7 @@ class EmailResendScreen extends StatelessWidget {
               gapH24,
               ElevatedButton(
                 onPressed: () {},
-                child: const Text("Resend"),
+                child: const Text('Resend'),
               ),
             ],
           ),

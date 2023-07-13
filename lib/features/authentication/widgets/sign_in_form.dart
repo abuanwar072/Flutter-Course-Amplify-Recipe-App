@@ -39,7 +39,7 @@ class _SignInFormState extends State<SignInForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Email address",
+            'Email address',
             style: Theme.of(context).textTheme.titleSmall,
           ),
           gapH8,
@@ -48,11 +48,11 @@ class _SignInFormState extends State<SignInForm> {
             validator: FormUtils.emailValidator,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            decoration: const InputDecoration(hintText: "user@example.com"),
+            decoration: const InputDecoration(hintText: 'user@example.com'),
           ),
           gapH16,
           Text(
-            "Password",
+            'Password',
             style: Theme.of(context).textTheme.titleSmall,
           ),
           gapH8,
@@ -60,7 +60,7 @@ class _SignInFormState extends State<SignInForm> {
             controller: passwordController,
             validator: FormUtils.passwordValidator,
             obscureText: true,
-            decoration: const InputDecoration(hintText: "Enter your password"),
+            decoration: const InputDecoration(hintText: 'Enter your password'),
           ),
           gapH24,
           ElevatedButton(
@@ -108,7 +108,7 @@ class _SignInFormState extends State<SignInForm> {
                     }
                   }
                 : null,
-            child: const Text("Login"),
+            child: const Text('Login'),
           ),
         ],
       ),

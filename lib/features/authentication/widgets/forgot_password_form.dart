@@ -22,7 +22,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Email address",
+            'Email address',
             style: Theme.of(context).textTheme.titleSmall,
           ),
           gapH8,
@@ -32,7 +32,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
             },
             validator: FormUtils.emailValidator,
             keyboardType: TextInputType.emailAddress,
-            decoration: const InputDecoration(hintText: "test@mail.com"),
+            decoration: const InputDecoration(hintText: 'test@mail.com'),
           ),
           gapH24,
           ElevatedButton(
@@ -43,7 +43,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                     builder: (context) => const EmailResendScreen()),
               );
             },
-            child: const Text("Reset Password"),
+            child: const Text('Reset Password'),
           ),
         ],
       ),

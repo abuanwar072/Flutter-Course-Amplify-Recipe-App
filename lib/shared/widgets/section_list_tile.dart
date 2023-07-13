@@ -6,7 +6,7 @@ class SectionListTile extends StatelessWidget {
   const SectionListTile({
     super.key,
     required this.title,
-    this.trailingText = "See all",
+    this.trailingText = 'See all',
     required this.press,
   });
 

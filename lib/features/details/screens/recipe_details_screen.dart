@@ -84,13 +84,13 @@ class RecipeDetailsScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 SvgPicture.asset(
-                                  "assets/icons/clock.svg",
+                                  'assets/icons/clock.svg',
                                 ),
                                 gapW4,
                                 Text(recipe.duration),
                                 gapW16,
                                 SvgPicture.asset(
-                                  "assets/icons/Profile.svg",
+                                  'assets/icons/Profile.svg',
                                   height: 16,
                                   colorFilter: const ColorFilter.mode(
                                     Color(0xFFB1B1B1),

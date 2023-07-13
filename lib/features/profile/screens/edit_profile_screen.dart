@@ -37,7 +37,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Edit Profile"),
+        title: const Text('Edit Profile'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(defaultPadding),
@@ -48,7 +48,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Name",
+                    'Name',
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   gapH8,
@@ -60,11 +60,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     validator: FormUtils.requireFieldValidator,
                     textInputAction: TextInputAction.next,
                     decoration:
-                        const InputDecoration(hintText: "Enter your name"),
+                        const InputDecoration(hintText: 'Enter your name'),
                   ),
                   gapH16,
                   Text(
-                    "Email",
+                    'Email',
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   gapH8,
@@ -75,23 +75,23 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     decoration:
-                        const InputDecoration(hintText: "test@mail.com"),
+                        const InputDecoration(hintText: 'test@mail.com'),
                   ),
                   gapH16,
                   Text(
-                    "Place of Birth",
+                    'Place of Birth',
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   gapH8,
                   TextFormField(
-                    initialValue: "",
+                    initialValue: '',
                     onSaved: (birthPlace) {},
                     textInputAction: TextInputAction.next,
-                    decoration: const InputDecoration(hintText: "E.g. Los Angeles"),
+                    decoration: const InputDecoration(hintText: 'E.g. Los Angeles'),
                   ),
                   gapH16,
                   Text(
-                    "Date of Birth",
+                    'Date of Birth',
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   gapH8,
@@ -112,11 +112,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       }
                     },
                     decoration:
-                        const InputDecoration(hintText: "E.g. 30.08.1992"),
+                        const InputDecoration(hintText: 'E.g. 30.08.1992'),
                   ),
                   gapH16,
                   Text(
-                    "Gender",
+                    'Gender',
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                   gapH8,
@@ -136,16 +136,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         color: AppColors.inputfieldBg,
                       ),
                       tabs: const [
-                        Tab(text: "Male"),
-                        Tab(text: "Female"),
-                        Tab(text: "Not Specified"),
+                        Tab(text: 'Male'),
+                        Tab(text: 'Female'),
+                        Tab(text: 'Not Specified'),
                       ],
                     ),
                   ),
                   gapH24,
                   ElevatedButton(
                     onPressed: () {},
-                    child: const Text("Save Change"),
+                    child: const Text('Save Change'),
                   ),
                 ],
               ),

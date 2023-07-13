@@ -12,7 +12,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Forgot Password"),
+        title: const Text('Forgot Password'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -21,14 +21,14 @@ class ForgotPasswordScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Forgot Password",
+                'Forgot Password',
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       color: AppColors.text,
                     ),
               ),
               gapH16,
               const Text(
-                "Enter your email address and we will send you a reset instructions.",
+                'Enter your email address and we will send you a reset instructions.',
               ),
               gapH24,
               const ForgotPassForm(),

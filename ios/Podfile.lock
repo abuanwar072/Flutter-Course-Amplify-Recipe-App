@@ -1,8 +1,12 @@
 PODS:
   - amplify_auth_cognito_ios (0.0.1):
     - Flutter
+  - amplify_push_notifications (0.0.1):
+    - AmplifyUtilsNotifications
+    - Flutter
   - amplify_secure_storage (0.0.1):
     - Flutter
+  - AmplifyUtilsNotifications (1.0.0)
   - connectivity_plus (0.0.1):
     - Flutter
     - ReachabilitySwift
@@ -20,12 +24,16 @@ PODS:
   - ReachabilitySwift (5.0.0)
   - realm (1.0.3):
     - Flutter
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
 
 DEPENDENCIES:
   - amplify_auth_cognito_ios (from `.symlinks/plugins/amplify_auth_cognito_ios/ios`)
+  - amplify_push_notifications (from `.symlinks/plugins/amplify_push_notifications/ios`)
   - amplify_secure_storage (from `.symlinks/plugins/amplify_secure_storage/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -33,16 +41,20 @@ DEPENDENCIES:
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - realm (from `.symlinks/plugins/realm/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
 
 SPEC REPOS:
   trunk:
+    - AmplifyUtilsNotifications
     - FMDB
     - ReachabilitySwift
 
 EXTERNAL SOURCES:
   amplify_auth_cognito_ios:
     :path: ".symlinks/plugins/amplify_auth_cognito_ios/ios"
+  amplify_push_notifications:
+    :path: ".symlinks/plugins/amplify_push_notifications/ios"
   amplify_secure_storage:
     :path: ".symlinks/plugins/amplify_secure_storage/ios"
   connectivity_plus:
@@ -57,12 +69,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   realm:
     :path: ".symlinks/plugins/realm/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
 
 SPEC CHECKSUMS:
   amplify_auth_cognito_ios: f8b7c4d978565313b60596d7dc94fe029b4f7704
+  amplify_push_notifications: 694e708ce7b2a9f39ff6cd2d4de69005040011ca
   amplify_secure_storage: 501cbdac671a050090d48dfcc002d5637d3f4a55
+  AmplifyUtilsNotifications: 8b174fcd73a3385497cbde27c513dc651d20bd59
   connectivity_plus: 413a8857dd5d9f1c399a39130850d02fe0feaf7e
   device_info_plus: e5c5da33f982a436e103237c0c85f9031142abed
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
@@ -71,6 +87,7 @@ SPEC CHECKSUMS:
   path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   realm: f241e89a4b914c3b1750cea80ad281a29d4ec202
+  shared_preferences_foundation: e2dae3258e06f44cc55f49d42024fd8dd03c590c
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
 
 PODFILE CHECKSUM: fa61b0820d8a526e68a48f3d621f636f34ba4f43

@@ -20,13 +20,13 @@ class SignInScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome",
+                'Welcome',
                 style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                       color: AppColors.text,
                     ),
               ),
               gapH16,
-              const Text("Enter your email address for sign in"),
+              const Text('Enter your email address for sign in'),
               gapH24,
               const SignInForm(),
               Align(
@@ -40,7 +40,7 @@ class SignInScreen extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    "Forgot password?",
+                    'Forgot password?',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),

@@ -19,11 +19,11 @@ class Ingredients extends StatelessWidget {
       children: [
         gapH24,
         Text(
-          "Ingredients ${ingredients.length}",
+          'Ingredients ${ingredients.length}',
           style: Theme.of(context).textTheme.titleLarge,
         ),
         ...ingredients.map((ingredient) {
-          final ingredientSplit = ingredient.split("-");
+          final ingredientSplit = ingredient.split('-');
           return Padding(
             padding: const EdgeInsets.only(top: defaultPadding),
             child: IngredientTile(

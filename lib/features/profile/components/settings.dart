@@ -22,31 +22,31 @@ class Settings extends StatelessWidget {
         Container(
           color: const Color(0xFF757575).withOpacity(0.08),
           child: const ListTile(
-            title: Text("Settings"),
+            title: Text('Settings'),
           ),
         ),
         gapH16,
         SettingListTile(
           onTap: () {},
-          title: "Notifications",
-          iconSrc: "assets/icons/Notification.svg",
+          title: 'Notifications',
+          iconSrc: 'assets/icons/Notification.svg',
         ),
         SettingListTile(
           onTap: () {},
-          title: "Language",
-          trailingText: "English",
-          iconSrc: "assets/icons/Language.svg",
+          title: 'Language',
+          trailingText: 'English',
+          iconSrc: 'assets/icons/Language.svg',
         ),
         SettingListTile(
           onTap: () {},
-          title: "Theme",
-          trailingText: "Light",
-          iconSrc: "assets/icons/Moon.svg",
+          title: 'Theme',
+          trailingText: 'Light',
+          iconSrc: 'assets/icons/Moon.svg',
         ),
         SettingListTile(
           onTap: () {},
-          title: "Help",
-          iconSrc: "assets/icons/Help.svg",
+          title: 'Help',
+          iconSrc: 'assets/icons/Help.svg',
         ),
         gapH8,
         SettingListTile(
@@ -61,9 +61,9 @@ class Settings extends StatelessWidget {
               );
             });
           },
-          title: "Log out",
+          title: 'Log out',
           isLogout: true,
-          iconSrc: "assets/icons/Logout.svg",
+          iconSrc: 'assets/icons/Logout.svg',
         ),
       ],
     );

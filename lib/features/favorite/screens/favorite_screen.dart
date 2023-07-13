@@ -22,7 +22,7 @@ class FavoriteScreen extends StatelessWidget {
             children: [
               gapH24,
               Text(
-                "Saved 😍",
+                'Saved 😍',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               gapH8,
