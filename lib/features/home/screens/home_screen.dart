@@ -6,12 +6,12 @@ import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/shared/widgets/recipe_card.dart';
-import 'package:amplify_recipe/thems/app_colors.dart';
+import 'package:amplify_recipe/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../shared/widgets/section_list_tile.dart';
-import '../widgest/search_container.dart';
+import '../widgets/search_container.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

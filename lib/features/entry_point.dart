@@ -1,7 +1,7 @@
 import 'package:amplify_recipe/features/favorite/screens/favorite_screen.dart';
 import 'package:amplify_recipe/features/home/screens/home_screen.dart';
 import 'package:amplify_recipe/features/profile/screens/profile_screen.dart';
-import 'package:amplify_recipe/thems/app_colors.dart';
+import 'package:amplify_recipe/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

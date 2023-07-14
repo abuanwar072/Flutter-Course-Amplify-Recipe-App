@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../../../thems/app_colors.dart';
+import '../../../themes/app_colors.dart';
 
 class TermsAndPolicy extends StatelessWidget {
   const TermsAndPolicy({

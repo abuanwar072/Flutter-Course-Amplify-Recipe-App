@@ -10,7 +10,7 @@ import 'package:amplify_recipe/features/common/data/local_search_repository.dart
 import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/common/data/search_repository.dart';
 import 'package:amplify_recipe/models/ModelProvider.dart';
-import 'package:amplify_recipe/thems/app_theme.dart';
+import 'package:amplify_recipe/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 

@@ -26,6 +26,7 @@ class _OnboardContentState extends State<OnboardContent> {
     super.initState();
     futureOperation = getIt.get<AuthenticationRepository>().isUserLoggedIn();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

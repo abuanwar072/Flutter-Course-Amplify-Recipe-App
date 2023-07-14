@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
-import '../../../thems/app_colors.dart';
+import '../../../themes/app_colors.dart';
 
 class EmailResendScreen extends StatelessWidget {
   const EmailResendScreen({super.key});

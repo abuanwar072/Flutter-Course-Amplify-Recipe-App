@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
-import '../../../thems/app_colors.dart';
+import '../../../themes/app_colors.dart';
 
 class Settings extends StatelessWidget {
   const Settings({

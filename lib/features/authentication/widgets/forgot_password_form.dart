@@ -1,4 +1,7 @@
 import 'package:amplify_recipe/features/authentication/screens/resend_email_screen.dart';
+import 'package:amplify_recipe/features/authentication/widgets/user_confirmation_form.dart';
+import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
+import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/gaps.dart';
@@ -15,6 +18,7 @@ class ForgotPassForm extends StatefulWidget {
 
 class _ForgotPassFormState extends State<ForgotPassForm> {
   late String email;
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -36,12 +40,18 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           ),
           gapH24,
           ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const EmailResendScreen()),
-              );
+            onPressed: () async {
+              final result = await getIt
+                  .get<CognitoAuthenticationRepository>()
+                  .forgotPassword(email);
+              if (result && mounted) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UserConfirmationForm(email: email),
+                  ),
+                );
+              }
             },
             child: const Text('Reset Password'),
           ),

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
 import '../../../shared/utils/form_utils.dart';
-import '../../../thems/app_colors.dart';
+import '../../../themes/app_colors.dart';
 
 class UserConfirmationForm extends StatefulWidget {
   const UserConfirmationForm({

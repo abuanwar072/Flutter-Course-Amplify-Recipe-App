@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/constants.dart';
-import '../../../thems/app_colors.dart';
+import '../../../themes/app_colors.dart';
 
 class IngredientTile extends StatelessWidget {
   const IngredientTile({

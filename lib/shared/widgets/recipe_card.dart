@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../thems/app_colors.dart';
+import '../../themes/app_colors.dart';
 import '../constants/constants.dart';
 import 'froested_glass_container.dart';
 

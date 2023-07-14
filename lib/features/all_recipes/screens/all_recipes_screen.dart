@@ -13,6 +13,7 @@ class AllRecipesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final recipeRepository = getIt.get<RecipeRepository>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -29,7 +30,7 @@ class AllRecipesScreen extends StatelessWidget {
               gapH8,
               Expanded(
                 child: StreamBuilder<List<Recipe>>(
-                  stream: getIt.get<RecipeRepository>().listenRecipes(),
+                  stream: recipeRepository.listenRecipes(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       final recipes = snapshot.data!;
@@ -51,12 +52,10 @@ class AllRecipesScreen extends StatelessWidget {
                                 );
                               },
                               onBookmarked: () {
-                                getIt
-                                    .get<RecipeRepository>()
-                                    .toggleFavoriteForRecipe(
-                                      id: recipe.id,
-                                      isFavorited: !recipe.isFavorited,
-                                    );
+                                recipeRepository.toggleFavoriteForRecipe(
+                                  id: recipe.id,
+                                  isFavorited: !recipe.isFavorited,
+                                );
                               },
                               title: recipe.title,
                               image: recipe.image,
