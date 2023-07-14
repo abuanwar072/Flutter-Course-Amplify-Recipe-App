@@ -1,4 +1,3 @@
-import 'package:amplify_recipe/features/authentication/screens/resend_email_screen.dart';
 import 'package:amplify_recipe/features/authentication/widgets/user_confirmation_form.dart';
 import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
