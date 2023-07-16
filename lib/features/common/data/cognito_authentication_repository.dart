@@ -58,9 +58,19 @@ class CognitoAuthenticationRepository extends AuthenticationRepository {
   }
 
   @override
-  Future<bool> isUserLogedIn() {
-    // TODO: implement isUserLogedIn
-    throw UnimplementedError();
+  Future<bool> isUserLogedIn() async {
+    try {
+      final result = await Amplify.Auth.fetchAuthSession(
+        options: const FetchAuthSessionOptions(forceRefresh: true),
+      );
+      if (result.isSignedIn) {
+        await generateCurrentUserInformation();
+      }
+      return result.isSignedIn;
+    } on AuthException catch (e) {
+      safePrint('Error fetching auth session: ${e.message}');
+      rethrow;
+    }
   }
 
   @override
@@ -133,5 +143,15 @@ class CognitoAuthenticationRepository extends AuthenticationRepository {
   Future<void> forgotPassword(String email) {
     // TODO: implement forgotPassword
     throw UnimplementedError();
+  }
+
+  @override
+  Future<void> signOut() async {
+    try {
+      await Amplify.Auth.signOut();
+    } on AuthException catch (e) {
+      safePrint('Error signing out: ${e.message}');
+      rethrow;
+    }
   }
 }

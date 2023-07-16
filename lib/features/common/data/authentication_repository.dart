@@ -22,4 +22,6 @@ abstract class AuthenticationRepository {
   Future<bool> isUserLogedIn();
 
   Future<void> generateCurrentUserInformation();
+
+  Future<void> signOut();
 }
