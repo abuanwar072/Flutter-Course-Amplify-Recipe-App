@@ -10,6 +10,14 @@
       "StackName": "amplify-amplifyrecipe-dev-80359",
       "StackId": "arn:aws:cloudformation:us-east-1:471557493636:stack/amplify-amplifyrecipe-dev-80359/0a440c60-237d-11ee-8701-0a8268843595",
       "AmplifyAppId": "d2re7a7infrsh3"
+    },
+    "categories": {
+      "auth": {
+        "amplifyrecipe954951c9": {}
+      },
+      "api": {
+        "amplifyrecipe": {}
+      }
     }
   }
 }
