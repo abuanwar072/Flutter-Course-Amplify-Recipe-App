@@ -1,3 +1,7 @@
+import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
+import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
+import 'package:amplify_recipe/main.dart';
+import 'package:amplify_recipe/shared/extentions/context_extentions.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -49,7 +53,34 @@ class _UserConfirmationFormState extends State<UserConfirmationForm> {
                 ),
                 gapH24,
                 ElevatedButton(
-                  onPressed: _isEnabled ? () {} : null,
+                  onPressed: _isEnabled
+                      ? () {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              _isEnabled = true;
+                            });
+                            getIt
+                                .get<CognitoAuthenticationRepository>()
+                                .confirmUser(widget.email,
+                                    confirmationCodeController.text)
+                                .then(
+                                  (value) => Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SignInScreen(),
+                                    ),
+                                  ),
+                                )
+                                .onError((error, stackTrace) {
+                              setState(() {
+                                _isEnabled = false;
+                              });
+                              context.showSnackBar(error.toString());
+                            });
+                          }
+                        }
+                      : null,
                   child: const Text('Confirm User'),
                 ),
                 gapH24,

@@ -1,5 +1,7 @@
+import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
-import 'package:amplify_recipe/features/home/screens/home_screen.dart';
+import 'package:amplify_recipe/main.dart';
+import 'package:amplify_recipe/shared/extentions/context_extentions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/gaps.dart';
@@ -15,10 +17,24 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-  late String email, password;
+  final _formKey = GlobalKey<FormState>();
+
+  late final TextEditingController emailController = TextEditingController();
+  late final TextEditingController passwordController = TextEditingController();
+
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,9 +44,7 @@ class _SignInFormState extends State<SignInForm> {
           ),
           gapH8,
           TextFormField(
-            onSaved: (email) {
-              email = email!;
-            },
+            controller: emailController,
             validator: FormUtils.emailValidator,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
@@ -43,23 +57,48 @@ class _SignInFormState extends State<SignInForm> {
           ),
           gapH8,
           TextFormField(
-            onSaved: (password) {
-              password = password!;
-            },
+            controller: passwordController,
             validator: FormUtils.passwordValidator,
             obscureText: true,
             decoration: const InputDecoration(hintText: "Enter your password"),
           ),
           gapH24,
           ElevatedButton(
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => const EntryPoint()),
-                (route) => false,
-              );
-            },
-            child: const Text("Login"),
+            onPressed: _isLoading
+                ? null
+                : () {
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                    }
+
+                    getIt
+                        .get<CognitoAuthenticationRepository>()
+                        .logInWithCredentials(
+                          emailController.text,
+                          passwordController.text,
+                        )
+                        .then(
+                          (_) => Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const EntryPoint()),
+                            (route) => false,
+                          ),
+                        )
+                        .onError(
+                      (error, stackTrace) {
+                        setState(() {
+                          _isLoading = false;
+                        });
+                        context.showSnackBar(error.toString());
+                      },
+                    );
+                  },
+            child: _isLoading
+                ? const CircularProgressIndicator(color: Colors.white)
+                : const Text("Login"),
           ),
         ],
       ),
