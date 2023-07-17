@@ -12,6 +12,6 @@ class _Recipe {
   late String category;
   late String image;
   late bool isFavorited;
-  late List<String> ingrediens;
+  late List<String> ingredients;
   bool isSynced = false;
 }

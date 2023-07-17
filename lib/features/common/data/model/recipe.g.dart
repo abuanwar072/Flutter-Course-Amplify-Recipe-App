@@ -19,7 +19,7 @@ class Recipe extends _Recipe with RealmEntity, RealmObjectBase, RealmObject {
     String image,
     bool isFavorited, {
     bool isSynced = false,
-    Iterable<String> ingrediens = const [],
+    Iterable<String> ingredients = const [],
   }) {
     if (!_defaultsSet) {
       _defaultsSet = RealmObjectBase.setDefaults<Recipe>({
@@ -36,7 +36,7 @@ class Recipe extends _Recipe with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'isFavorited', isFavorited);
     RealmObjectBase.set(this, 'isSynced', isSynced);
     RealmObjectBase.set<RealmList<String>>(
-        this, 'ingrediens', RealmList<String>(ingrediens));
+        this, 'ingredients', RealmList<String>(ingredients));
   }
 
   Recipe._();
@@ -88,10 +88,10 @@ class Recipe extends _Recipe with RealmEntity, RealmObjectBase, RealmObject {
       RealmObjectBase.set(this, 'isFavorited', value);
 
   @override
-  RealmList<String> get ingrediens =>
-      RealmObjectBase.get<String>(this, 'ingrediens') as RealmList<String>;
+  RealmList<String> get ingredients =>
+      RealmObjectBase.get<String>(this, 'ingredients') as RealmList<String>;
   @override
-  set ingrediens(covariant RealmList<String> value) =>
+  set ingredients(covariant RealmList<String> value) =>
       throw RealmUnsupportedSetError();
 
   @override
@@ -119,7 +119,7 @@ class Recipe extends _Recipe with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('category', RealmPropertyType.string),
       SchemaProperty('image', RealmPropertyType.string),
       SchemaProperty('isFavorited', RealmPropertyType.bool),
-      SchemaProperty('ingrediens', RealmPropertyType.string,
+      SchemaProperty('ingredients', RealmPropertyType.string,
           collectionType: RealmCollectionType.list),
       SchemaProperty('isSynced', RealmPropertyType.bool),
     ]);
