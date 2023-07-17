@@ -68,7 +68,7 @@ class _OnboardContentState extends State<OnboardContent> {
                 }
                 return AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
-                  child: snapshot.hasData
+                  child: snapshot.data == false
                       ? const RegisterAndLoginButton()
                       : const SizedBox(
                           height: 40,
