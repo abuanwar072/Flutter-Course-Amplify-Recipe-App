@@ -12,6 +12,7 @@ class AmplifyRecipeRepository extends RecipeRepository {
 
   AmplifyRecipeRepository() {
     final config = Configuration.local([Recipe.schema, User.schema]);
+    safePrint("AmplifyRecipeRepository run");
     Realm.open(config).then(
       (configuredRealm) {
         realm = configuredRealm;

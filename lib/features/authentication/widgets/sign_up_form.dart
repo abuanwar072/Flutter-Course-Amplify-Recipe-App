@@ -1,5 +1,5 @@
 import 'package:amplify_recipe/features/authentication/widgets/user_conformation_form.dart';
-import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
+import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/extentions/context_extentions.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         _isEnable = true;
                       });
                       getIt
-                          .get<CognitoAuthenticationRepository>()
+                          .get<AuthenticationRepository>()
                           .signUp(
                             emailController.text,
                             passwordController.text,

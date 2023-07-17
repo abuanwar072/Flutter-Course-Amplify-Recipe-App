@@ -1,7 +1,8 @@
 import 'package:amplify_recipe/features/authentication/screens/register_screen.dart';
 import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
+import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
-import 'package:amplify_recipe/main.dart';
+import 'package:amplify_recipe/main.dart' show getIt;
 import 'package:flutter/material.dart';
 
 import '../../../shared/constants/constants.dart';
@@ -22,9 +23,8 @@ class _OnboardContentState extends State<OnboardContent> {
 
   @override
   void initState() {
-    futureOperation =
-        getIt.get<CognitoAuthenticationRepository>().isUserLogedIn();
     super.initState();
+    futureOperation = getIt.get<AuthenticationRepository>().isUserLogedIn();
   }
 
   @override

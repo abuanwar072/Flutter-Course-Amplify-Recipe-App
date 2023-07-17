@@ -1,4 +1,4 @@
-import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
+import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/extentions/context_extentions.dart';
@@ -74,7 +74,7 @@ class _SignInFormState extends State<SignInForm> {
                     }
 
                     getIt
-                        .get<CognitoAuthenticationRepository>()
+                        .get<AuthenticationRepository>()
                         .logInWithCredentials(
                           emailController.text,
                           passwordController.text,

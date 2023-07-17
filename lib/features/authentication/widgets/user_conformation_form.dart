@@ -1,5 +1,4 @@
 import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
-import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/extentions/context_extentions.dart';
 import 'package:flutter/gestures.dart';
@@ -9,6 +8,7 @@ import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
 import '../../../shared/utils/form_utils.dart';
 import '../../../thems/app_colors.dart';
+import '../../common/data/authentication_repository.dart';
 
 class UserConfirmationForm extends StatefulWidget {
   const UserConfirmationForm({
@@ -60,7 +60,7 @@ class _UserConfirmationFormState extends State<UserConfirmationForm> {
                               _isEnabled = true;
                             });
                             getIt
-                                .get<CognitoAuthenticationRepository>()
+                                .get<AuthenticationRepository>()
                                 .confirmUser(widget.email,
                                     confirmationCodeController.text)
                                 .then(

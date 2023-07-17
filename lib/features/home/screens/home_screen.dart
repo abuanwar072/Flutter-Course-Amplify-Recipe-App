@@ -1,4 +1,4 @@
-import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
+import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../main.dart';
 import '../../../shared/widgets/recipe_card.dart';
 import '../../../shared/widgets/section_list_tile.dart';
+import '../../common/data/authentication_repository.dart';
 import '../widgest/search_container.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,8 +21,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         leadingWidth: 0,
         leading: const SizedBox(),
-        title: Text(
-            "Hello, ${getIt.get<CognitoAuthenticationRepository>().name} 👋"),
+        title: Text("Hello, ${getIt.get<AuthenticationRepository>().name} 👋"),
         centerTitle: false,
         actions: [
           IconButton(
@@ -49,6 +49,13 @@ class HomeScreen extends StatelessWidget {
               press: () {},
             ),
             gapH16,
+            StreamBuilder(
+              stream: getIt.get<RecipeRepository>().listenLatestRecipes(),
+              builder: (context, snapshot) {
+                final recipes = snapshot.data;
+                return Column();
+              },
+            ),
             ...List.generate(
               5,
               (index) => Padding(
