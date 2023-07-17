@@ -12,7 +12,7 @@ enum Duration {
   HOUR
 }
 
-type Recipe @model @auth(rules: [{ allow: private }]) {
+type Recipe @model @auth(rules: [{allow: private}]) {
   id: ID!
   title: String!
   serve: Int!
@@ -24,3 +24,4 @@ type Recipe @model @auth(rules: [{ allow: private }]) {
   duration_unit: Int!
   ingredients: [String!]!
 }
+ 

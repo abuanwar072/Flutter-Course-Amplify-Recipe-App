@@ -33,7 +33,7 @@ class FavoriteScreen extends StatelessWidget {
                       image: "https://i.postimg.cc/wx2wxNRm/Image.png",
                       category: "Soup",
                       isBookmarked: true,
-                      duration: 30,
+                      duration: "30 min",
                       serve: 2,
                     ),
                   ),

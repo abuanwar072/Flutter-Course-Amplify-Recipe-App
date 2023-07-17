@@ -15,8 +15,8 @@ class RecipeCard extends StatelessWidget {
     this.isBookmarked = false,
     required this.press,
   });
-  final String title, image, category;
-  final int duration, serve;
+  final String title, image, category, duration;
+  final int serve;
   final bool isBookmarked;
   final VoidCallback press;
 
@@ -78,7 +78,7 @@ class RecipeCard extends StatelessWidget {
               top: 16,
               left: 16,
               height: 32,
-              width: 72,
+              // width: 72,
               child: FrostedGlassContainer(
                 borderRadius: 20,
                 child: Center(
