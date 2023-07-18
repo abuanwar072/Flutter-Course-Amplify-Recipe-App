@@ -126,4 +126,38 @@ class AmplifyRecipeRepository extends RecipeRepository {
       realm.addAll(recipes, update: true);
     });
   }
+
+  @override
+  Future<void> addRecipe(
+    String title,
+    String description,
+    String duration,
+    String durationUnit,
+    String category,
+    String serves,
+    String imagePath,
+    List<(String, String)> ingredients,
+  ) async {
+    final recipe = Recipe(
+      DateTime.now().toIso8601String(),
+      title,
+      description,
+      int.parse(serves),
+      '$duration $durationUnit',
+      category,
+      'https://images.unsplash.com/photo-1550305613-3e2b1300b4f5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2V0dGluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+      false,
+      ingredients: ingredients
+          .map(
+            (e) => '${e.$1} ${e.$2}',
+          )
+          .toList(growable: false),
+    );
+
+    realm.write(() {
+      realm.add(recipe);
+    });
+
+    syncLocalChanges();
+  }
 }

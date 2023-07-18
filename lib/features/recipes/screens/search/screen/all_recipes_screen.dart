@@ -6,7 +6,7 @@ import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/shared/widgets/recipe_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../../shared/constants/constants.dart';
+import '../../../../../shared/constants/constants.dart';
 
 class AllRecipesScreen extends StatelessWidget {
   const AllRecipesScreen({super.key});

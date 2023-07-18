@@ -1,6 +1,7 @@
 import 'package:amplify_recipe/features/authentication/screens/register_screen.dart';
 import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
+import 'package:amplify_recipe/features/common/data/notification_repository.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';
@@ -57,6 +58,7 @@ class _OnboardContentState extends State<OnboardContent> {
               future: futureOperation,
               builder: (context, snapshot) {
                 if (snapshot.data == true) {
+                  getIt.get<NotificationRepository>().listenNotifications();
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     Navigator.pushReplacement(
                       context,

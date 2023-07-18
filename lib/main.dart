@@ -7,6 +7,8 @@ import 'package:amplify_recipe/features/common/data/amplify_recipe_repository.da
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
 import 'package:amplify_recipe/features/common/data/local_search_repository.dart';
+import 'package:amplify_recipe/features/common/data/notification_repository.dart';
+import 'package:amplify_recipe/features/common/data/pinpoint_notification_repository.dart';
 import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/common/data/search_repository.dart';
 import 'package:amplify_recipe/models/ModelProvider.dart';
@@ -35,6 +37,9 @@ void _registerData() {
   getIt.registerSingleton<SearchRepository>(
     LocalSearchRepository(),
   );
+  getIt.registerSingleton<NotificationRepository>(
+    PinpointNotificationRepository(),
+  );
 }
 
 Future<void> _configureAmplify() async {
@@ -46,30 +51,10 @@ Future<void> _configureAmplify() async {
     ]);
     await Amplify.configure(amplifyconfig);
     await handlePermissions();
-    await listenToNotifications();
   } on AmplifyException catch (e) {
     safePrint(
         'Something wrong with the Amplify configuration. Check this error: $e');
   }
-}
-
-Future<void> listenToNotifications() async {
-  Amplify.Notifications.Push.onTokenReceived.listen((event) {
-    safePrint(event);
-  });
-  Amplify.Notifications.Push.onNotificationReceivedInBackground(
-    (notification) {
-      safePrint('onNotificationReceivedInBackground: $notification');
-    },
-  );
-  Amplify.Notifications.Push.onNotificationReceivedInForeground.listen(
-    (notification) {
-      safePrint('onNotificationOpenedInBackground: $notification');
-    },
-  );
-  // ..onNotificationReceivedInForeground.listen((notification) {
-  //   safePrint('onNotificationReceivedInForeground: $notification');
-  // });
 }
 
 Future<void> handlePermissions() async {

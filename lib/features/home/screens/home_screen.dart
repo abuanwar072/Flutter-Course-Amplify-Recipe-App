@@ -1,7 +1,8 @@
-import 'package:amplify_recipe/features/all_recipes/screens/all_recipes_screen.dart';
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
+import 'package:amplify_recipe/features/recipes/screens/search/screen/add_recipe_screen.dart';
+import 'package:amplify_recipe/features/recipes/screens/search/screen/all_recipes_screen.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
@@ -19,6 +20,30 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Theme(
+        data: ThemeData(
+          useMaterial3: true,
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+            backgroundColor: AppColors.primary,
+          ),
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              isScrollControlled: true,
+              useSafeArea: true,
+              context: context,
+              builder: (context) {
+                return const AddRecipeScreen();
+              },
+            );
+          },
+          child: const Icon(
+            Icons.add,
+            color: Colors.white,
+          ),
+        ),
+      ),
       appBar: AppBar(
         leadingWidth: 0,
         leading: const SizedBox(),

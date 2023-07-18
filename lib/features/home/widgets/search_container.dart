@@ -1,4 +1,4 @@
-import 'package:amplify_recipe/features/search/screen/search_screen.dart';
+import 'package:amplify_recipe/features/recipes/screens/search/screen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
