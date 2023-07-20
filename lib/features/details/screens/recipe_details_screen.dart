@@ -1,4 +1,3 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_recipe/features/common/data/model/recipe.dart';
 import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/main.dart';
