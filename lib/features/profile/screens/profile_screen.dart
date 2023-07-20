@@ -1,9 +1,9 @@
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
-import 'package:amplify_recipe/features/profile/screens/edit_profile_screen.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../components/settings.dart';
 
@@ -28,12 +28,7 @@ class ProfileScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: ListTile(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const EditProfileScreen(),
-                  ),
-                );
+                context.push('/edit-profile');
               },
               minLeadingWidth: 60,
               leading: CircleAvatar(

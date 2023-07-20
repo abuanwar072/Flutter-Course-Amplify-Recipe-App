@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
@@ -12,6 +14,7 @@ import 'package:amplify_recipe/features/common/data/pinpoint_notification_reposi
 import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/common/data/search_repository.dart';
 import 'package:amplify_recipe/models/ModelProvider.dart';
+import 'package:amplify_recipe/shared/navigation/routes.dart';
 import 'package:amplify_recipe/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -83,11 +86,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'AWS Amplify Recipe App',
       theme: AppTheme.lightTheme(context),
       debugShowCheckedModeBanner: false,
-      home: const OnboardingScreen(),
+      routerConfig: routerConfig,
     );
   }
 }

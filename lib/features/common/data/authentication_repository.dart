@@ -1,7 +1,6 @@
 import 'package:amplify_recipe/features/common/data/model/user.dart';
 
 abstract class AuthenticationRepository {
-
   late String name;
 
   late String fullName;

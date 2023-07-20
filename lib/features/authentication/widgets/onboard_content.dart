@@ -1,10 +1,8 @@
-import 'package:amplify_recipe/features/authentication/screens/register_screen.dart';
-import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/features/common/data/notification_repository.dart';
-import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
@@ -59,12 +57,7 @@ class _OnboardContentState extends State<OnboardContent> {
                 if (snapshot.data == true) {
                   getIt.get<NotificationRepository>().listenNotifications();
                   WidgetsBinding.instance.addPostFrameCallback((_) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const EntryPoint(),
-                      ),
-                    );
+                    context.go('/entry-point');
                   });
                 }
                 return AnimatedSwitcher(
@@ -74,25 +67,14 @@ class _OnboardContentState extends State<OnboardContent> {
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        const RegisterScreen(),
-                                  ),
-                                );
+                                context.push('/register');
                               },
                               child: const Text('Register'),
                             ),
                             gapH8,
                             OutlinedButton(
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const SignInScreen(),
-                                  ),
-                                );
+                                context.push('/sign-in');
                               },
                               style: OutlinedButton.styleFrom(
                                 foregroundColor: Colors.white,

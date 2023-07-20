@@ -1,7 +1,7 @@
-import 'package:amplify_recipe/features/authentication/widgets/user_confirmation_form.dart';
 import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/gaps.dart';
 import '../../../shared/utils/form_utils.dart';
@@ -44,12 +44,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                   .get<CognitoAuthenticationRepository>()
                   .forgotPassword(email);
               if (result && mounted) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => UserConfirmationForm(email: email),
-                  ),
-                );
+                context.push('/user-confirmation/$email');
               }
             },
             child: const Text('Reset Password'),

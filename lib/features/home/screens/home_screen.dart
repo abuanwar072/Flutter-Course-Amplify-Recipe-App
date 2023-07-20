@@ -1,8 +1,7 @@
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
-import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
 import 'package:amplify_recipe/features/recipes/screens/search/screen/add_recipe_screen.dart';
-import 'package:amplify_recipe/features/recipes/screens/search/screen/all_recipes_screen.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
@@ -10,6 +9,7 @@ import 'package:amplify_recipe/shared/widgets/recipe_card.dart';
 import 'package:amplify_recipe/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/widgets/section_list_tile.dart';
 import '../widgets/search_container.dart';
@@ -76,11 +76,7 @@ class HomeScreen extends StatelessWidget {
             SectionListTile(
               title: 'Latest Recipes',
               press: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const AllRecipesScreen(),
-                  ),
-                );
+                context.push('/all-recipes');
               },
             ),
             gapH16,
@@ -100,14 +96,7 @@ class HomeScreen extends StatelessWidget {
                                 const EdgeInsets.only(bottom: defaultPadding),
                             child: RecipeCard(
                               press: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => RecipeDetailsScreen(
-                                      id: recipe.id,
-                                    ),
-                                  ),
-                                );
+                                context.push('/recipe/${recipe.id}');
                               },
                               onBookmarked: () {
                                 getIt

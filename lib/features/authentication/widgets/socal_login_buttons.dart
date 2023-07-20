@@ -1,8 +1,11 @@
+// ignore_for_file: unused_import
+
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
@@ -33,18 +36,11 @@ class SocalLoginButtons extends StatelessWidget {
         gapH16,
         OutlinedButton.icon(
           onPressed: () {
-            getIt
-                .get<AuthenticationRepository>()
-                .logInWithGoogle()
-                .then((value) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const EntryPoint(),
-                ),
-                    (route) => false,
-              );
-            }).onError((error, stackTrace) {
+            getIt.get<AuthenticationRepository>().logInWithGoogle().then(
+              (value) {
+                context.go('/entry-point');
+              },
+            ).onError((error, stackTrace) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(error.toString()),
@@ -58,18 +54,11 @@ class SocalLoginButtons extends StatelessWidget {
         gapH16,
         OutlinedButton.icon(
           onPressed: () {
-            getIt
-                .get<AuthenticationRepository>()
-                .logInWithFacebook()
-                .then((value) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const EntryPoint(),
-                ),
-                (route) => false,
-              );
-            }).onError((error, stackTrace) {
+            getIt.get<AuthenticationRepository>().logInWithFacebook().then(
+              (value) {
+                context.go('/entry-point');
+              },
+            ).onError((error, stackTrace) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(error.toString()),

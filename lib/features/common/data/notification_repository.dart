@@ -1,5 +1,4 @@
 abstract class NotificationRepository {
-
   /// Save notification to the local database
   Future<void> saveNotification(
     String title,

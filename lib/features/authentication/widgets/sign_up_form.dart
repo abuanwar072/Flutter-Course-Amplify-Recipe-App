@@ -1,7 +1,7 @@
-import 'package:amplify_recipe/features/authentication/widgets/user_confirmation_form.dart';
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/gaps.dart';
 import '../../../shared/utils/form_utils.dart';
@@ -89,15 +89,8 @@ class _SignUpFormState extends State<SignUpForm> {
                             nameController.text,
                           )
                           .then((value) {
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => UserConfirmationForm(
-                              email: emailController.text,
-                            ),
-                          ),
-                          (route) => false,
-                        );
+                        context
+                            .go('/user-confirmation/${emailController.text}');
                       }).onError(
                         (error, stackTrace) {
                           setState(() {

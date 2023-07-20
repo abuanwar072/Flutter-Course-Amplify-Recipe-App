@@ -87,7 +87,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     initialValue: '',
                     onSaved: (birthPlace) {},
                     textInputAction: TextInputAction.next,
-                    decoration: const InputDecoration(hintText: 'E.g. Los Angeles'),
+                    decoration:
+                        const InputDecoration(hintText: 'E.g. Los Angeles'),
                   ),
                   gapH16,
                   Text(

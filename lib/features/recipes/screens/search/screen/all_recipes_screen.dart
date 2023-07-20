@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:amplify_recipe/features/common/data/model/recipe.dart';
 import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
@@ -5,6 +7,7 @@ import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/shared/widgets/recipe_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../shared/constants/constants.dart';
 
@@ -43,13 +46,7 @@ class AllRecipesScreen extends StatelessWidget {
                                 const EdgeInsets.only(bottom: defaultPadding),
                             child: RecipeCard(
                               press: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        RecipeDetailsScreen(id: recipe.id),
-                                  ),
-                                );
+                                context.push('/recipe/${recipe.id}');
                               },
                               onBookmarked: () {
                                 recipeRepository.toggleFavoriteForRecipe(

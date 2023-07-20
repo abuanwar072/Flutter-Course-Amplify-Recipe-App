@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_recipe/features/authentication/widgets/user_confirmation_form.dart';
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
@@ -5,6 +7,7 @@ import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/gaps.dart';
 import '../../../shared/utils/form_utils.dart';
@@ -76,27 +79,15 @@ class _SignInFormState extends State<SignInForm> {
                               emailController.text, passwordController.text)
                           .then((value) {
                         getIt.get<RecipeRepository>().syncRemoteChanges();
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const EntryPoint()),
-                          (route) => false,
-                        );
+                        context.go('/entry-point');
                       }).onError((error, stackTrace) {
                         setState(() {
                           _isEnabled = true;
                         });
                         switch (error as AuthException) {
                           case UserNotConfirmedException _:
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => UserConfirmationForm(
-                                  email: emailController.text,
-                                ),
-                              ),
-                              (route) => false,
-                            );
+                            context.go(
+                                '/user-confirmation/${emailController.text}');
                           case _:
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:async';
 
 import 'package:amplify_recipe/features/common/data/model/recipe.dart';
@@ -13,6 +15,7 @@ import 'package:amplify_recipe/shared/widgets/section_list_tile.dart';
 import 'package:amplify_recipe/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/recent_search_tile.dart';
 
@@ -147,13 +150,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   const EdgeInsets.only(bottom: defaultPadding),
                               child: RecipeCard(
                                 press: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          RecipeDetailsScreen(id: recipe.id),
-                                    ),
-                                  );
+                                  context.push('/recipe/${recipe.id}');
                                 },
                                 onBookmarked: () {
                                   getIt

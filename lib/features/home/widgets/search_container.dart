@@ -1,6 +1,6 @@
-import 'package:amplify_recipe/features/recipes/screens/search/screen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
@@ -15,12 +15,7 @@ class SearchContaner extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const SearchScreen(),
-          ),
-        );
+        context.push('/search-recipes');
       },
       child: Container(
         height: 60,

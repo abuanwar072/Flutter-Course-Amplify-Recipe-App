@@ -29,7 +29,5 @@ abstract class RecipeRepository {
 
   Stream<List<Recipe>> listenFavoritedRecipes();
 
-  Future<void> syncLocalChanges();
-
   Future<void> syncRemoteChanges();
 }

@@ -70,30 +70,7 @@ class AmplifyRecipeRepository extends RecipeRepository {
     final recipe = realm.query<Recipe>('id == "$id"').single;
     realm.write(() {
       recipe.isFavorited = isFavorited;
-      recipe.isSynced = false;
     });
-    syncLocalChanges();
-  }
-
-  @override
-  Future<void> syncLocalChanges() async {
-    final unsyncedRecipes = realm.query<Recipe>('isSynced == FALSE');
-    if (unsyncedRecipes.isNotEmpty) {
-      for (final recipe in unsyncedRecipes) {
-        final remoteRecipe = recipe.toRemoteRecipe();
-        final request = ModelMutations.update<remote.Recipe>(
-          remoteRecipe,
-        );
-        final result = await Amplify.API.mutate(request: request).response;
-        if (result.hasErrors) {
-          safePrint(result.errors);
-        } else {
-          realm.write(() {
-            recipe.isSynced = true;
-          });
-        }
-      }
-    }
   }
 
   @override
@@ -124,7 +101,7 @@ class AmplifyRecipeRepository extends RecipeRepository {
             .toList(growable: false) ??
         [];
     realm.writeAsync(() {
-      realm.addAll(recipes, update: true);
+      realm.addAll(recipes);
     });
   }
 

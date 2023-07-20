@@ -2,6 +2,7 @@ import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:realm/realm.dart';
 
 import '../../../../../shared/constants/constants.dart';
@@ -59,7 +60,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 );
                 return;
               }
-              Navigator.of(context).pop();
+              context.pop();
               getIt.get<RecipeRepository>().addRecipe(
                     title,
                     description,

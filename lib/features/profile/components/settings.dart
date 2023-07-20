@@ -1,9 +1,9 @@
-import 'package:amplify_recipe/features/authentication/screens/onboarding_screen.dart';
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
@@ -52,13 +52,7 @@ class Settings extends StatelessWidget {
         SettingListTile(
           onTap: () {
             getIt.get<AuthenticationRepository>().signOut().then((value) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const OnboardingScreen(),
-                ),
-                (route) => false,
-              );
+              context.go('/');
             });
           },
           title: 'Log out',

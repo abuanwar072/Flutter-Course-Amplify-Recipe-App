@@ -1,8 +1,8 @@
-import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
 import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../shared/constants/constants.dart';
 import '../../../shared/constants/gaps.dart';
@@ -65,12 +65,7 @@ class _UserConfirmationFormState extends State<UserConfirmationForm> {
                                   confirmationCodeController.text,
                                 )
                                 .then((value) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SignInScreen(),
-                                ),
-                              );
+                              context.push('/sign-in');
                             }).onError((error, stackTrace) {
                               setState(() {
                                 _isEnabled = true;

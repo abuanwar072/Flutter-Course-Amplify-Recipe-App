@@ -1,9 +1,9 @@
-import 'package:amplify_recipe/features/authentication/screens/forgot_password_screen.dart';
 import 'package:amplify_recipe/features/authentication/widgets/sign_in_form.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/themes/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/socal_login_buttons.dart';
 
@@ -33,11 +33,7 @@ class SignInScreen extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ForgotPasswordScreen()),
-                    );
+                    context.push('/forgot-password');
                   },
                   child: Text(
                     'Forgot password?',
