@@ -17,7 +17,8 @@ class Recipe extends _Recipe with RealmEntity, RealmObjectBase, RealmObject {
     String duration,
     String category,
     String image,
-    bool isFavorited, {
+    bool isFavorited,
+    DateTime createdAt, {
     bool isSynced = false,
     Iterable<String> ingredients = const [],
   }) {
@@ -34,6 +35,7 @@ class Recipe extends _Recipe with RealmEntity, RealmObjectBase, RealmObject {
     RealmObjectBase.set(this, 'category', category);
     RealmObjectBase.set(this, 'image', image);
     RealmObjectBase.set(this, 'isFavorited', isFavorited);
+    RealmObjectBase.set(this, 'createdAt', createdAt);
     RealmObjectBase.set(this, 'isSynced', isSynced);
     RealmObjectBase.set<RealmList<String>>(
         this, 'ingredients', RealmList<String>(ingredients));
@@ -95,6 +97,13 @@ class Recipe extends _Recipe with RealmEntity, RealmObjectBase, RealmObject {
       throw RealmUnsupportedSetError();
 
   @override
+  DateTime get createdAt =>
+      RealmObjectBase.get<DateTime>(this, 'createdAt') as DateTime;
+  @override
+  set createdAt(DateTime value) =>
+      RealmObjectBase.set(this, 'createdAt', value);
+
+  @override
   bool get isSynced => RealmObjectBase.get<bool>(this, 'isSynced') as bool;
   @override
   set isSynced(bool value) => RealmObjectBase.set(this, 'isSynced', value);
@@ -121,6 +130,7 @@ class Recipe extends _Recipe with RealmEntity, RealmObjectBase, RealmObject {
       SchemaProperty('isFavorited', RealmPropertyType.bool),
       SchemaProperty('ingredients', RealmPropertyType.string,
           collectionType: RealmCollectionType.list),
+      SchemaProperty('createdAt', RealmPropertyType.timestamp),
       SchemaProperty('isSynced', RealmPropertyType.bool),
     ]);
   }

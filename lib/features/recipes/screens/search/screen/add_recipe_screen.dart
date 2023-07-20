@@ -51,8 +51,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
               if (title.isEmpty ||
                   description.isEmpty ||
                   duration.isEmpty ||
-                  serve.isEmpty ||
-                  imagePath.isEmpty) {
+                  serve.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text('Please fill all the fields'),

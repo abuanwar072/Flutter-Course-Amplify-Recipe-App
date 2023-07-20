@@ -48,7 +48,7 @@ class AmplifyRecipeRepository extends RecipeRepository {
 
   @override
   Stream<List<Recipe>> listenLatestRecipes() {
-    final recipes = realm.all<Recipe>();
+    final recipes = realm.query<Recipe>('TRUEPREDICATE SORT(createdAt DESC)');
     return recipes.changes.map(
       (event) => event.results.take(5).toList(growable: false),
     );
@@ -56,7 +56,7 @@ class AmplifyRecipeRepository extends RecipeRepository {
 
   @override
   Stream<List<Recipe>> listenRecipes() {
-    final recipes = realm.all<Recipe>();
+    final recipes = realm.query<Recipe>('TRUEPREDICATE SORT(createdAt DESC)');
     return recipes.changes.map(
       (event) => event.results.toList(growable: false),
     );
@@ -115,7 +115,8 @@ class AmplifyRecipeRepository extends RecipeRepository {
                     .toLowerCase()
                     .capitalized,
                 e.image,
-                e.isFavorited,
+                false,
+                e.createdAt?.getDateTimeInUtc() ?? DateTime.now(),
                 isSynced: true,
                 ingredients: e.ingredients,
               ),
@@ -139,14 +140,15 @@ class AmplifyRecipeRepository extends RecipeRepository {
     List<(String, String)> ingredients,
   ) async {
     final recipe = Recipe(
-      DateTime.now().toIso8601String(),
+      Uuid.v4().toString(),
       title,
       description,
       int.parse(serves),
       '$duration $durationUnit',
       category,
-      'https://images.unsplash.com/photo-1550305613-3e2b1300b4f5?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2V0dGluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+      'https://picsum.photos/600',
       false,
+      DateTime.now(),
       ingredients: ingredients
           .map(
             (e) => '${e.$1} ${e.$2}',
@@ -158,6 +160,14 @@ class AmplifyRecipeRepository extends RecipeRepository {
       realm.add(recipe);
     });
 
-    syncLocalChanges();
+    final remoteRecipe = recipe.toRemoteRecipe();
+    final request = ModelMutations.create<remote.Recipe>(
+      remoteRecipe,
+    );
+    final result = await Amplify.API.mutate(request: request).response;
+
+    if (result.hasErrors) {
+      safePrint(result.errors);
+    }
   }
 }

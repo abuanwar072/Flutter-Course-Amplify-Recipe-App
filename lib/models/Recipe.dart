@@ -20,14 +20,12 @@
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
 import 'ModelProvider.dart';
-import 'package:amplify_core/amplify_core.dart' hide Category;
+import 'package:amplify_core/amplify_core.dart' as amplify_core;
 import 'package:collection/collection.dart';
-import 'package:flutter/foundation.dart' hide Category;
 
 
 /** This is an auto generated class representing the Recipe type in your schema. */
-@immutable
-class Recipe extends Model {
+class Recipe extends amplify_core.Model {
   static const classType = const _RecipeModelType();
   final String id;
   final String? _title;
@@ -36,11 +34,10 @@ class Recipe extends Model {
   final Category? _category;
   final String? _description;
   final String? _image;
-  final bool? _isFavorited;
   final int? _duration_unit;
   final List<String>? _ingredients;
-  final TemporalDateTime? _createdAt;
-  final TemporalDateTime? _updatedAt;
+  final amplify_core.TemporalDateTime? _createdAt;
+  final amplify_core.TemporalDateTime? _updatedAt;
 
   @override
   getInstanceType() => classType;
@@ -59,10 +56,10 @@ class Recipe extends Model {
     try {
       return _title!;
     } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -72,10 +69,10 @@ class Recipe extends Model {
     try {
       return _serve!;
     } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -85,10 +82,10 @@ class Recipe extends Model {
     try {
       return _duration!;
     } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -98,10 +95,10 @@ class Recipe extends Model {
     try {
       return _category!;
     } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -111,10 +108,10 @@ class Recipe extends Model {
     try {
       return _description!;
     } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -124,23 +121,10 @@ class Recipe extends Model {
     try {
       return _image!;
     } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
-  }
-  
-  bool get isFavorited {
-    try {
-      return _isFavorited!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -150,10 +134,10 @@ class Recipe extends Model {
     try {
       return _duration_unit!;
     } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
@@ -163,35 +147,34 @@ class Recipe extends Model {
     try {
       return _ingredients!;
     } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
+      throw amplify_core.AmplifyCodeGenModelException(
+          amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
           recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
+            amplify_core.AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
           underlyingException: e.toString()
           );
     }
   }
   
-  TemporalDateTime? get createdAt {
+  amplify_core.TemporalDateTime? get createdAt {
     return _createdAt;
   }
   
-  TemporalDateTime? get updatedAt {
+  amplify_core.TemporalDateTime? get updatedAt {
     return _updatedAt;
   }
   
-  const Recipe._internal({required this.id, required title, required serve, required duration, required category, required description, required image, required isFavorited, required duration_unit, required ingredients, createdAt, updatedAt}): _title = title, _serve = serve, _duration = duration, _category = category, _description = description, _image = image, _isFavorited = isFavorited, _duration_unit = duration_unit, _ingredients = ingredients, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Recipe._internal({required this.id, required title, required serve, required duration, required category, required description, required image, required duration_unit, required ingredients, createdAt, updatedAt}): _title = title, _serve = serve, _duration = duration, _category = category, _description = description, _image = image, _duration_unit = duration_unit, _ingredients = ingredients, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Recipe({String? id, required String title, required int serve, required Duration duration, required Category category, required String description, required String image, required bool isFavorited, required int duration_unit, required List<String> ingredients}) {
+  factory Recipe({String? id, required String title, required int serve, required Duration duration, required Category category, required String description, required String image, required int duration_unit, required List<String> ingredients}) {
     return Recipe._internal(
-      id: id == null ? UUID.getUUID() : id,
+      id: id == null ? amplify_core.UUID.getUUID() : id,
       title: title,
       serve: serve,
       duration: duration,
       category: category,
       description: description,
       image: image,
-      isFavorited: isFavorited,
       duration_unit: duration_unit,
       ingredients: ingredients != null ? List<String>.unmodifiable(ingredients) : ingredients);
   }
@@ -211,7 +194,6 @@ class Recipe extends Model {
       _category == other._category &&
       _description == other._description &&
       _image == other._image &&
-      _isFavorited == other._isFavorited &&
       _duration_unit == other._duration_unit &&
       DeepCollectionEquality().equals(_ingredients, other._ingredients);
   }
@@ -227,11 +209,10 @@ class Recipe extends Model {
     buffer.write("id=" + "$id" + ", ");
     buffer.write("title=" + "$_title" + ", ");
     buffer.write("serve=" + (_serve != null ? _serve!.toString() : "null") + ", ");
-    buffer.write("duration=" + (_duration != null ? enumToString(_duration)! : "null") + ", ");
-    buffer.write("category=" + (_category != null ? enumToString(_category)! : "null") + ", ");
+    buffer.write("duration=" + (_duration != null ? amplify_core.enumToString(_duration)! : "null") + ", ");
+    buffer.write("category=" + (_category != null ? amplify_core.enumToString(_category)! : "null") + ", ");
     buffer.write("description=" + "$_description" + ", ");
     buffer.write("image=" + "$_image" + ", ");
-    buffer.write("isFavorited=" + (_isFavorited != null ? _isFavorited!.toString() : "null") + ", ");
     buffer.write("duration_unit=" + (_duration_unit != null ? _duration_unit!.toString() : "null") + ", ");
     buffer.write("ingredients=" + (_ingredients != null ? _ingredients!.toString() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
@@ -241,7 +222,7 @@ class Recipe extends Model {
     return buffer.toString();
   }
   
-  Recipe copyWith({String? title, int? serve, Duration? duration, Category? category, String? description, String? image, bool? isFavorited, int? duration_unit, List<String>? ingredients}) {
+  Recipe copyWith({String? title, int? serve, Duration? duration, Category? category, String? description, String? image, int? duration_unit, List<String>? ingredients}) {
     return Recipe._internal(
       id: id,
       title: title ?? this.title,
@@ -250,133 +231,157 @@ class Recipe extends Model {
       category: category ?? this.category,
       description: description ?? this.description,
       image: image ?? this.image,
-      isFavorited: isFavorited ?? this.isFavorited,
       duration_unit: duration_unit ?? this.duration_unit,
       ingredients: ingredients ?? this.ingredients);
+  }
+  
+  Recipe copyWithModelFieldValues({
+    ModelFieldValue<String>? title,
+    ModelFieldValue<int>? serve,
+    ModelFieldValue<Duration>? duration,
+    ModelFieldValue<Category>? category,
+    ModelFieldValue<String>? description,
+    ModelFieldValue<String>? image,
+    ModelFieldValue<int>? duration_unit,
+    ModelFieldValue<List<String>>? ingredients
+  }) {
+    return Recipe._internal(
+      id: id,
+      title: title == null ? this.title : title.value,
+      serve: serve == null ? this.serve : serve.value,
+      duration: duration == null ? this.duration : duration.value,
+      category: category == null ? this.category : category.value,
+      description: description == null ? this.description : description.value,
+      image: image == null ? this.image : image.value,
+      duration_unit: duration_unit == null ? this.duration_unit : duration_unit.value,
+      ingredients: ingredients == null ? this.ingredients : ingredients.value
+    );
   }
   
   Recipe.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _title = json['title'],
       _serve = (json['serve'] as num?)?.toInt(),
-      _duration = enumFromString<Duration>(json['duration'], Duration.values),
-      _category = enumFromString<Category>(json['category'], Category.values),
+      _duration = amplify_core.enumFromString<Duration>(json['duration'], Duration.values),
+      _category = amplify_core.enumFromString<Category>(json['category'], Category.values),
       _description = json['description'],
       _image = json['image'],
-      _isFavorited = json['isFavorited'],
       _duration_unit = (json['duration_unit'] as num?)?.toInt(),
       _ingredients = json['ingredients']?.cast<String>(),
-      _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
-      _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
+      _createdAt = json['createdAt'] != null ? amplify_core.TemporalDateTime.fromString(json['createdAt']) : null,
+      _updatedAt = json['updatedAt'] != null ? amplify_core.TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'title': _title, 'serve': _serve, 'duration': enumToString(_duration), 'category': enumToString(_category), 'description': _description, 'image': _image, 'isFavorited': _isFavorited, 'duration_unit': _duration_unit, 'ingredients': _ingredients, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'title': _title, 'serve': _serve, 'duration': amplify_core.enumToString(_duration), 'category': amplify_core.enumToString(_category), 'description': _description, 'image': _image, 'duration_unit': _duration_unit, 'ingredients': _ingredients, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
   
   Map<String, Object?> toMap() => {
-    'id': id, 'title': _title, 'serve': _serve, 'duration': _duration, 'category': _category, 'description': _description, 'image': _image, 'isFavorited': _isFavorited, 'duration_unit': _duration_unit, 'ingredients': _ingredients, 'createdAt': _createdAt, 'updatedAt': _updatedAt
+    'id': id,
+    'title': _title,
+    'serve': _serve,
+    'duration': _duration,
+    'category': _category,
+    'description': _description,
+    'image': _image,
+    'duration_unit': _duration_unit,
+    'ingredients': _ingredients,
+    'createdAt': _createdAt,
+    'updatedAt': _updatedAt
   };
 
-  static final QueryModelIdentifier<RecipeModelIdentifier> MODEL_IDENTIFIER = QueryModelIdentifier<RecipeModelIdentifier>();
-  static final QueryField ID = QueryField(fieldName: "id");
-  static final QueryField TITLE = QueryField(fieldName: "title");
-  static final QueryField SERVE = QueryField(fieldName: "serve");
-  static final QueryField DURATION = QueryField(fieldName: "duration");
-  static final QueryField CATEGORY = QueryField(fieldName: "category");
-  static final QueryField DESCRIPTION = QueryField(fieldName: "description");
-  static final QueryField IMAGE = QueryField(fieldName: "image");
-  static final QueryField ISFAVORITED = QueryField(fieldName: "isFavorited");
-  static final QueryField DURATION_UNIT = QueryField(fieldName: "duration_unit");
-  static final QueryField INGREDIENTS = QueryField(fieldName: "ingredients");
-  static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
+  static final amplify_core.QueryModelIdentifier<RecipeModelIdentifier> MODEL_IDENTIFIER = amplify_core.QueryModelIdentifier<RecipeModelIdentifier>();
+  static final ID = amplify_core.QueryField(fieldName: "id");
+  static final TITLE = amplify_core.QueryField(fieldName: "title");
+  static final SERVE = amplify_core.QueryField(fieldName: "serve");
+  static final DURATION = amplify_core.QueryField(fieldName: "duration");
+  static final CATEGORY = amplify_core.QueryField(fieldName: "category");
+  static final DESCRIPTION = amplify_core.QueryField(fieldName: "description");
+  static final IMAGE = amplify_core.QueryField(fieldName: "image");
+  static final DURATION_UNIT = amplify_core.QueryField(fieldName: "duration_unit");
+  static final INGREDIENTS = amplify_core.QueryField(fieldName: "ingredients");
+  static var schema = amplify_core.Model.defineSchema(define: (amplify_core.ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Recipe";
     modelSchemaDefinition.pluralName = "Recipes";
     
     modelSchemaDefinition.authRules = [
-      AuthRule(
-        authStrategy: AuthStrategy.PRIVATE,
-        operations: [
-          ModelOperation.CREATE,
-          ModelOperation.UPDATE,
-          ModelOperation.DELETE,
-          ModelOperation.READ
+      amplify_core.AuthRule(
+        authStrategy: amplify_core.AuthStrategy.PRIVATE,
+        operations: const [
+          amplify_core.ModelOperation.CREATE,
+          amplify_core.ModelOperation.UPDATE,
+          amplify_core.ModelOperation.DELETE,
+          amplify_core.ModelOperation.READ
         ])
     ];
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.id());
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.id());
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
       key: Recipe.TITLE,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
       key: Recipe.SERVE,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.int)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.int)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
       key: Recipe.DURATION,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.enumeration)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
       key: Recipe.CATEGORY,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.enumeration)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.enumeration)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
       key: Recipe.DESCRIPTION,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
       key: Recipe.IMAGE,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.string)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Recipe.ISFAVORITED,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.bool)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
       key: Recipe.DURATION_UNIT,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.int)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.int)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.field(
       key: Recipe.INGREDIENTS,
       isRequired: true,
       isArray: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.collection, ofModelName: describeEnum(ModelFieldTypeEnum.string))
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.collection, ofModelName: amplify_core.ModelFieldTypeEnum.string.name)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.nonQueryField(
       fieldName: 'createdAt',
       isRequired: false,
       isReadOnly: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.dateTime)
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
+    modelSchemaDefinition.addField(amplify_core.ModelFieldDefinition.nonQueryField(
       fieldName: 'updatedAt',
       isRequired: false,
       isReadOnly: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+      ofType: amplify_core.ModelFieldType(amplify_core.ModelFieldTypeEnum.dateTime)
     ));
   });
 }
 
-class _RecipeModelType extends ModelType<Recipe> {
+class _RecipeModelType extends amplify_core.ModelType<Recipe> {
   const _RecipeModelType();
   
   @override
@@ -394,8 +399,7 @@ class _RecipeModelType extends ModelType<Recipe> {
  * This is an auto generated class representing the model identifier
  * of [Recipe] in your schema.
  */
-@immutable
-class RecipeModelIdentifier implements ModelIdentifier<Recipe> {
+class RecipeModelIdentifier implements amplify_core.ModelIdentifier<Recipe> {
   final String id;
 
   /** Create an instance of RecipeModelIdentifier using [id] the primary key. */

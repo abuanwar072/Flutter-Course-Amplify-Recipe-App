@@ -19,7 +19,6 @@ class OnboardContent extends StatefulWidget {
 }
 
 class _OnboardContentState extends State<OnboardContent> {
-
   late final Future<bool> futureOperation;
 
   @override

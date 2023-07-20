@@ -20,7 +20,6 @@ type Recipe @model @auth(rules: [{allow: private}]) {
   category: Category!
   description: String!
   image: String!
-  isFavorited: Boolean!
   duration_unit: Int!
   ingredients: [String!]!
 }

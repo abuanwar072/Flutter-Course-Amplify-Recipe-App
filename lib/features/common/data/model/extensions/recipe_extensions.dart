@@ -15,7 +15,6 @@ extension RecipeExtensions on local.Recipe {
       duration_unit: localDuration.durationUnit,
       category: toRemoteCategoryEnum(category),
       image: image,
-      isFavorited: isFavorited,
       ingredients: ingredients,
     );
   }
@@ -31,7 +30,7 @@ extension RecipeExtensions on local.Recipe {
   }
 
   Duration toRemoteDurationEnum(String durationText) {
-    return switch (durationText) {
+    return switch (durationText.toLowerCase()) {
       'minute' => Duration.MINUTE,
       'hour' => Duration.HOUR,
       _ => throw Exception('Unknown duration type')
