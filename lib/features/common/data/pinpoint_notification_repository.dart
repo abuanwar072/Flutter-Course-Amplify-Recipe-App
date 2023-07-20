@@ -3,6 +3,10 @@ import 'package:amplify_recipe/features/common/data/model/notification.dart';
 import 'package:amplify_recipe/features/common/data/notification_repository.dart';
 import 'package:realm/realm.dart';
 
+void _backgroundCallback(notification) {
+  safePrint('onNotificationReceivedInBackground: $notification');
+}
+
 class PinpointNotificationRepository extends NotificationRepository {
   late Realm realm;
 
@@ -21,13 +25,16 @@ class PinpointNotificationRepository extends NotificationRepository {
 
   @override
   Future<void> listenNotifications() async {
+    final permissionStatus =
+        await Amplify.Notifications.Push.getPermissionStatus();
+    if (permissionStatus != PushNotificationPermissionStatus.granted) {
+      return;
+    }
     Amplify.Notifications.Push.onTokenReceived.listen((event) {
       safePrint(event);
     });
     Amplify.Notifications.Push.onNotificationReceivedInBackground(
-      (notification) {
-        safePrint('onNotificationReceivedInBackground: $notification');
-      },
+      _backgroundCallback,
     );
     Amplify.Notifications.Push.onNotificationReceivedInForeground.listen(
       (notification) {
