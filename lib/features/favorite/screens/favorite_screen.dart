@@ -36,6 +36,14 @@ class FavoriteScreen extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       final recipes = snapshot.data!;
+                      if (recipes.isEmpty) {
+                        return Center(
+                          child: Text(
+                            'No saved recipes yet',
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        );
+                      }
                       return ListView.builder(
                         itemCount: recipes.length,
                         itemBuilder: (context, index) {

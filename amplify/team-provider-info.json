@@ -32,6 +32,12 @@
           "Id": "d4d79d8577b74738978a042239860276",
           "Region": "eu-central-1"
         }
+      },
+      "function": {
+        "amplifyrecipepush": {
+          "deploymentBucketName": "amplify-amplifyrecipe-dev-145311-deployment",
+          "s3Key": "amplify-builds/amplifyrecipepush-42774e4a6e4f6c66794f-build.zip"
+        }
       }
     }
   }

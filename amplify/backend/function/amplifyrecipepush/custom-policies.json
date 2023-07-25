@@ -1,0 +1,13 @@
+[
+  {
+    "Effect": "Allow",
+    "Action": [
+      "mobiletargeting:GetCampaigns",
+      "mobiletargeting:CreateCampaign",
+      "mobiletargeting:SendMessages"
+    ],
+    "Resource": [
+      "arn:aws:mobiletargeting:*:345161578575:apps/*"
+    ]
+  }
+]
