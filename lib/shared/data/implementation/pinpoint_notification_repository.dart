@@ -1,6 +1,6 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_recipe/features/common/data/model/notification.dart';
-import 'package:amplify_recipe/features/common/data/notification_repository.dart';
+import 'package:amplify_recipe/shared/data/model/notification.dart';
+import 'package:amplify_recipe/shared/data/notification_repository.dart';
 import 'package:realm/realm.dart';
 
 void _backgroundCallback(notification) {

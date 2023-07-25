@@ -1,11 +1,11 @@
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_recipe/features/common/data/model/recipe.dart';
-import 'package:amplify_recipe/features/common/data/model/user.dart';
-import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
+import 'package:amplify_recipe/shared/data/model/extensions/recipe_extensions.dart';
+import 'package:amplify_recipe/shared/data/model/recipe.dart';
+import 'package:amplify_recipe/shared/data/model/user.dart';
+import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/models/Recipe.dart' as remote;
 import 'package:realm/realm.dart' hide User;
-import 'package:amplify_recipe/features/common/data/model/extensions/recipe_extensions.dart';
 
 class AmplifyRecipeRepository extends RecipeRepository {
   late Realm realm;
@@ -113,7 +113,7 @@ class AmplifyRecipeRepository extends RecipeRepository {
     String durationUnit,
     String category,
     String serves,
-    String imagePath,
+    String imageKey,
     List<(String, String)> ingredients,
   ) async {
     final recipe = Recipe(
@@ -123,12 +123,12 @@ class AmplifyRecipeRepository extends RecipeRepository {
       int.parse(serves),
       '$duration $durationUnit',
       category,
-      'https://picsum.photos/600',
+      '$imageKey.jpg',
       false,
       DateTime.now(),
       ingredients: ingredients
           .map(
-            (e) => '${e.$1} ${e.$2}',
+            (e) => '${e.$2} - ${e.$1} ',
           )
           .toList(growable: false),
     );

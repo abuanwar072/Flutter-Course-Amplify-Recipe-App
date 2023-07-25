@@ -1,5 +1,5 @@
-import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
-import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
+import 'package:amplify_recipe/shared/data/authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/recipes/screens/search/screen/add_recipe_screen.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';

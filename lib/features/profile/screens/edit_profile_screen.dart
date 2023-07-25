@@ -1,4 +1,4 @@
-import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/themes/app_colors.dart';

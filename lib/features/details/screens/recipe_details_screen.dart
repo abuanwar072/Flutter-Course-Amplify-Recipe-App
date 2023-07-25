@@ -1,9 +1,9 @@
-import 'package:amplify_recipe/features/common/data/model/recipe.dart';
-import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
+import 'package:amplify_recipe/shared/data/model/recipe.dart';
+import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:amplify_recipe/shared/widgets/async_image_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -46,10 +46,7 @@ class RecipeDetailsScreen extends StatelessWidget {
                     child: Stack(
                       fit: StackFit.expand,
                       children: [
-                        CachedNetworkImage(
-                          imageUrl: recipe.image,
-                          fit: BoxFit.cover,
-                        ),
+                        AsyncImageLoader(keyOrUrl: recipe.image),
                         Container(
                           decoration: const BoxDecoration(
                             gradient: LinearGradient(

@@ -1,4 +1,4 @@
-import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -3,16 +3,19 @@
 import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_recipe/shared/data/implementation/amplify_recipe_repository.dart';
+import 'package:amplify_recipe/shared/data/implementation/cognito_authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/implementation/local_search_repository.dart';
+import 'package:amplify_recipe/shared/data/implementation/s3_storage_repository.dart';
+import 'package:amplify_recipe/shared/data/notification_repository.dart';
+import 'package:amplify_recipe/shared/data/implementation/pinpoint_notification_repository.dart';
+import 'package:amplify_recipe/shared/data/storage_repository.dart';
+import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:amplify_push_notifications_pinpoint/amplify_push_notifications_pinpoint.dart';
 import 'package:amplify_recipe/features/authentication/screens/onboarding_screen.dart';
-import 'package:amplify_recipe/features/common/data/amplify_recipe_repository.dart';
-import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
-import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
-import 'package:amplify_recipe/features/common/data/local_search_repository.dart';
-import 'package:amplify_recipe/features/common/data/notification_repository.dart';
-import 'package:amplify_recipe/features/common/data/pinpoint_notification_repository.dart';
-import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
-import 'package:amplify_recipe/features/common/data/search_repository.dart';
+import 'package:amplify_recipe/shared/data/authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/recipe_repository.dart';
+import 'package:amplify_recipe/shared/data/search_repository.dart';
 import 'package:amplify_recipe/models/ModelProvider.dart';
 import 'package:amplify_recipe/shared/navigation/routes.dart';
 import 'package:amplify_recipe/themes/app_theme.dart';
@@ -43,6 +46,9 @@ void _registerData() {
   getIt.registerSingleton<NotificationRepository>(
     PinpointNotificationRepository(),
   );
+  getIt.registerSingleton<StorageRepository>(
+    S3StorageRepository(),
+  );
 }
 
 Future<void> _configureAmplify() async {
@@ -51,6 +57,7 @@ Future<void> _configureAmplify() async {
       AmplifyAuthCognito(),
       AmplifyAPI(modelProvider: ModelProvider.instance),
       AmplifyPushNotificationsPinpoint(),
+      AmplifyStorageS3(),
     ]);
     await Amplify.configure(amplifyconfig);
     await handlePermissions();

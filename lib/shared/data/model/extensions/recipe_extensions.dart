@@ -1,4 +1,4 @@
-import 'package:amplify_recipe/features/common/data/model/recipe.dart' as local;
+import 'package:amplify_recipe/shared/data/model/recipe.dart' as local;
 import 'package:amplify_recipe/models/Category.dart';
 import 'package:amplify_recipe/models/Duration.dart';
 import 'package:amplify_recipe/models/Recipe.dart' as remote;

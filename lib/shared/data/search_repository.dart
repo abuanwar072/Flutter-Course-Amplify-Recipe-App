@@ -1,4 +1,4 @@
-import 'package:amplify_recipe/features/common/data/model/search_item.dart';
+import 'package:amplify_recipe/shared/data/model/search_item.dart';
 
 abstract class SearchRepository {
   Stream<List<SearchItem>> listenSearchItems();

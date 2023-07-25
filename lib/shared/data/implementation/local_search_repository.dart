@@ -1,5 +1,5 @@
-import 'package:amplify_recipe/features/common/data/model/search_item.dart';
-import 'package:amplify_recipe/features/common/data/search_repository.dart';
+import 'package:amplify_recipe/shared/data/model/search_item.dart';
+import 'package:amplify_recipe/shared/data/search_repository.dart';
 import 'package:realm/realm.dart';
 
 class LocalSearchRepository extends SearchRepository {

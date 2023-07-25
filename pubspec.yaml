@@ -15,11 +15,12 @@ dependencies:
   flutter_svg: ^2.0.5
   google_fonts: ^4.0.4
   form_field_validator: ^1.1.0
-  cached_network_image: ^3.2.3
   intl: ^0.18.1
   amplify_flutter: ^1.1.0
   amplify_auth_cognito: ^1.1.0
   amplify_api: ^1.1.0
+  amplify_storage_s3: ^1.1.0
+  image_picker: ^1.0.1
   get_it: ^7.6.0
   realm: ^1.0.3
   amplify_push_notifications_pinpoint: ^1.1.0

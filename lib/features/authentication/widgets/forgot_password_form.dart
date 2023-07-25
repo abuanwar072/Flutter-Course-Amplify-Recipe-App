@@ -1,5 +1,5 @@
-import 'package:amplify_recipe/features/common/data/cognito_authentication_repository.dart';
 import 'package:amplify_recipe/main.dart';
+import 'package:amplify_recipe/shared/data/implementation/cognito_authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

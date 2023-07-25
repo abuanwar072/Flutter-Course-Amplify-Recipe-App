@@ -1,8 +1,9 @@
+import 'package:amplify_recipe/shared/widgets/async_image_loader.dart';
 import 'package:flutter/material.dart';
 
 import '../../themes/app_colors.dart';
 import '../constants/constants.dart';
-import 'froested_glass_container.dart';
+import 'frosted_glass_container.dart';
 
 class RecipeCard extends StatelessWidget {
   const RecipeCard({
@@ -16,6 +17,7 @@ class RecipeCard extends StatelessWidget {
     required this.press,
     required this.onBookmarked,
   });
+
   final String title, image, category, duration;
   final int serve;
   final bool isBookmarked;
@@ -36,10 +38,7 @@ class RecipeCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.network(
-              image,
-              fit: BoxFit.cover,
-            ),
+            AsyncImageLoader(keyOrUrl: image),
             Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(

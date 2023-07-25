@@ -1,4 +1,4 @@
-import 'package:amplify_recipe/features/common/data/model/recipe.dart';
+import 'package:amplify_recipe/shared/data/model/recipe.dart';
 
 abstract class RecipeRepository {
   Future<void> toggleFavoriteForRecipe({
@@ -17,7 +17,7 @@ abstract class RecipeRepository {
     String durationUnit,
     String category,
     String serves,
-    String imagePath,
+    String imageKey,
     List<(String, String)> ingredients,
   );
 

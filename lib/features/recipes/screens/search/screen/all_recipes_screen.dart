@@ -1,7 +1,7 @@
 // ignore_for_file: unused_import
 
-import 'package:amplify_recipe/features/common/data/model/recipe.dart';
-import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
+import 'package:amplify_recipe/shared/data/model/recipe.dart';
+import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';

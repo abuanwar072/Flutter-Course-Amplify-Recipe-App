@@ -1,6 +1,6 @@
 // ignore_for_file: unused_import
 
-import 'package:amplify_recipe/features/common/data/authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/authentication_repository.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:flutter/material.dart';

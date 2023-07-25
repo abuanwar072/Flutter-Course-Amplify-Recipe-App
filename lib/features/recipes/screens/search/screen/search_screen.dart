@@ -2,12 +2,12 @@
 
 import 'dart:async';
 
-import 'package:amplify_recipe/features/common/data/model/recipe.dart';
-import 'package:amplify_recipe/features/common/data/model/search_item.dart';
-import 'package:amplify_recipe/features/common/data/recipe_repository.dart';
-import 'package:amplify_recipe/features/common/data/search_repository.dart';
+import 'package:amplify_recipe/shared/data/model/recipe.dart';
+import 'package:amplify_recipe/shared/data/model/search_item.dart';
+import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
 import 'package:amplify_recipe/main.dart';
+import 'package:amplify_recipe/shared/data/search_repository.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/shared/widgets/recipe_card.dart';
