@@ -53,7 +53,9 @@ class FavoriteScreen extends StatelessWidget {
                                 const EdgeInsets.only(bottom: defaultPadding),
                             child: RecipeCard(
                               press: () {
-                                context.push('/recipe/${recipe.id}');
+                                context.push(
+                                  '/recipe/${recipe.id}/${recipe.isFavorited}',
+                                );
                               },
                               onBookmarked: () {
                                 getIt
@@ -68,7 +70,7 @@ class FavoriteScreen extends StatelessWidget {
                               category: recipe.category,
                               duration: recipe.duration,
                               serve: recipe.serve,
-                              isBookmarked: recipe.isFavorited,
+                              isFavorited: recipe.isFavorited,
                             ),
                           );
                         },

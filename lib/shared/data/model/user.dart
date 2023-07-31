@@ -1,11 +1,19 @@
-import 'package:realm/realm.dart';
+import 'package:isar/isar.dart';
+
 part 'user.g.dart';
 
-@RealmModel()
-class _User {
-  @PrimaryKey()
-  late String id;
-  late String name;
-  late String email;
-  late String? profilePicture;
+@collection
+class User {
+  User({
+    required this.id,
+    required this.name,
+    required this.email,
+    this.profilePicture,
+  });
+
+  @Id()
+  final String id;
+  final String name;
+  final String email;
+  final String? profilePicture;
 }

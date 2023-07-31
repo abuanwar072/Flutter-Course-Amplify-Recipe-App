@@ -1,4 +1,5 @@
 import 'package:amplify_recipe/shared/data/authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/notification_repository.dart';
 import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/features/recipes/screens/search/screen/add_recipe_screen.dart';
 import 'package:amplify_recipe/main.dart';
@@ -46,21 +47,39 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         leadingWidth: 0,
         leading: const SizedBox(),
-        title: Text('Hello, ${getIt.get<AuthenticationRepository>().name} 👋'),
+        title: Text('Hello, ${getIt
+            .get<AuthenticationRepository>()
+            .name} 👋'),
         centerTitle: false,
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Badge(
-              smallSize: 8,
-              backgroundColor: AppColors.success,
-              child: SvgPicture.asset(
-                'assets/icons/Notification.svg',
-                colorFilter: const ColorFilter.mode(
-                  AppColors.bodyText,
-                  BlendMode.srcIn,
-                ),
-              ),
+            icon: FutureBuilder<bool>(
+              future: getIt.get<NotificationRepository>()
+                  .hasUnseenNotification(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData && snapshot.data!) {
+                  return Badge(
+                    smallSize: 8,
+                    backgroundColor: AppColors.success,
+                    child: SvgPicture.asset(
+                      'assets/icons/Notification.svg',
+                      colorFilter: const ColorFilter.mode(
+                        AppColors.bodyText,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  );
+                } else {
+                  return SvgPicture.asset(
+                    'assets/icons/Notification.svg',
+                    colorFilter: const ColorFilter.mode(
+                      AppColors.bodyText,
+                      BlendMode.srcIn,
+                    ),
+                  );
+              }
+              },
             ),
           ),
         ],
@@ -88,29 +107,31 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       ...List.generate(
                         recipes.length,
-                        (index) {
+                            (index) {
                           final recipe = recipes[index];
                           return Padding(
                             padding:
-                                const EdgeInsets.only(bottom: defaultPadding),
+                            const EdgeInsets.only(bottom: defaultPadding),
                             child: RecipeCard(
                               press: () {
-                                context.push('/recipe/${recipe.id}');
+                                context.push(
+                                  '/recipe/${recipe.id}/${recipe.isFavorited}',
+                                );
                               },
                               onBookmarked: () {
                                 getIt
                                     .get<RecipeRepository>()
                                     .toggleFavoriteForRecipe(
-                                      id: recipe.id,
-                                      isFavorited: !recipe.isFavorited,
-                                    );
+                                  id: recipe.id,
+                                  isFavorited: !recipe.isFavorited,
+                                );
                               },
                               title: recipe.title,
                               image: recipe.image,
                               category: recipe.category,
                               duration: recipe.duration,
                               serve: recipe.serve,
-                              isBookmarked: recipe.isFavorited,
+                              isFavorited: recipe.isFavorited,
                             ),
                           );
                         },

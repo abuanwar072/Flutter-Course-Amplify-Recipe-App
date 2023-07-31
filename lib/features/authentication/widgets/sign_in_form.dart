@@ -5,6 +5,7 @@ import 'package:amplify_recipe/features/authentication/widgets/user_confirmation
 import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/data/authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/notification_repository.dart';
 import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -78,6 +79,9 @@ class _SignInFormState extends State<SignInForm> {
                           .logInWithCredentials(
                               emailController.text, passwordController.text)
                           .then((value) {
+                        getIt
+                            .get<NotificationRepository>()
+                            .listenNotifications();
                         getIt.get<RecipeRepository>().syncRemoteChanges();
                         context.go('/entry-point');
                       }).onError((error, stackTrace) {

@@ -1,7 +1,7 @@
 import 'package:amplify_recipe/shared/data/model/search_item.dart';
 
 abstract class SearchRepository {
-  Stream<List<SearchItem>> listenSearchItems();
+  Future<List<SearchItem>> getSearchItems();
 
   Future<void> deleteAllSearchItems();
 

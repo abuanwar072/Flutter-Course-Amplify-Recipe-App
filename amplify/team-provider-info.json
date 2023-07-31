@@ -36,7 +36,7 @@
       "function": {
         "amplifyrecipepush": {
           "deploymentBucketName": "amplify-amplifyrecipe-dev-145311-deployment",
-          "s3Key": "amplify-builds/amplifyrecipepush-42774e4a6e4f6c66794f-build.zip"
+          "s3Key": "amplify-builds/amplifyrecipepush-4261353233527a425937-build.zip"
         }
       },
       "storage": {

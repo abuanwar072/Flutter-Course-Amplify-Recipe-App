@@ -92,8 +92,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       getIt.get<SearchRepository>().deleteAllSearchItems();
                     },
                   ),
-                  StreamBuilder<List<SearchItem>>(
-                    stream: getIt.get<SearchRepository>().listenSearchItems(),
+                  FutureBuilder<List<SearchItem>>(
+                    future: getIt.get<SearchRepository>().getSearchItems(),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         final searchItems = snapshot.data!;
@@ -119,7 +119,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               .toList(growable: false),
                         );
                       } else if (snapshot.hasError) {
-                        return const Text('Error');
+                        return Text('Error: ${snapshot.error}');
                       } else {
                         return const Text('Loading');
                       }
@@ -150,7 +150,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                   const EdgeInsets.only(bottom: defaultPadding),
                               child: RecipeCard(
                                 press: () {
-                                  context.push('/recipe/${recipe.id}');
+                                  context.push(
+                                    '/recipe/${recipe.id}/${recipe.isFavorited}',
+                                  );
                                 },
                                 onBookmarked: () {
                                   getIt
@@ -166,7 +168,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 category: recipe.category,
                                 duration: recipe.duration,
                                 serve: recipe.serve,
-                                isBookmarked: recipe.isFavorited,
+                                isFavorited: recipe.isFavorited,
                               ),
                             );
                           },

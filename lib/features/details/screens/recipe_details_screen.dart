@@ -4,6 +4,7 @@ import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
 import 'package:amplify_recipe/shared/widgets/async_image_loader.dart';
+import 'package:amplify_recipe/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -12,10 +13,12 @@ import '../components/ingredients.dart';
 class RecipeDetailsScreen extends StatelessWidget {
   const RecipeDetailsScreen({
     required this.id,
+    required this.isFavorited,
     super.key,
   });
 
   final String id;
+  final bool isFavorited;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +29,15 @@ class RecipeDetailsScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
+            onPressed: () {
+              getIt.get<RecipeRepository>().toggleFavoriteForRecipe(
+                    id: id,
+                    isFavorited: !isFavorited,
+                  );
+            },
+            icon: Icon(
               Icons.bookmark_border,
-              color: Colors.white,
+              color: isFavorited ? AppColors.success : Colors.white,
             ),
           )
         ],

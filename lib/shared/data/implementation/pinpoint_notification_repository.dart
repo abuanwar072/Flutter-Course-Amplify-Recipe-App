@@ -1,26 +1,44 @@
+import 'dart:convert';
+
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/data/model/notification.dart';
 import 'package:amplify_recipe/shared/data/notification_repository.dart';
-import 'package:realm/realm.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 
-void _backgroundCallback(notification) {
+void _backgroundCallback(PushNotificationMessage notification) {
   safePrint('onNotificationReceivedInBackground: $notification');
+  final jsonRaw = notification.data['pinpoint.jsonBody'] as String;
+  final jsonBody = json.decode(jsonRaw) as Map<String, dynamic>;
+
+  getIt.get<NotificationRepository>().saveNotification(
+        notification.title ?? 'Recipe',
+        notification.body ?? 'There is a new description',
+        jsonBody['recipeId'] as String,
+        jsonBody['recipeTitle'] as String,
+        jsonBody['recipeDescription'] as String,
+        notification.deeplinkUrl,
+      );
 }
 
 class PinpointNotificationRepository extends NotificationRepository {
-  late Realm realm;
+  late Isar isar;
 
   PinpointNotificationRepository() {
-    final config = Configuration.local([Notification.schema]);
-    Realm.open(config).then((configuredRealm) {
-      realm = configuredRealm;
+    getApplicationDocumentsDirectory().then((dir) {
+      isar = Isar.open(
+        schemas: [NotificationSchema],
+        directory: dir.path,
+      );
     });
   }
 
   @override
   Future<bool> hasUnseenNotification() {
-    // TODO: implement hasUnseenNotification
-    throw UnimplementedError();
+    return isar.readAsync((isar) {
+      return isar.notifications.where().isSeenEqualTo(false).isNotEmpty();
+    });
   }
 
   @override
@@ -39,6 +57,16 @@ class PinpointNotificationRepository extends NotificationRepository {
     Amplify.Notifications.Push.onNotificationReceivedInForeground.listen(
       (notification) {
         safePrint('onNotificationOpenedInBackground: $notification');
+        final jsonRaw = notification.data['pinpoint.jsonBody'] as String;
+        final jsonBody = json.decode(jsonRaw) as Map<String, dynamic>;
+        saveNotification(
+          notification.title ?? 'Recipe',
+          notification.body ?? 'There is a new description',
+          jsonBody['recipeId'] as String,
+          jsonBody['recipeTitle'] as String,
+          jsonBody['recipeDescription'] as String,
+          notification.deeplinkUrl,
+        );
       },
     );
     Amplify.Notifications.Push.onNotificationOpened.listen(
@@ -49,24 +77,51 @@ class PinpointNotificationRepository extends NotificationRepository {
   }
 
   @override
-  Future<void> markAllAsSeen() {
-    // TODO: implement markAllAsSeen
-    throw UnimplementedError();
+  Future<void> markAllAsSeen() async {
+    isar.write((isar) {
+      isar.notifications
+          .where()
+          .isSeenEqualTo(false)
+          .build()
+          .findAll()
+          .forEach((notification) {
+        isar.notifications.update(
+          id: notification.id,
+          isSeen: true,
+        );
+      });
+    });
   }
 
   @override
-  Future<void> markAsSeen(String id) {
-    // TODO: implement markAsSeen
-    throw UnimplementedError();
+  Future<void> markAsSeen(String id) async {
+    isar.write((isar) {
+      isar.notifications.update(id: id, isSeen: true);
+    });
   }
 
   @override
   Future<void> saveNotification(
     String title,
     String description,
+    String recipeId,
+    String recipeTitle,
+    String recipeDescription,
     String? deepLink,
-  ) {
-    // TODO: implement saveNotification
-    throw UnimplementedError();
+  ) async {
+    isar.write((isar) {
+      isar.notifications.put(
+        Notification(
+          id: UUID.getUUID(),
+          title: title,
+          description: description,
+          recipeId: recipeId,
+          recipeTitle: recipeTitle,
+          recipeDescription: recipeDescription,
+          deepLink: deepLink,
+          isSeen: false,
+        ),
+      );
+    });
   }
 }

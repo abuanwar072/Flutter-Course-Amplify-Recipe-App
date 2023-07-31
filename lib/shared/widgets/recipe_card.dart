@@ -13,14 +13,14 @@ class RecipeCard extends StatelessWidget {
     required this.category,
     required this.duration,
     this.serve = 1,
-    this.isBookmarked = false,
+    this.isFavorited = false,
     required this.press,
     required this.onBookmarked,
   });
 
   final String title, image, category, duration;
   final int serve;
-  final bool isBookmarked;
+  final bool isFavorited;
   final VoidCallback press;
   final VoidCallback onBookmarked;
 
@@ -72,7 +72,7 @@ class RecipeCard extends StatelessWidget {
                   child: FrostedGlassContainer(
                     child: Icon(
                       Icons.bookmark_border,
-                      color: isBookmarked ? AppColors.success : Colors.white,
+                      color: isFavorited ? AppColors.success : Colors.white,
                     ),
                   ),
                 ),

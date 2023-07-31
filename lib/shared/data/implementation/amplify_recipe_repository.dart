@@ -2,64 +2,81 @@ import 'package:amplify_api/amplify_api.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_recipe/shared/data/model/extensions/recipe_extensions.dart';
 import 'package:amplify_recipe/shared/data/model/recipe.dart';
-import 'package:amplify_recipe/shared/data/model/user.dart';
 import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/models/Recipe.dart' as remote;
-import 'package:realm/realm.dart' hide User;
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 
 class AmplifyRecipeRepository extends RecipeRepository {
-  late Realm realm;
+  late Isar isar;
 
   AmplifyRecipeRepository() {
-    final config = Configuration.local([Recipe.schema, User.schema]);
-    Realm.open(config).then((configuredRealm) {
-      realm = configuredRealm;
-      syncRemoteChanges();
+    getApplicationDocumentsDirectory().then((dir) {
+      isar = Isar.open(
+        schemas: [RecipeSchema],
+        directory: dir.path,
+      );
     });
   }
 
   @override
   Future<void> deleteRecipe(String id) async {
-    final recipe = realm.query<Recipe>('id == "$id"').single;
-    realm.delete<Recipe>(recipe);
+    isar.write((isar) {
+      isar.recipes.delete(id);
+    });
   }
 
   @override
   Future<Recipe> getRecipe(String id) async {
-    final recipe = realm.query<Recipe>('id == "$id"').single;
+    final recipe = isar.recipes.get(id);
+    if (recipe == null) {
+      throw Exception('Recipe not found');
+    }
     return recipe;
   }
 
   @override
   Future<List<Recipe>> searchRecipes(String searchText) async {
-    final recipes = realm.query<Recipe>(
-      'title CONTAINS[c] "$searchText" or description CONTAINS[c] "$searchText"',
-    );
-    return recipes.toList(growable: false);
+    return isar.recipes
+        .where()
+        .titleContains(searchText, caseSensitive: false)
+        .or()
+        .descriptionContains(searchText, caseSensitive: false)
+        .findAll();
   }
 
   @override
   Stream<List<Recipe>> listenFavoritedRecipes() {
-    final recipes = realm.query<Recipe>('isFavorited == TRUE');
-    return recipes.changes.map(
-      (event) => event.results.toList(growable: false),
-    );
+    return isar.read<Stream<List<Recipe>>>((isar) {
+      return isar.recipes
+          .where()
+          .isFavoritedEqualTo(true)
+          .build()
+          .watch(fireImmediately: true);
+    });
   }
 
   @override
   Stream<List<Recipe>> listenLatestRecipes() {
-    final recipes = realm.query<Recipe>('TRUEPREDICATE SORT(createdAt DESC)');
-    return recipes.changes.map(
-      (event) => event.results.take(5).toList(growable: false),
-    );
+    return isar.read<Stream<List<Recipe>>>((isar) {
+      return isar.recipes
+          .where()
+          .sortByCreatedAtDesc()
+          .build()
+          .watch(fireImmediately: true)
+          .take(5);
+    });
   }
 
   @override
   Stream<List<Recipe>> listenRecipes() {
-    final recipes = realm.query<Recipe>('TRUEPREDICATE SORT(createdAt DESC)');
-    return recipes.changes.map(
-      (event) => event.results.toList(growable: false),
-    );
+    return isar.read<Stream<List<Recipe>>>((isar) {
+      return isar.recipes
+          .where()
+          .sortByCreatedAtDesc()
+          .build()
+          .watch(fireImmediately: true);
+    });
   }
 
   @override
@@ -67,41 +84,49 @@ class AmplifyRecipeRepository extends RecipeRepository {
     required String id,
     required bool isFavorited,
   }) async {
-    final recipe = realm.query<Recipe>('id == "$id"').single;
-    realm.write(() {
-      recipe.isFavorited = isFavorited;
-    });
+    isar.write(
+      (isar) {
+        return isar.recipes.update.call(id: id, isFavorited: isFavorited);
+      },
+    );
   }
 
   @override
   Future<void> syncRemoteChanges() async {
+    safePrint('syncRemoteChanges started');
     final request = ModelQueries.list(remote.Recipe.classType);
     final result = await Amplify.API.query(request: request).response;
+    safePrint('syncRemoteChanges response came $result');
     final recipes = result.data?.items
             .where((element) => element != null)
             .cast<remote.Recipe>()
             .map(
               (e) => Recipe(
-                e.id,
-                e.title,
-                e.description,
-                e.serve,
-                '${e.duration_unit} ${e.duration.name.toLowerCase()}',
-                e.category.name
+                id: e.id,
+                title: e.title,
+                description: e.description,
+                serve: e.serve,
+                duration: '${e.duration_unit} ${e.duration.name.toLowerCase()}',
+                category: e.category.name
                     .replaceFirst('_', ' ')
                     .toLowerCase()
                     .capitalized,
-                e.image,
-                false,
-                e.createdAt?.getDateTimeInUtc() ?? DateTime.now(),
+                image: e.image,
+                isFavorited: false,
+                createdAt: e.createdAt?.getDateTimeInUtc() ?? DateTime.now(),
                 isSynced: true,
                 ingredients: e.ingredients,
               ),
             )
             .toList(growable: false) ??
         [];
-    realm.writeAsync(() {
-      realm.addAll(recipes);
+    safePrint('syncRemoteChanges local objects created');
+    isar.write((isar) {
+      for (final recipe in recipes) {
+        if (isar.recipes.get(recipe.id) == null) {
+          isar.recipes.put(recipe);
+        }
+      }
     });
   }
 
@@ -117,15 +142,15 @@ class AmplifyRecipeRepository extends RecipeRepository {
     List<(String, String)> ingredients,
   ) async {
     final recipe = Recipe(
-      Uuid.v4().toString(),
-      title,
-      description,
-      int.parse(serves),
-      '$duration $durationUnit',
-      category,
-      '$imageKey.jpg',
-      false,
-      DateTime.now(),
+      id: UUID.getUUID(),
+      title: title,
+      description: description,
+      serve: int.parse(serves),
+      duration: '$duration $durationUnit',
+      category: category,
+      image: '$imageKey.jpg',
+      isFavorited: false,
+      createdAt: DateTime.now(),
       ingredients: ingredients
           .map(
             (e) => '${e.$2} - ${e.$1} ',
@@ -133,8 +158,8 @@ class AmplifyRecipeRepository extends RecipeRepository {
           .toList(growable: false),
     );
 
-    realm.write(() {
-      realm.add(recipe);
+    isar.write((isar) {
+      isar.recipes.put(recipe);
     });
 
     final remoteRecipe = recipe.toRemoteRecipe();

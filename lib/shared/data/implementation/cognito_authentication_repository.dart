@@ -159,14 +159,14 @@ class CognitoAuthenticationRepository extends AuthenticationRepository {
       safePrint('user $user');
       safePrint('userAttributes $userAttributes');
       currentUser = User(
-        user.userId,
-        userAttributes
+        id: user.userId,
+        name: userAttributes
             .firstWhere(
               (element) =>
                   element.userAttributeKey == CognitoUserAttributeKey.name,
             )
             .value,
-        userAttributes
+        email: userAttributes
             .firstWhere(
               (element) =>
                   element.userAttributeKey == CognitoUserAttributeKey.email,

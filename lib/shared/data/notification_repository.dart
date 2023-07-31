@@ -3,6 +3,9 @@ abstract class NotificationRepository {
   Future<void> saveNotification(
     String title,
     String description,
+    String recipeId,
+    String recipeTitle,
+    String recipeDescription,
     String? deepLink,
   );
 

@@ -1,48 +1,53 @@
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_recipe/shared/data/model/search_item.dart';
 import 'package:amplify_recipe/shared/data/search_repository.dart';
-import 'package:realm/realm.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 
 class LocalSearchRepository extends SearchRepository {
-  late Realm realm;
+  late Isar isar;
 
   LocalSearchRepository() {
-    final config = Configuration.local([SearchItem.schema]);
-    Realm.open(config).then((configuredRealm) {
-      realm = configuredRealm;
+    getApplicationDocumentsDirectory().then((dir) {
+      isar = Isar.open(
+        schemas: [SearchItemSchema],
+        directory: dir.path,
+      );
     });
   }
 
   @override
   Future<void> deleteAllSearchItems() async {
-    realm.write(() {
-      realm.deleteAll<SearchItem>();
-    });
+    isar.write((isar) => isar.searchItems.clear());
   }
 
   @override
   Future<void> saveSearchItem(String searchItem) async {
-    realm.write(() {
-      realm.add(SearchItem(Uuid.v4().toString(), searchItem));
+    isar.write((isar) {
+      isar.searchItems.put(
+        SearchItem(
+          id: UUID.getUUID(),
+          searchItem: searchItem,
+          createdAt: DateTime.now(),
+        ),
+      );
     });
   }
 
   @override
   Future<void> deleteSearchItemWithId(String id) async {
-    final searchItem = realm.query<SearchItem>('id == "$id"').single;
-    realm.write(() {
-      realm.delete<SearchItem>(searchItem);
+    isar.write((isar) {
+      isar.searchItems.delete(id);
     });
   }
 
   @override
-  Stream<List<SearchItem>> listenSearchItems() {
-    final searchItems = realm.all<SearchItem>();
-    return searchItems.changes.map(
-      (event) => event.results
-          .toList(growable: false)
-          .reversed
-          .take(3)
-          .toList(growable: false),
+  Future<List<SearchItem>> getSearchItems() {
+    return isar.readAsync(
+      (isar) => isar.searchItems
+          .where()
+          .sortByCreatedAtDesc()
+          .findAll(limit: 3)
     );
   }
 }

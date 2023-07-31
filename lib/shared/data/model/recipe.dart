@@ -1,18 +1,34 @@
-import 'package:realm/realm.dart';
+import 'package:isar/isar.dart';
+
 part 'recipe.g.dart';
 
-@RealmModel()
-class _Recipe {
-  @PrimaryKey()
-  late String id;
-  late String title;
-  late String description;
-  late int serve;
-  late String duration;
-  late String category;
-  late String image;
-  late bool isFavorited;
-  late List<String> ingredients;
-  late DateTime createdAt;
-  bool isSynced = false;
+@collection
+class Recipe {
+
+  Recipe({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.serve,
+    required this.duration,
+    required this.category,
+    required this.image,
+    required this.isFavorited,
+    required this.ingredients,
+    required this.createdAt,
+    this.isSynced = false,
+  });
+
+  @Id()
+  final String id;
+  final String title;
+  final String description;
+  final int serve;
+  final String duration;
+  final String category;
+  final String image;
+  final bool isFavorited;
+  final List<String> ingredients;
+  final DateTime createdAt;
+  final bool isSynced;
 }
