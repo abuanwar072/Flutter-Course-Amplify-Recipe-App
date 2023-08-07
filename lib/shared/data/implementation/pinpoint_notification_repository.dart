@@ -35,6 +35,13 @@ class PinpointNotificationRepository extends NotificationRepository {
   }
 
   @override
+  Future<List<Notification>> fetchAllNotifications() {
+    return isar.readAsync((isar) {
+      return isar.notifications.where().findAll();
+    });
+  }
+
+  @override
   Future<bool> hasUnseenNotification() {
     return isar.readAsync((isar) {
       return isar.notifications.where().isSeenEqualTo(false).isNotEmpty();

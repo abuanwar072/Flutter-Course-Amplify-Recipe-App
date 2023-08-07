@@ -7,6 +7,7 @@ import 'package:amplify_recipe/features/authentication/widgets/user_confirmation
 import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/features/favorite/screens/favorite_screen.dart';
+import 'package:amplify_recipe/features/notifications/screens/notifications_screen.dart';
 import 'package:amplify_recipe/features/profile/screens/edit_profile_screen.dart';
 import 'package:amplify_recipe/features/profile/screens/profile_screen.dart';
 import 'package:amplify_recipe/features/recipes/screens/search/screen/all_recipes_screen.dart';
@@ -83,6 +84,10 @@ final routerConfig = GoRouter(
     GoRoute(
       path: '/search-recipes',
       builder: (context, state) => const SearchScreen(),
+    ),
+    GoRoute(
+      path: '/notifications',
+      builder: (context, state) => const NotificationsScreen(),
     ),
   ],
 );

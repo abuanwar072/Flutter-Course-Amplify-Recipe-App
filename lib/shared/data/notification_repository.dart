@@ -1,3 +1,5 @@
+import 'package:amplify_recipe/shared/data/model/notification.dart';
+
 abstract class NotificationRepository {
   /// Save notification to the local database
   Future<void> saveNotification(
@@ -8,6 +10,8 @@ abstract class NotificationRepository {
     String recipeDescription,
     String? deepLink,
   );
+
+  Future<List<Notification>> fetchAllNotifications();
 
   /// Mark all notifications as seen
   Future<void> markAllAsSeen();

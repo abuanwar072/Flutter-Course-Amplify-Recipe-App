@@ -47,16 +47,16 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         leadingWidth: 0,
         leading: const SizedBox(),
-        title: Text('Hello, ${getIt
-            .get<AuthenticationRepository>()
-            .name} 👋'),
+        title: Text('Hello, ${getIt.get<AuthenticationRepository>().name} 👋'),
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              context.go('/notifications');
+            },
             icon: FutureBuilder<bool>(
-              future: getIt.get<NotificationRepository>()
-                  .hasUnseenNotification(),
+              future:
+                  getIt.get<NotificationRepository>().hasUnseenNotification(),
               builder: (context, snapshot) {
                 if (snapshot.hasData && snapshot.data!) {
                   return Badge(
@@ -78,7 +78,7 @@ class HomeScreen extends StatelessWidget {
                       BlendMode.srcIn,
                     ),
                   );
-              }
+                }
               },
             ),
           ),
@@ -107,11 +107,11 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       ...List.generate(
                         recipes.length,
-                            (index) {
+                        (index) {
                           final recipe = recipes[index];
                           return Padding(
                             padding:
-                            const EdgeInsets.only(bottom: defaultPadding),
+                                const EdgeInsets.only(bottom: defaultPadding),
                             child: RecipeCard(
                               press: () {
                                 context.push(
@@ -122,9 +122,9 @@ class HomeScreen extends StatelessWidget {
                                 getIt
                                     .get<RecipeRepository>()
                                     .toggleFavoriteForRecipe(
-                                  id: recipe.id,
-                                  isFavorited: !recipe.isFavorited,
-                                );
+                                      id: recipe.id,
+                                      isFavorited: !recipe.isFavorited,
+                                    );
                               },
                               title: recipe.title,
                               image: recipe.image,
