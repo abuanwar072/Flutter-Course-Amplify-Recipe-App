@@ -129,7 +129,7 @@ class _SearchScreenState extends State<SearchScreen> {
               )
             else
               FutureBuilder<List<Recipe>>(
-                future: getIt.get<RecipeRepository>().searchRecipes(
+                future: getIt.get<SearchRepository>().searchRecipes(
                       _searchFieldController.text,
                     ),
                 builder: (context, snapshot) {

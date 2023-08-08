@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
@@ -9,6 +8,7 @@ import 'package:amplify_recipe/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../../shared/constants/constants.dart';
 
@@ -25,7 +25,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
   late final durationController = TextEditingController();
   late final serveController = TextEditingController();
 
-  final recipeId = UUID.getUUID();
+  final recipeId = const Uuid().v4().toString();
   final ingredients = <(String, String)>[];
   final imagePicker = ImagePicker();
 

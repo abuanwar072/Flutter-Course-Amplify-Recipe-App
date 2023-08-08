@@ -4,7 +4,6 @@ part 'recipe.g.dart';
 
 @collection
 class Recipe {
-
   Recipe({
     required this.id,
     required this.title,

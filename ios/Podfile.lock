@@ -1,90 +1,35 @@
 PODS:
-  - amplify_auth_cognito (0.0.1):
-    - Flutter
-    - FlutterMacOS
-  - amplify_push_notifications (0.0.1):
-    - AmplifyUtilsNotifications
-    - Flutter
-  - amplify_secure_storage (0.0.1):
-    - Flutter
-  - AmplifyUtilsNotifications (1.0.0)
-  - connectivity_plus (0.0.1):
-    - Flutter
-    - ReachabilitySwift
-  - device_info_plus (0.0.1):
-    - Flutter
   - Flutter (1.0.0)
   - image_picker_ios (0.0.1):
     - Flutter
   - isar_flutter_libs (1.0.0):
     - Flutter
-  - package_info_plus (0.4.5):
-    - Flutter
   - path_provider_foundation (0.0.1):
-    - Flutter
-    - FlutterMacOS
-  - ReachabilitySwift (5.0.0)
-  - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
 
 DEPENDENCIES:
-  - amplify_auth_cognito (from `.symlinks/plugins/amplify_auth_cognito/darwin`)
-  - amplify_push_notifications (from `.symlinks/plugins/amplify_push_notifications/ios`)
-  - amplify_secure_storage (from `.symlinks/plugins/amplify_secure_storage/ios`)
-  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
-  - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - Flutter (from `Flutter`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
-  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
-  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
-
-SPEC REPOS:
-  trunk:
-    - AmplifyUtilsNotifications
-    - ReachabilitySwift
 
 EXTERNAL SOURCES:
-  amplify_auth_cognito:
-    :path: ".symlinks/plugins/amplify_auth_cognito/darwin"
-  amplify_push_notifications:
-    :path: ".symlinks/plugins/amplify_push_notifications/ios"
-  amplify_secure_storage:
-    :path: ".symlinks/plugins/amplify_secure_storage/ios"
-  connectivity_plus:
-    :path: ".symlinks/plugins/connectivity_plus/ios"
-  device_info_plus:
-    :path: ".symlinks/plugins/device_info_plus/ios"
   Flutter:
     :path: Flutter
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   isar_flutter_libs:
     :path: ".symlinks/plugins/isar_flutter_libs/ios"
-  package_info_plus:
-    :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
-  shared_preferences_foundation:
-    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
 SPEC CHECKSUMS:
-  amplify_auth_cognito: 76b5a54f05f66f69966b468b8121a0dd33a32c70
-  amplify_push_notifications: 694e708ce7b2a9f39ff6cd2d4de69005040011ca
-  amplify_secure_storage: 501cbdac671a050090d48dfcc002d5637d3f4a55
-  AmplifyUtilsNotifications: 8b174fcd73a3385497cbde27c513dc651d20bd59
-  connectivity_plus: 07c49e96d7fc92bc9920617b83238c4d178b446a
-  device_info_plus: 7545d84d8d1b896cb16a4ff98c19f07ec4b298ea
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   isar_flutter_libs: b69f437aeab9c521821c3f376198c4371fa21073
-  package_info_plus: fd030dabf36271f146f1f3beacd48f564b0f17f7
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
-  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
 
 PODFILE CHECKSUM: fa61b0820d8a526e68a48f3d621f636f34ba4f43
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

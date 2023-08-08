@@ -8,6 +8,7 @@ part of 'user.dart';
 
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
+// ignore_for_file: type=lint
 
 extension GetUserCollection on Isar {
   IsarCollection<String, User> get users => this.collection();
@@ -22,20 +23,20 @@ const UserSchema = IsarCollectionSchema(
     deserializeProperty: deserializeUserProp,
   ),
   embeddedSchemas: [],
-  hash: -6934898223713039112,
+  //hash: -6934898223713039112,
 );
 
 @isarProtected
 int serializeUser(IsarWriter writer, User object) {
-  IsarCore.writeString(writer, 1, IsarCore.toNativeString(object.id));
-  IsarCore.writeString(writer, 2, IsarCore.toNativeString(object.name));
-  IsarCore.writeString(writer, 3, IsarCore.toNativeString(object.email));
+  IsarCore.writeString(writer, 1, object.id);
+  IsarCore.writeString(writer, 2, object.name);
+  IsarCore.writeString(writer, 3, object.email);
   {
     final value = object.profilePicture;
     if (value == null) {
       IsarCore.writeNull(writer, 4);
     } else {
-      IsarCore.writeString(writer, 4, IsarCore.toNativeString(value));
+      IsarCore.writeString(writer, 4, value);
     }
   }
   return Isar.fastHash(object.id);

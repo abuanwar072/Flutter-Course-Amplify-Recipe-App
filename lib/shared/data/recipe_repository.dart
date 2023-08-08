@@ -21,13 +21,9 @@ abstract class RecipeRepository {
     List<(String, String)> ingredients,
   );
 
-  Future<List<Recipe>> searchRecipes(String searchText);
-
   Stream<List<Recipe>> listenRecipes();
 
   Stream<List<Recipe>> listenLatestRecipes();
 
   Stream<List<Recipe>> listenFavoritedRecipes();
-
-  Future<void> syncRemoteChanges();
 }

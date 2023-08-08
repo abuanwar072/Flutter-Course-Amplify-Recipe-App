@@ -1,6 +1,5 @@
 // ignore_for_file: unused_import
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_recipe/features/authentication/widgets/user_confirmation_form.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
 import 'package:amplify_recipe/main.dart';
@@ -77,28 +76,15 @@ class _SignInFormState extends State<SignInForm> {
                       getIt
                           .get<AuthenticationRepository>()
                           .logInWithCredentials(
-                              emailController.text, passwordController.text)
+                            emailController.text,
+                            passwordController.text,
+                          )
                           .then((value) {
-                        getIt
-                            .get<NotificationRepository>()
-                            .listenNotifications();
-                        getIt.get<RecipeRepository>().syncRemoteChanges();
                         context.go('/entry-point');
                       }).onError((error, stackTrace) {
                         setState(() {
                           _isEnabled = true;
                         });
-                        switch (error as AuthException) {
-                          case UserNotConfirmedException _:
-                            context.go(
-                                '/user-confirmation/${emailController.text}');
-                          case _:
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(error.toString()),
-                              ),
-                            );
-                        }
                       });
                     }
                   }

@@ -1,5 +1,5 @@
 import 'package:amplify_recipe/main.dart';
-import 'package:amplify_recipe/shared/data/implementation/cognito_authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -40,10 +40,8 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           gapH24,
           ElevatedButton(
             onPressed: () async {
-              final result = await getIt
-                  .get<CognitoAuthenticationRepository>()
-                  .forgotPassword(email);
-              if (result && mounted) {
+              await getIt.get<AuthenticationRepository>().forgotPassword(email);
+              if (mounted) {
                 context.push('/user-confirmation/$email');
               }
             },

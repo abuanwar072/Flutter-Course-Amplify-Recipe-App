@@ -8,6 +8,7 @@ part of 'recipe.dart';
 
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
+// ignore_for_file: type=lint
 
 extension GetRecipeCollection on Isar {
   IsarCollection<String, Recipe> get recipes => this.collection();
@@ -22,24 +23,24 @@ const RecipeSchema = IsarCollectionSchema(
     deserializeProperty: deserializeRecipeProp,
   ),
   embeddedSchemas: [],
-  hash: -391392828664244001,
+  //hash: -391392828664244001,
 );
 
 @isarProtected
 int serializeRecipe(IsarWriter writer, Recipe object) {
-  IsarCore.writeString(writer, 1, IsarCore.toNativeString(object.id));
-  IsarCore.writeString(writer, 2, IsarCore.toNativeString(object.title));
-  IsarCore.writeString(writer, 3, IsarCore.toNativeString(object.description));
+  IsarCore.writeString(writer, 1, object.id);
+  IsarCore.writeString(writer, 2, object.title);
+  IsarCore.writeString(writer, 3, object.description);
   IsarCore.writeLong(writer, 4, object.serve);
-  IsarCore.writeString(writer, 5, IsarCore.toNativeString(object.duration));
-  IsarCore.writeString(writer, 6, IsarCore.toNativeString(object.category));
-  IsarCore.writeString(writer, 7, IsarCore.toNativeString(object.image));
+  IsarCore.writeString(writer, 5, object.duration);
+  IsarCore.writeString(writer, 6, object.category);
+  IsarCore.writeString(writer, 7, object.image);
   IsarCore.writeBool(writer, 8, object.isFavorited);
   {
     final list = object.ingredients;
     final listWriter = IsarCore.beginList(writer, 9, list.length);
     for (var i = 0; i < list.length; i++) {
-      IsarCore.writeString(listWriter, i, IsarCore.toNativeString(list[i]));
+      IsarCore.writeString(listWriter, i, list[i]);
     }
     IsarCore.endList(writer, listWriter);
   }

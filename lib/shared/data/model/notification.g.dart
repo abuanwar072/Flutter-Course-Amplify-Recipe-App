@@ -8,6 +8,7 @@ part of 'notification.dart';
 
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
+// ignore_for_file: type=lint
 
 extension GetNotificationCollection on Isar {
   IsarCollection<String, Notification> get notifications => this.collection();
@@ -22,24 +23,23 @@ const NotificationSchema = IsarCollectionSchema(
     deserializeProperty: deserializeNotificationProp,
   ),
   embeddedSchemas: [],
-  hash: -5505341282881353441,
+  //hash: -5505341282881353441,
 );
 
 @isarProtected
 int serializeNotification(IsarWriter writer, Notification object) {
-  IsarCore.writeString(writer, 1, IsarCore.toNativeString(object.id));
-  IsarCore.writeString(writer, 2, IsarCore.toNativeString(object.title));
-  IsarCore.writeString(writer, 3, IsarCore.toNativeString(object.description));
-  IsarCore.writeString(writer, 4, IsarCore.toNativeString(object.recipeId));
-  IsarCore.writeString(writer, 5, IsarCore.toNativeString(object.recipeTitle));
-  IsarCore.writeString(
-      writer, 6, IsarCore.toNativeString(object.recipeDescription));
+  IsarCore.writeString(writer, 1, object.id);
+  IsarCore.writeString(writer, 2, object.title);
+  IsarCore.writeString(writer, 3, object.description);
+  IsarCore.writeString(writer, 4, object.recipeId);
+  IsarCore.writeString(writer, 5, object.recipeTitle);
+  IsarCore.writeString(writer, 6, object.recipeDescription);
   {
     final value = object.deepLink;
     if (value == null) {
       IsarCore.writeNull(writer, 7);
     } else {
-      IsarCore.writeString(writer, 7, IsarCore.toNativeString(value));
+      IsarCore.writeString(writer, 7, value);
     }
   }
   IsarCore.writeBool(writer, 8, object.isSeen);

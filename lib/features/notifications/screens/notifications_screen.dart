@@ -20,8 +20,6 @@ class NotificationsScreen extends StatelessWidget {
               children: [
                 for (final notification in snapshot.data!)
                   ListTile(
-                    leading:
-                        notification.isSeen ? null : const Icon(Icons.circle),
                     title: Text(notification.title),
                     subtitle: Text(notification.description),
                     onTap: () {

@@ -1,7 +1,5 @@
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/data/authentication_repository.dart';
-import 'package:amplify_recipe/shared/data/notification_repository.dart';
-import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -56,8 +54,6 @@ class _OnboardContentState extends State<OnboardContent> {
               future: futureOperation,
               builder: (context, snapshot) {
                 if (snapshot.data == true) {
-                  getIt.get<RecipeRepository>().syncRemoteChanges();
-                  getIt.get<NotificationRepository>().listenNotifications();
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     context.go('/entry-point');
                   });
