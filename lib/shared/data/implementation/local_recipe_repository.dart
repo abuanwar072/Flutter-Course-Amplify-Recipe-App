@@ -74,7 +74,7 @@ class LocalRecipeRepository extends RecipeRepository {
   }
 
   @override
-  Future<void> addRecipe(
+  Future<String> addRecipe(
     String title,
     String description,
     String duration,
@@ -104,5 +104,6 @@ class LocalRecipeRepository extends RecipeRepository {
     isar.write((isar) {
       isar.recipes.put(recipe);
     });
+    return recipe.id;
   }
 }

@@ -41,9 +41,10 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               context.push('/notifications');
             },
-            icon: FutureBuilder<bool>(
-              future:
-                  getIt.get<NotificationRepository>().hasUnseenNotification(),
+            icon: StreamBuilder<bool>(
+              stream: getIt
+                  .get<NotificationRepository>()
+                  .listenUnseenNotifications(),
               builder: (context, snapshot) {
                 if (snapshot.hasData && snapshot.data!) {
                   return Badge(
@@ -102,7 +103,7 @@ class HomeScreen extends StatelessWidget {
                             child: RecipeCard(
                               press: () {
                                 context.push(
-                                  '/recipe/${recipe.id}/${recipe.isFavorited}',
+                                  '/recipe/${recipe.id}',
                                 );
                               },
                               onBookmarked: () {

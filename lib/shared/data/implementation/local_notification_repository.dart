@@ -19,9 +19,14 @@ class LocalNotificationRepository extends NotificationRepository {
   }
 
   @override
-  Future<bool> hasUnseenNotification() {
-    return isar.readAsync((isar) {
-      return isar.notifications.where().isSeenEqualTo(false).isNotEmpty();
+  Stream<bool> listenUnseenNotifications() {
+    return isar.read<Stream<bool>>((isar) {
+      return isar.notifications
+          .where()
+          .isSeenEqualTo(false)
+          .build()
+          .watch(fireImmediately: true)
+          .map((notifications) => notifications.isNotEmpty);
     });
   }
 

@@ -56,16 +56,14 @@ final routerConfig = GoRouter(
       builder: (context, state) => const FavoriteScreen(),
     ),
     GoRoute(
-      path: '/recipe/:id/:isFavorited',
+      path: '/recipe/:id',
       builder: (context, state) {
         final id = state.pathParameters['id'];
-        final isFavorited = state.pathParameters['isFavorited'];
-        if (id == null || isFavorited == null) {
+        if (id == null) {
           throw Exception('Recipe ID or Favorite state is missing');
         }
         return RecipeDetailsScreen(
           id: id,
-          isFavorited: bool.parse(isFavorited),
         );
       },
     ),

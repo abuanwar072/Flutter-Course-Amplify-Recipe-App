@@ -10,7 +10,7 @@ abstract class RecipeRepository {
 
   Future<Recipe> getRecipe(String id);
 
-  Future<void> addRecipe(
+  Future<String> addRecipe(
     String title,
     String description,
     String duration,

@@ -2,6 +2,7 @@ import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/data/model/notification.dart';
 import 'package:amplify_recipe/shared/data/notification_repository.dart';
 import 'package:flutter/material.dart' hide Notification;
+import 'package:go_router/go_router.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
@@ -22,10 +23,17 @@ class NotificationsScreen extends StatelessWidget {
                   ListTile(
                     title: Text(notification.title),
                     subtitle: Text(notification.description),
+                    tileColor: notification.isSeen
+                        ? Colors.transparent
+                        : Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.1),
                     onTap: () {
                       getIt
                           .get<NotificationRepository>()
                           .markAsSeen(notification.id);
+                      context.push('/recipe/${notification.recipeId}');
                     },
                   )
               ],
