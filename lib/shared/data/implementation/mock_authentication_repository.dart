@@ -64,13 +64,15 @@ class MockAuthenticationRepository extends AuthenticationRepository {
 
   @override
   Future<void> signOut() {
-    // TODO: implement signOut
-    throw UnimplementedError();
+    return Future.delayed(
+      const Duration(seconds: 1),
+    );
   }
 
   @override
   Future<void> signUp(String email, String password, String name) {
-    // TODO: implement signUp
-    throw UnimplementedError();
+    return Future.delayed(
+      const Duration(seconds: 1),
+    );
   }
 }
