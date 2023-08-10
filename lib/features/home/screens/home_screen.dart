@@ -91,6 +91,15 @@ class HomeScreen extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final recipes = snapshot.data!;
+                  if (recipes.isEmpty) {
+                    return Center(
+                      child: Text(
+                        '\n\n\nYou don\'t have any recipes (yet).\n\nAdd them by clicking the "Add Recipe" button below.',
+                        style: Theme.of(context).textTheme.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
                   return Column(
                     children: [
                       ...List.generate(
@@ -113,6 +122,11 @@ class HomeScreen extends StatelessWidget {
                                       id: recipe.id,
                                       isFavorited: !recipe.isFavorited,
                                     );
+                              },
+                              onDismissed: (_) {
+                                getIt
+                                    .get<RecipeRepository>()
+                                    .deleteRecipe(recipe.id);
                               },
                               title: recipe.title,
                               image: recipe.image,

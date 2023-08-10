@@ -17,6 +17,14 @@ class NotificationsScreen extends StatelessWidget {
         future: getIt.get<NotificationRepository>().fetchAllNotifications(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            if (snapshot.data!.isEmpty) {
+              return Center(
+                child: Text(
+                  'You don\'t have any notifications (yet).',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              );
+            }
             return ListView(
               children: [
                 for (final notification in snapshot.data!)
