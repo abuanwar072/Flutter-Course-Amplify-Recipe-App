@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_recipe/shared/data/database/isar_provider.dart';
 import 'package:amplify_recipe/shared/data/model/notification.dart';
 import 'package:amplify_recipe/shared/data/notification_repository.dart';
@@ -32,9 +35,45 @@ class LocalNotificationRepository extends NotificationRepository {
 
   @override
   Future<void> listenNotifications() async {
-    return isar.read((isar) {
-      isar.notifications.watchLazy().listen((notifications) {});
-    });
+    Amplify.Notifications.Push.onNotificationReceivedInForeground.listen(
+      (notification) {
+        final pinpointBody = notification.data['pinpoint.jsonBody'] as String?;
+        if (pinpointBody != null) {
+          final recipeJson = json.decode(pinpointBody);
+          final recipeTitle = recipeJson['recipeTitle'] as String;
+          final recipeDescription = recipeJson['recipeDescription'] as String;
+          final recipeId = recipeJson['recipeId'] as String;
+          saveNotification(
+            notification.title as String,
+            notification.body as String,
+            recipeId,
+            recipeTitle,
+            recipeDescription,
+            null,
+          );
+        }
+      },
+    );
+
+    Amplify.Notifications.Push.onNotificationOpened.listen(
+      (notification) {
+        final pinpointBody = notification.data['pinpoint.jsonBody'] as String?;
+        if (pinpointBody != null) {
+          final recipeJson = json.decode(pinpointBody);
+          final recipeTitle = recipeJson['recipeTitle'] as String;
+          final recipeDescription = recipeJson['recipeDescription'] as String;
+          final recipeId = recipeJson['recipeId'] as String;
+          saveNotification(
+            notification.title as String,
+            notification.body as String,
+            recipeId,
+            recipeTitle,
+            recipeDescription,
+            null,
+          );
+        }
+      },
+    );
   }
 
   @override
@@ -84,5 +123,25 @@ class LocalNotificationRepository extends NotificationRepository {
         ),
       );
     });
+  }
+
+  @override
+  Future<void> handlePermissions() async {
+    final status = await Amplify.Notifications.Push.getPermissionStatus();
+    if (status == PushNotificationPermissionStatus.granted) {
+      // no further action is required, user has already granted permissions
+      return;
+    }
+    if (status == PushNotificationPermissionStatus.denied) {
+      return;
+    }
+    if (status == PushNotificationPermissionStatus.shouldRequest) {
+      // go ahead and request permissions from the user
+      await Amplify.Notifications.Push.requestPermissions();
+    }
+    if (status == PushNotificationPermissionStatus.shouldExplainThenRequest) {
+      // then request permissions
+      await Amplify.Notifications.Push.requestPermissions();
+    }
   }
 }

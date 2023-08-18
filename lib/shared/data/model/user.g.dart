@@ -14,16 +14,37 @@ extension GetUserCollection on Isar {
   IsarCollection<String, User> get users => this.collection();
 }
 
-const UserSchema = IsarCollectionSchema(
-  schema:
-      '{"name":"User","idName":"id","properties":[{"name":"id","type":"String"},{"name":"name","type":"String"},{"name":"email","type":"String"},{"name":"profilePicture","type":"String"}]}',
+const UserSchema = IsarGeneratedSchema(
+  schema: IsarSchema(
+    name: 'User',
+    idName: 'id',
+    embedded: false,
+    properties: [
+      IsarPropertySchema(
+        name: 'id',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'name',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'email',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'profilePicture',
+        type: IsarType.string,
+      ),
+    ],
+    indexes: [],
+  ),
   converter: IsarObjectConverter<String, User>(
     serialize: serializeUser,
     deserialize: deserializeUser,
     deserializeProperty: deserializeUserProp,
   ),
   embeddedSchemas: [],
-  //hash: -6934898223713039112,
 );
 
 @isarProtected
@@ -176,6 +197,38 @@ extension UserQueryUpdate on IsarQuery<User> {
   _UserQueryUpdate get updateFirst => _UserQueryUpdateImpl(this, limit: 1);
 
   _UserQueryUpdate get updateAll => _UserQueryUpdateImpl(this);
+}
+
+class _UserQueryBuilderUpdateImpl implements _UserQueryUpdate {
+  const _UserQueryBuilderUpdateImpl(this.query, {this.limit});
+
+  final QueryBuilder<User, User, QOperations> query;
+  final int? limit;
+
+  @override
+  int call({
+    Object? name = ignore,
+    Object? email = ignore,
+    Object? profilePicture = ignore,
+  }) {
+    final q = query.build();
+    try {
+      return q.updateProperties(limit: limit, {
+        if (name != ignore) 2: name as String?,
+        if (email != ignore) 3: email as String?,
+        if (profilePicture != ignore) 4: profilePicture as String?,
+      });
+    } finally {
+      q.close();
+    }
+  }
+}
+
+extension UserQueryBuilderUpdate on QueryBuilder<User, User, QOperations> {
+  _UserQueryUpdate get updateFirst =>
+      _UserQueryBuilderUpdateImpl(this, limit: 1);
+
+  _UserQueryUpdate get updateAll => _UserQueryBuilderUpdateImpl(this);
 }
 
 extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {

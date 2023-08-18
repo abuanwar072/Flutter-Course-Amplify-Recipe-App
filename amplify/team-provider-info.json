@@ -1,0 +1,55 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplifyrecipe-dev-145708-authRole",
+      "UnauthRoleArn": "arn:aws:iam::345161578575:role/amplify-amplifyrecipe-dev-145708-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::345161578575:role/amplify-amplifyrecipe-dev-145708-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-amplifyrecipe-dev-145708-deployment",
+      "UnauthRoleName": "amplify-amplifyrecipe-dev-145708-unauthRole",
+      "StackName": "amplify-amplifyrecipe-dev-145708",
+      "StackId": "arn:aws:cloudformation:eu-central-1:345161578575:stack/amplify-amplifyrecipe-dev-145708/34142f90-383e-11ee-b9da-069104f8e03c",
+      "AmplifyAppId": "d1ni8t9fi3je8z"
+    },
+    "categories": {
+      "auth": {
+        "amplifyrecipe86a8efe0": {}
+      },
+      "api": {
+        "amplifyrecipe": {}
+      },
+      "storage": {
+        "s3b350e034": {},
+        "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev": {
+          "tableName": "Recipe-3dqfxi2ts5g6lnj72cqbgk72dq-dev",
+          "region": "eu-central-1",
+          "arn": "arn:aws:dynamodb:eu-central-1:345161578575:table/Recipe-3dqfxi2ts5g6lnj72cqbgk72dq-dev",
+          "streamArn": "arn:aws:dynamodb:eu-central-1:345161578575:table/Recipe-3dqfxi2ts5g6lnj72cqbgk72dq-dev/stream/2023-08-14T14:17:44.962",
+          "partitionKeyName": "id",
+          "partitionKeyType": "S"
+        }
+      },
+      "analytics": {
+        "Pinpoint": {
+          "Name": "amplifyrecipe-dev",
+          "Id": "357c824c055f4213a6632f9486666550",
+          "Region": "eu-central-1"
+        },
+        "amplifyrecipe": {}
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "amplifyrecipe-dev",
+          "Id": "357c824c055f4213a6632f9486666550",
+          "Region": "eu-central-1"
+        }
+      },
+      "function": {
+        "amplifyrecipefb7252f0": {
+          "deploymentBucketName": "amplify-amplifyrecipe-dev-145708-deployment",
+          "s3Key": "amplify-builds/amplifyrecipefb7252f0-66684f49457461496359-build.zip"
+        }
+      }
+    }
+  }
+}

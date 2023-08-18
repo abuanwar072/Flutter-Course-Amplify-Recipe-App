@@ -1,0 +1,218 @@
+{
+  "analytics": {
+    "amplifyrecipe": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
+  "api": {
+    "amplifyrecipe": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "amplifyrecipe86a8efe0"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authamplifyrecipe86a8efe0"
+            }
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {
+    "amplifyrecipe86a8efe0": {
+      "customAuth": false,
+      "dependsOn": [],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [
+          "FACEBOOK",
+          "GOOGLE"
+        ],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    }
+  },
+  "function": {
+    "amplifyrecipefb7252f0": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "amplifyrecipe"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "notifications": {
+    "amplifyrecipe": {
+      "channels": [
+        "APNS",
+        "FCM"
+      ],
+      "service": "Pinpoint"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_analytics_Pinpoint_Id": {
+      "usedBy": [
+        {
+          "category": "analytics",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_analytics_Pinpoint_Name": {
+      "usedBy": [
+        {
+          "category": "analytics",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_analytics_Pinpoint_Region": {
+      "usedBy": [
+        {
+          "category": "analytics",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_function_amplifyrecipefb7252f0_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "amplifyrecipefb7252f0"
+        }
+      ]
+    },
+    "AMPLIFY_function_amplifyrecipefb7252f0_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "amplifyrecipefb7252f0"
+        }
+      ]
+    },
+    "AMPLIFY_notifications_Pinpoint_Id": {
+      "usedBy": [
+        {
+          "category": "notifications",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_notifications_Pinpoint_Name": {
+      "usedBy": [
+        {
+          "category": "notifications",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_notifications_Pinpoint_Region": {
+      "usedBy": [
+        {
+          "category": "notifications",
+          "resourceName": "Pinpoint"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_streamArn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB",
+      "serviceType": "imported"
+    },
+    "s3b350e034": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
+}

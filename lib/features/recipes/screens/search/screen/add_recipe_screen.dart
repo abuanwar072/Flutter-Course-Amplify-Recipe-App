@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:amplify_recipe/shared/data/notification_repository.dart';
 import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
@@ -84,7 +83,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 setState(() {
                   statusText = 'Creating Recipe...';
                 });
-                final recipeId = await getIt.get<RecipeRepository>().addRecipe(
+                await getIt.get<RecipeRepository>().addRecipe(
                       title,
                       description,
                       duration,
@@ -93,14 +92,6 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       serve,
                       imageKey,
                       ingredients,
-                    );
-                await getIt.get<NotificationRepository>().saveNotification(
-                      'New Recipe: $title',
-                      'Click here to learn more',
-                      recipeId,
-                      title,
-                      description,
-                      null,
                     );
                 if (mounted) {
                   context.pop();

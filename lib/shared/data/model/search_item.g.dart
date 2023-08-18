@@ -14,16 +14,33 @@ extension GetSearchItemCollection on Isar {
   IsarCollection<String, SearchItem> get searchItems => this.collection();
 }
 
-const SearchItemSchema = IsarCollectionSchema(
-  schema:
-      '{"name":"SearchItem","idName":"id","properties":[{"name":"id","type":"String"},{"name":"searchItem","type":"String"},{"name":"createdAt","type":"DateTime"}]}',
+const SearchItemSchema = IsarGeneratedSchema(
+  schema: IsarSchema(
+    name: 'SearchItem',
+    idName: 'id',
+    embedded: false,
+    properties: [
+      IsarPropertySchema(
+        name: 'id',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'searchItem',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'createdAt',
+        type: IsarType.dateTime,
+      ),
+    ],
+    indexes: [],
+  ),
   converter: IsarObjectConverter<String, SearchItem>(
     serialize: serializeSearchItem,
     deserialize: deserializeSearchItem,
     deserializeProperty: deserializeSearchItemProp,
   ),
   embeddedSchemas: [],
-  //hash: 7780378368234750768,
 );
 
 @isarProtected
@@ -173,6 +190,38 @@ extension SearchItemQueryUpdate on IsarQuery<SearchItem> {
       _SearchItemQueryUpdateImpl(this, limit: 1);
 
   _SearchItemQueryUpdate get updateAll => _SearchItemQueryUpdateImpl(this);
+}
+
+class _SearchItemQueryBuilderUpdateImpl implements _SearchItemQueryUpdate {
+  const _SearchItemQueryBuilderUpdateImpl(this.query, {this.limit});
+
+  final QueryBuilder<SearchItem, SearchItem, QOperations> query;
+  final int? limit;
+
+  @override
+  int call({
+    Object? searchItem = ignore,
+    Object? createdAt = ignore,
+  }) {
+    final q = query.build();
+    try {
+      return q.updateProperties(limit: limit, {
+        if (searchItem != ignore) 2: searchItem as String?,
+        if (createdAt != ignore) 3: createdAt as DateTime?,
+      });
+    } finally {
+      q.close();
+    }
+  }
+}
+
+extension SearchItemQueryBuilderUpdate
+    on QueryBuilder<SearchItem, SearchItem, QOperations> {
+  _SearchItemQueryUpdate get updateFirst =>
+      _SearchItemQueryBuilderUpdateImpl(this, limit: 1);
+
+  _SearchItemQueryUpdate get updateAll =>
+      _SearchItemQueryBuilderUpdateImpl(this);
 }
 
 extension SearchItemQueryFilter
