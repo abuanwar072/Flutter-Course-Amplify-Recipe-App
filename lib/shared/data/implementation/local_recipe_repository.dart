@@ -104,6 +104,14 @@ class LocalRecipeRepository extends RecipeRepository {
     isar.write((isar) {
       isar.recipes.put(recipe);
     });
+
     return recipe.id;
+  }
+
+  @override
+  Future<void> updateRecipe(Recipe recipe) {
+    return isar.writeAsync((isar) {
+      isar.recipes.put(recipe);
+    });
   }
 }

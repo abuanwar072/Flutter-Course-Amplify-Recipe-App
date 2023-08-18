@@ -75,4 +75,15 @@ class MockAuthenticationRepository extends AuthenticationRepository {
       const Duration(seconds: 1),
     );
   }
+
+  @override
+  Future<void> confirmPasswordReset(
+    String email,
+    String newPassword,
+    String confirmationCode,
+  ) {
+    return Future.delayed(
+      const Duration(seconds: 1),
+    );
+  }
 }

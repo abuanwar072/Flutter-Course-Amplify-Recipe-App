@@ -85,4 +85,9 @@ class LocalNotificationRepository extends NotificationRepository {
       );
     });
   }
+
+  @override
+  Future<void> handlePermissions() {
+    return Future.value();
+  }
 }
