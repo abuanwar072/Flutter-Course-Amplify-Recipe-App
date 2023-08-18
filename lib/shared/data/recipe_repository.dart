@@ -8,6 +8,8 @@ abstract class RecipeRepository {
 
   Future<void> deleteRecipe(String id);
 
+  Future<void> updateRecipe(Recipe recipe);
+
   Future<Recipe> getRecipe(String id);
 
   Future<String> addRecipe(

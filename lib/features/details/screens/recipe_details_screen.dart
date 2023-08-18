@@ -3,14 +3,16 @@ import 'package:amplify_recipe/shared/data/recipe_repository.dart';
 import 'package:amplify_recipe/main.dart';
 import 'package:amplify_recipe/shared/constants/constants.dart';
 import 'package:amplify_recipe/shared/constants/gaps.dart';
+import 'package:amplify_recipe/shared/data/storage_repository.dart';
 import 'package:amplify_recipe/shared/widgets/async_image_loader.dart';
 import 'package:amplify_recipe/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../components/ingredients.dart';
 
-class RecipeDetailsScreen extends StatelessWidget {
+class RecipeDetailsScreen extends StatefulWidget {
   const RecipeDetailsScreen({
     required this.id,
     super.key,
@@ -19,10 +21,17 @@ class RecipeDetailsScreen extends StatelessWidget {
   final String id;
 
   @override
+  State<RecipeDetailsScreen> createState() => _RecipeDetailsScreenState();
+}
+
+class _RecipeDetailsScreenState extends State<RecipeDetailsScreen> {
+  double? progress;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<Recipe>(
-          future: getIt.get<RecipeRepository>().getRecipe(id),
+          future: getIt.get<RecipeRepository>().getRecipe(widget.id),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final recipe = snapshot.data!;
@@ -42,22 +51,58 @@ class RecipeDetailsScreen extends StatelessWidget {
                     AspectRatio(
                       aspectRatio: 1.5,
                       child: Stack(
-                        fit: StackFit.expand,
                         children: [
-                          AsyncImageLoader(keyOrUrl: recipe.image),
-                          Container(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                                stops: [0.0, 0.5],
-                                colors: [
-                                  Colors.black54,
-                                  Colors.transparent,
+                          Positioned.fill(
+                            child: AsyncImageLoader(
+                              keyOrUrl: recipe.image,
+                              onImageChanged: (image) async {
+                                final imageKey = await getIt
+                                    .get<StorageRepository>()
+                                    .uploadImage(
+                                  image,
+                                  (progress) {
+                                   setState(() {
+                                     this.progress = progress;
+                                     if (progress == 1.0) {
+                                       this.progress = null;
+                                     }
+                                   });
+                                  },
+                                );
+                                final newRecipe = Recipe(
+                                  id: recipe.id,
+                                  title: recipe.title,
+                                  description: recipe.description,
+                                  duration: recipe.duration,
+                                  serve: recipe.serve,
+                                  image: imageKey,
+                                  ingredients: recipe.ingredients,
+                                  isFavorited: recipe.isFavorited,
+                                  category: recipe.category,
+                                  createdAt: recipe.createdAt,
+                                );
+                                getIt
+                                    .get<RecipeRepository>()
+                                    .updateRecipe(newRecipe);
+                                if (mounted) {
+                                  context.go('/entry-point');
+                                }
+                              },
+                            ),
+                          ),
+                          if (progress != null)
+                            Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text('Uploading Image'),
+                                  gapH16,
+                                  CircularProgressIndicator(
+                                    value: progress,
+                                  )
                                 ],
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ),

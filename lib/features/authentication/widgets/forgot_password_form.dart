@@ -16,7 +16,13 @@ class ForgotPassForm extends StatefulWidget {
 }
 
 class _ForgotPassFormState extends State<ForgotPassForm> {
-  late String email;
+  final TextEditingController _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +36,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           ),
           gapH8,
           TextFormField(
-            onSaved: (email) {
-              email = email!;
-            },
+            controller: _emailController,
             validator: FormUtils.emailValidator,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(hintText: 'test@mail.com'),
@@ -40,9 +44,11 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           gapH24,
           ElevatedButton(
             onPressed: () async {
-              await getIt.get<AuthenticationRepository>().forgotPassword(email);
+              await getIt
+                  .get<AuthenticationRepository>()
+                  .forgotPassword(_emailController.text);
               if (mounted) {
-                context.push('/user-confirmation/$email');
+                context.push('/password-confirmation/${_emailController.text}');
               }
             },
             child: const Text('Reset Password'),

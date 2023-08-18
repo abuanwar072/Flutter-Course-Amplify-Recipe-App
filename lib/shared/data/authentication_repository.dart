@@ -19,6 +19,12 @@ abstract class AuthenticationRepository {
 
   Future<void> forgotPassword(String email);
 
+  Future<void> confirmPasswordReset(
+    String email,
+    String newPassword,
+    String confirmationCode,
+  );
+
   Future<void> signOut();
 
   Future<void> confirmUser(String email, String confirmationCode);
