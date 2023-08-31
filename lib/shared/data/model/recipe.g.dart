@@ -8,38 +8,88 @@ part of 'recipe.dart';
 
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
+// ignore_for_file: type=lint
 
 extension GetRecipeCollection on Isar {
   IsarCollection<String, Recipe> get recipes => this.collection();
 }
 
-const RecipeSchema = IsarCollectionSchema(
-  schema:
-      '{"name":"Recipe","idName":"id","properties":[{"name":"id","type":"String"},{"name":"title","type":"String"},{"name":"description","type":"String"},{"name":"serve","type":"Long"},{"name":"duration","type":"String"},{"name":"category","type":"String"},{"name":"image","type":"String"},{"name":"isFavorited","type":"Bool"},{"name":"ingredients","type":"StringList"},{"name":"createdAt","type":"DateTime"},{"name":"isSynced","type":"Bool"}]}',
+const RecipeSchema = IsarGeneratedSchema(
+  schema: IsarSchema(
+    name: 'Recipe',
+    idName: 'id',
+    embedded: false,
+    properties: [
+      IsarPropertySchema(
+        name: 'id',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'title',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'description',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'serve',
+        type: IsarType.long,
+      ),
+      IsarPropertySchema(
+        name: 'duration',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'category',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'image',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'isFavorited',
+        type: IsarType.bool,
+      ),
+      IsarPropertySchema(
+        name: 'ingredients',
+        type: IsarType.stringList,
+      ),
+      IsarPropertySchema(
+        name: 'createdAt',
+        type: IsarType.dateTime,
+      ),
+      IsarPropertySchema(
+        name: 'isSynced',
+        type: IsarType.bool,
+      ),
+    ],
+    indexes: [],
+  ),
   converter: IsarObjectConverter<String, Recipe>(
     serialize: serializeRecipe,
     deserialize: deserializeRecipe,
     deserializeProperty: deserializeRecipeProp,
   ),
   embeddedSchemas: [],
-  hash: -391392828664244001,
 );
 
 @isarProtected
 int serializeRecipe(IsarWriter writer, Recipe object) {
-  IsarCore.writeString(writer, 1, IsarCore.toNativeString(object.id));
-  IsarCore.writeString(writer, 2, IsarCore.toNativeString(object.title));
-  IsarCore.writeString(writer, 3, IsarCore.toNativeString(object.description));
+  IsarCore.writeString(writer, 1, object.id);
+  IsarCore.writeString(writer, 2, object.title);
+  IsarCore.writeString(writer, 3, object.description);
   IsarCore.writeLong(writer, 4, object.serve);
-  IsarCore.writeString(writer, 5, IsarCore.toNativeString(object.duration));
-  IsarCore.writeString(writer, 6, IsarCore.toNativeString(object.category));
-  IsarCore.writeString(writer, 7, IsarCore.toNativeString(object.image));
+  IsarCore.writeString(writer, 5, object.duration);
+  IsarCore.writeString(writer, 6, object.category);
+  IsarCore.writeString(writer, 7, object.image);
   IsarCore.writeBool(writer, 8, object.isFavorited);
   {
     final list = object.ingredients;
     final listWriter = IsarCore.beginList(writer, 9, list.length);
     for (var i = 0; i < list.length; i++) {
-      IsarCore.writeString(listWriter, i, IsarCore.toNativeString(list[i]));
+      IsarCore.writeString(listWriter, i, list[i]);
     }
     IsarCore.endList(writer, listWriter);
   }
@@ -319,6 +369,51 @@ extension RecipeQueryUpdate on IsarQuery<Recipe> {
   _RecipeQueryUpdate get updateFirst => _RecipeQueryUpdateImpl(this, limit: 1);
 
   _RecipeQueryUpdate get updateAll => _RecipeQueryUpdateImpl(this);
+}
+
+class _RecipeQueryBuilderUpdateImpl implements _RecipeQueryUpdate {
+  const _RecipeQueryBuilderUpdateImpl(this.query, {this.limit});
+
+  final QueryBuilder<Recipe, Recipe, QOperations> query;
+  final int? limit;
+
+  @override
+  int call({
+    Object? title = ignore,
+    Object? description = ignore,
+    Object? serve = ignore,
+    Object? duration = ignore,
+    Object? category = ignore,
+    Object? image = ignore,
+    Object? isFavorited = ignore,
+    Object? createdAt = ignore,
+    Object? isSynced = ignore,
+  }) {
+    final q = query.build();
+    try {
+      return q.updateProperties(limit: limit, {
+        if (title != ignore) 2: title as String?,
+        if (description != ignore) 3: description as String?,
+        if (serve != ignore) 4: serve as int?,
+        if (duration != ignore) 5: duration as String?,
+        if (category != ignore) 6: category as String?,
+        if (image != ignore) 7: image as String?,
+        if (isFavorited != ignore) 8: isFavorited as bool?,
+        if (createdAt != ignore) 10: createdAt as DateTime?,
+        if (isSynced != ignore) 11: isSynced as bool?,
+      });
+    } finally {
+      q.close();
+    }
+  }
+}
+
+extension RecipeQueryBuilderUpdate
+    on QueryBuilder<Recipe, Recipe, QOperations> {
+  _RecipeQueryUpdate get updateFirst =>
+      _RecipeQueryBuilderUpdateImpl(this, limit: 1);
+
+  _RecipeQueryUpdate get updateAll => _RecipeQueryBuilderUpdateImpl(this);
 }
 
 extension RecipeQueryFilter on QueryBuilder<Recipe, Recipe, QFilterCondition> {

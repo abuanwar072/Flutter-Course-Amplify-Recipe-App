@@ -13,20 +13,16 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "amplifyrecipedb8fc133"
+          "resourceName": "amplifyrecipe86a8efe0"
         }
       ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AWS_IAM"
-            }
-          ],
+          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authamplifyrecipedb8fc133"
+              "userPoolId": "authamplifyrecipe86a8efe0"
             }
           }
         }
@@ -36,7 +32,7 @@
     }
   },
   "auth": {
-    "amplifyrecipedb8fc133": {
+    "amplifyrecipe86a8efe0": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -67,7 +63,7 @@
     }
   },
   "function": {
-    "amplifyrecipepush": {
+    "amplifyrecipefb7252f0": {
       "build": true,
       "dependsOn": [
         {
@@ -117,19 +113,19 @@
         }
       ]
     },
-    "AMPLIFY_function_amplifyrecipepush_deploymentBucketName": {
+    "AMPLIFY_function_amplifyrecipefb7252f0_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "amplifyrecipepush"
+          "resourceName": "amplifyrecipefb7252f0"
         }
       ]
     },
-    "AMPLIFY_function_amplifyrecipepush_s3Key": {
+    "AMPLIFY_function_amplifyrecipefb7252f0_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "amplifyrecipepush"
+          "resourceName": "amplifyrecipefb7252f0"
         }
       ]
     },
@@ -156,10 +152,64 @@
           "resourceName": "Pinpoint"
         }
       ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_arn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_partitionKeyName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_partitionKeyType": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_streamArn": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
+    },
+    "AMPLIFY_storage_Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev_tableName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev"
+        }
+      ]
     }
   },
   "storage": {
-    "s392b48867": {
+    "Recipe3dqfxi2ts5g6lnj72cqbgk72dqdev": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB",
+      "serviceType": "imported"
+    },
+    "s3b350e034": {
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "S3"

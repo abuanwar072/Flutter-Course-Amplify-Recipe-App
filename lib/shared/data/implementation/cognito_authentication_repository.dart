@@ -20,6 +20,19 @@ class CognitoAuthenticationRepository extends AuthenticationRepository {
       (throw const UserNotFoundException('User has not been retrieved yet'));
 
   @override
+  Future<void> confirmUser(String email, String confirmationCode) async {
+    try {
+      await Amplify.Auth.confirmSignUp(
+        username: email,
+        confirmationCode: confirmationCode,
+      );
+    } on AuthException catch (e) {
+      safePrint('Error signing out: ${e.message}');
+      rethrow;
+    }
+  }
+
+  @override
   Future<bool> forgotPassword(String email) async {
     try {
       final result = await Amplify.Auth.resetPassword(username: email);
@@ -31,6 +44,73 @@ class CognitoAuthenticationRepository extends AuthenticationRepository {
         case _:
           safePrint('An unknown error occurred: $e');
       }
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> confirmPasswordReset(
+    String email,
+    String newPassword,
+    String confirmationCode,
+  ) async {
+    try {
+      final result = await Amplify.Auth.confirmResetPassword(
+        username: email,
+        newPassword: newPassword,
+        confirmationCode: confirmationCode,
+      );
+      safePrint('Password reset complete: ${result.isPasswordReset}');
+    } on AuthException catch (e) {
+      safePrint('Error resetting password: ${e.message}');
+    }
+  }
+
+  @override
+  Future<void> generateCurrentUserInformation() async {
+    try {
+      final user = await Amplify.Auth.getCurrentUser();
+      final userAttributes = await Amplify.Auth.fetchUserAttributes();
+      currentUser = User(
+        id: user.userId,
+        name: userAttributes
+            .firstWhere(
+              (element) =>
+                  element.userAttributeKey == CognitoUserAttributeKey.name,
+            )
+            .value,
+        email: userAttributes
+            .firstWhere(
+              (element) =>
+                  element.userAttributeKey == CognitoUserAttributeKey.email,
+            )
+            .value,
+        profilePicture: userAttributes
+            .where(
+              (element) =>
+                  element.userAttributeKey == CognitoUserAttributeKey.picture,
+            )
+            .firstOrNull
+            ?.value,
+      );
+    } on AuthException catch (e) {
+      safePrint('Error fetching auth session: ${e.message}');
+      rethrow;
+    }
+  }
+
+  @override
+  Future<bool> isUserLoggedIn() async {
+    try {
+      final result = await Amplify.Auth.fetchAuthSession(
+        options: const FetchAuthSessionOptions(forceRefresh: true),
+      );
+      if (result.isSignedIn) {
+        await generateCurrentUserInformation();
+      }
+      return result.isSignedIn;
+    } on AuthException catch (e) {
+      safePrint('Error fetching auth session: ${e.message}');
       rethrow;
     }
   }
@@ -87,6 +167,16 @@ class CognitoAuthenticationRepository extends AuthenticationRepository {
   }
 
   @override
+  Future<void> signOut() async {
+    try {
+      await Amplify.Auth.signOut();
+    } on AuthException catch (e) {
+      safePrint('Error signing out: ${e.message}');
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> signUp(String email, String password, String name) async {
     try {
       await Amplify.Auth.signUp(
@@ -108,80 +198,6 @@ class CognitoAuthenticationRepository extends AuthenticationRepository {
         case _:
           safePrint('An unknown error occurred: $e');
       }
-      rethrow;
-    }
-  }
-
-  @override
-  Future<void> signOut() async {
-    try {
-      await Amplify.Auth.signOut();
-    } on AuthException catch (e) {
-      safePrint('Error signing out: ${e.message}');
-      rethrow;
-    }
-  }
-
-  @override
-  Future<void> confirmUser(String email, String confirmationCode) async {
-    try {
-      await Amplify.Auth.confirmSignUp(
-        username: email,
-        confirmationCode: confirmationCode,
-      );
-    } on AuthException catch (e) {
-      safePrint('Error signing out: ${e.message}');
-      rethrow;
-    }
-  }
-
-  @override
-  Future<bool> isUserLoggedIn() async {
-    try {
-      final result = await Amplify.Auth.fetchAuthSession(
-        options: const FetchAuthSessionOptions(forceRefresh: true),
-      );
-      if (result.isSignedIn) {
-        await generateCurrentUserInformation();
-      }
-      return result.isSignedIn;
-    } on AuthException catch (e) {
-      safePrint('Error fetching auth session: ${e.message}');
-      rethrow;
-    }
-  }
-
-  @override
-  Future<void> generateCurrentUserInformation() async {
-    try {
-      final user = await Amplify.Auth.getCurrentUser();
-      final userAttributes = await Amplify.Auth.fetchUserAttributes();
-      safePrint('user $user');
-      safePrint('userAttributes $userAttributes');
-      currentUser = User(
-        id: user.userId,
-        name: userAttributes
-            .firstWhere(
-              (element) =>
-                  element.userAttributeKey == CognitoUserAttributeKey.name,
-            )
-            .value,
-        email: userAttributes
-            .firstWhere(
-              (element) =>
-                  element.userAttributeKey == CognitoUserAttributeKey.email,
-            )
-            .value,
-        profilePicture: userAttributes
-            .where(
-              (element) =>
-                  element.userAttributeKey == CognitoUserAttributeKey.picture,
-            )
-            .firstOrNull
-            ?.value,
-      );
-    } on AuthException catch (e) {
-      safePrint('Error fetching auth session: ${e.message}');
       rethrow;
     }
   }

@@ -1,7 +1,7 @@
 {
-  "resourceName": "s392b48867",
-  "policyUUID": "92b48867",
-  "bucketName": "amplifyrecipe0d35ffc621b045a8ac07f97f3b272ee3",
+  "resourceName": "s3b350e034",
+  "policyUUID": "b350e034",
+  "bucketName": "amplifyrecipe108a68fcdfe84b1ebda1a9542810e694",
   "storageAccess": "auth",
   "guestAccess": [],
   "authAccess": [

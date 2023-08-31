@@ -23,5 +23,7 @@ abstract class NotificationRepository {
   Future<void> listenNotifications();
 
   /// Checks if there is any unseen notification
-  Future<bool> hasUnseenNotification();
+  Stream<bool> listenUnseenNotifications();
+
+  Future<void> handlePermissions();
 }

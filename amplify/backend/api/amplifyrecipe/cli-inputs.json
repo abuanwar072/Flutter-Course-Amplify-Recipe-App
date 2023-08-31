@@ -5,13 +5,7 @@
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authamplifyrecipedb8fc133"
-    },
-    "additionalAuthTypes": [
-      {
-        "mode": "AWS_IAM"
-      }
-    ],
-    "conflictResolution": {}
+      "cognitoUserPoolId": "authamplifyrecipe86a8efe0"
+    }
   }
 }

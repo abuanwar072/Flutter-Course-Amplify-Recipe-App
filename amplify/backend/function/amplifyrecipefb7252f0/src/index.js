@@ -15,11 +15,11 @@ exports.handler = async (event) => {
         let recipeDescription = record.dynamodb.NewImage.description.S;
         let recipeId = record.dynamodb.NewImage.id.S;
         const createCampaingCommand = new CreateCampaignCommand({
-          ApplicationId: "d4d79d8577b74738978a042239860276",
+          ApplicationId: "357c824c055f4213a6632f9486666550",
           WriteCampaignRequest: {
             AdditionalTreatments: [],
             Name: "Campaign: " + recipeId.substring(0, 50) + "!",
-            SegmentId: "f6df39fc56b54937b5fc86b06d90251a",
+            SegmentId: "afced6a65fdd467d8e11e6848331e1ee",
             SegmentVersion: 1,
             HoldoutPercent: 0,
             TemplateConfiguration: {},

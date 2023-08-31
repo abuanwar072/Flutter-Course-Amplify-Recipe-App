@@ -34,8 +34,13 @@ class ProfileScreen extends StatelessWidget {
               leading: CircleAvatar(
                 radius: 30,
                 backgroundColor: Colors.grey.shade300,
-                backgroundImage:
-                    const NetworkImage('https://picsum.photos/200'),
+                backgroundImage: NetworkImage(
+                  getIt
+                          .get<AuthenticationRepository>()
+                          .currentUser
+                          ?.profilePicture ??
+                      'https://picsum.photos/200',
+                ),
               ),
               title: Text(getIt.get<AuthenticationRepository>().fullName),
               trailing: const Icon(CupertinoIcons.forward),

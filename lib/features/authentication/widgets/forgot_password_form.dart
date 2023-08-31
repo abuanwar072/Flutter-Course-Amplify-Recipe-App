@@ -1,5 +1,5 @@
 import 'package:amplify_recipe/main.dart';
-import 'package:amplify_recipe/shared/data/implementation/cognito_authentication_repository.dart';
+import 'package:amplify_recipe/shared/data/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,7 +16,13 @@ class ForgotPassForm extends StatefulWidget {
 }
 
 class _ForgotPassFormState extends State<ForgotPassForm> {
-  late String email;
+  final TextEditingController _emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +36,7 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           ),
           gapH8,
           TextFormField(
-            onSaved: (email) {
-              email = email!;
-            },
+            controller: _emailController,
             validator: FormUtils.emailValidator,
             keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(hintText: 'test@mail.com'),
@@ -40,11 +44,11 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           gapH24,
           ElevatedButton(
             onPressed: () async {
-              final result = await getIt
-                  .get<CognitoAuthenticationRepository>()
-                  .forgotPassword(email);
-              if (result && mounted) {
-                context.push('/user-confirmation/$email');
+              await getIt
+                  .get<AuthenticationRepository>()
+                  .forgotPassword(_emailController.text);
+              if (mounted) {
+                context.push('/password-confirmation/${_emailController.text}');
               }
             },
             child: const Text('Reset Password'),

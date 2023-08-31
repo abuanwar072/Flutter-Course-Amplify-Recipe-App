@@ -3,6 +3,7 @@ import 'package:amplify_recipe/features/authentication/screens/onboarding_screen
 import 'package:amplify_recipe/features/authentication/screens/register_screen.dart';
 import 'package:amplify_recipe/features/authentication/screens/resend_email_screen.dart';
 import 'package:amplify_recipe/features/authentication/screens/sign_in_screen.dart';
+import 'package:amplify_recipe/features/authentication/widgets/password_confirmation_form.dart';
 import 'package:amplify_recipe/features/authentication/widgets/user_confirmation_form.dart';
 import 'package:amplify_recipe/features/details/screens/recipe_details_screen.dart';
 import 'package:amplify_recipe/features/entry_point.dart';
@@ -38,6 +39,16 @@ final routerConfig = GoRouter(
       builder: (context, state) => const ForgotPasswordScreen(),
     ),
     GoRoute(
+      path: '/password-confirmation/:email',
+      builder: (context, state) {
+        final email = state.pathParameters['email'];
+        if (email == null) {
+          throw Exception('Recipe ID is missing');
+        }
+        return PasswordConfirmationForm(email: email);
+      },
+    ),
+    GoRoute(
       path: '/resend-email-verification',
       builder: (context, state) => const EmailResendScreen(),
     ),
@@ -56,16 +67,14 @@ final routerConfig = GoRouter(
       builder: (context, state) => const FavoriteScreen(),
     ),
     GoRoute(
-      path: '/recipe/:id/:isFavorited',
+      path: '/recipe/:id',
       builder: (context, state) {
         final id = state.pathParameters['id'];
-        final isFavorited = state.pathParameters['isFavorited'];
-        if (id == null || isFavorited == null) {
+        if (id == null) {
           throw Exception('Recipe ID or Favorite state is missing');
         }
         return RecipeDetailsScreen(
           id: id,
-          isFavorited: bool.parse(isFavorited),
         );
       },
     ),

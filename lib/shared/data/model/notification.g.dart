@@ -8,38 +8,75 @@ part of 'notification.dart';
 
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
+// ignore_for_file: type=lint
 
 extension GetNotificationCollection on Isar {
   IsarCollection<String, Notification> get notifications => this.collection();
 }
 
-const NotificationSchema = IsarCollectionSchema(
-  schema:
-      '{"name":"Notification","idName":"id","properties":[{"name":"id","type":"String"},{"name":"title","type":"String"},{"name":"description","type":"String"},{"name":"recipeId","type":"String"},{"name":"recipeTitle","type":"String"},{"name":"recipeDescription","type":"String"},{"name":"deepLink","type":"String"},{"name":"isSeen","type":"Bool"}]}',
+const NotificationSchema = IsarGeneratedSchema(
+  schema: IsarSchema(
+    name: 'Notification',
+    idName: 'id',
+    embedded: false,
+    properties: [
+      IsarPropertySchema(
+        name: 'id',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'title',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'description',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'recipeId',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'recipeTitle',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'recipeDescription',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'deepLink',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'isSeen',
+        type: IsarType.bool,
+      ),
+    ],
+    indexes: [],
+  ),
   converter: IsarObjectConverter<String, Notification>(
     serialize: serializeNotification,
     deserialize: deserializeNotification,
     deserializeProperty: deserializeNotificationProp,
   ),
   embeddedSchemas: [],
-  hash: -5505341282881353441,
 );
 
 @isarProtected
 int serializeNotification(IsarWriter writer, Notification object) {
-  IsarCore.writeString(writer, 1, IsarCore.toNativeString(object.id));
-  IsarCore.writeString(writer, 2, IsarCore.toNativeString(object.title));
-  IsarCore.writeString(writer, 3, IsarCore.toNativeString(object.description));
-  IsarCore.writeString(writer, 4, IsarCore.toNativeString(object.recipeId));
-  IsarCore.writeString(writer, 5, IsarCore.toNativeString(object.recipeTitle));
-  IsarCore.writeString(
-      writer, 6, IsarCore.toNativeString(object.recipeDescription));
+  IsarCore.writeString(writer, 1, object.id);
+  IsarCore.writeString(writer, 2, object.title);
+  IsarCore.writeString(writer, 3, object.description);
+  IsarCore.writeString(writer, 4, object.recipeId);
+  IsarCore.writeString(writer, 5, object.recipeTitle);
+  IsarCore.writeString(writer, 6, object.recipeDescription);
   {
     final value = object.deepLink;
     if (value == null) {
       IsarCore.writeNull(writer, 7);
     } else {
-      IsarCore.writeString(writer, 7, IsarCore.toNativeString(value));
+      IsarCore.writeString(writer, 7, value);
     }
   }
   IsarCore.writeBool(writer, 8, object.isSeen);
@@ -237,6 +274,48 @@ extension NotificationQueryUpdate on IsarQuery<Notification> {
       _NotificationQueryUpdateImpl(this, limit: 1);
 
   _NotificationQueryUpdate get updateAll => _NotificationQueryUpdateImpl(this);
+}
+
+class _NotificationQueryBuilderUpdateImpl implements _NotificationQueryUpdate {
+  const _NotificationQueryBuilderUpdateImpl(this.query, {this.limit});
+
+  final QueryBuilder<Notification, Notification, QOperations> query;
+  final int? limit;
+
+  @override
+  int call({
+    Object? title = ignore,
+    Object? description = ignore,
+    Object? recipeId = ignore,
+    Object? recipeTitle = ignore,
+    Object? recipeDescription = ignore,
+    Object? deepLink = ignore,
+    Object? isSeen = ignore,
+  }) {
+    final q = query.build();
+    try {
+      return q.updateProperties(limit: limit, {
+        if (title != ignore) 2: title as String?,
+        if (description != ignore) 3: description as String?,
+        if (recipeId != ignore) 4: recipeId as String?,
+        if (recipeTitle != ignore) 5: recipeTitle as String?,
+        if (recipeDescription != ignore) 6: recipeDescription as String?,
+        if (deepLink != ignore) 7: deepLink as String?,
+        if (isSeen != ignore) 8: isSeen as bool?,
+      });
+    } finally {
+      q.close();
+    }
+  }
+}
+
+extension NotificationQueryBuilderUpdate
+    on QueryBuilder<Notification, Notification, QOperations> {
+  _NotificationQueryUpdate get updateFirst =>
+      _NotificationQueryBuilderUpdateImpl(this, limit: 1);
+
+  _NotificationQueryUpdate get updateAll =>
+      _NotificationQueryBuilderUpdateImpl(this);
 }
 
 extension NotificationQueryFilter

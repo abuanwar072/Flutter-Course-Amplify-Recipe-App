@@ -8,9 +8,11 @@ abstract class RecipeRepository {
 
   Future<void> deleteRecipe(String id);
 
+  Future<void> updateRecipe(Recipe recipe);
+
   Future<Recipe> getRecipe(String id);
 
-  Future<void> addRecipe(
+  Future<String> addRecipe(
     String title,
     String description,
     String duration,
@@ -21,13 +23,9 @@ abstract class RecipeRepository {
     List<(String, String)> ingredients,
   );
 
-  Future<List<Recipe>> searchRecipes(String searchText);
-
   Stream<List<Recipe>> listenRecipes();
 
   Stream<List<Recipe>> listenLatestRecipes();
 
   Stream<List<Recipe>> listenFavoritedRecipes();
-
-  Future<void> syncRemoteChanges();
 }

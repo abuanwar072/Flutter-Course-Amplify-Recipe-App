@@ -47,7 +47,7 @@ class AllRecipesScreen extends StatelessWidget {
                             child: RecipeCard(
                               press: () {
                                 context.push(
-                                  '/recipe/${recipe.id}/${recipe.isFavorited}',
+                                  '/recipe/${recipe.id}',
                                 );
                               },
                               onBookmarked: () {

@@ -23,4 +23,3 @@ type Recipe @model @auth(rules: [{allow: private}]) {
   duration_unit: Int!
   ingredients: [String!]!
 }
- 

@@ -13,7 +13,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "amplifyrecipedb8fc133": {
+    "amplifyrecipe86a8efe0": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
       "HostedUIDomain": "string",
@@ -26,7 +26,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "amplifyrecipepush": {
+    "amplifyrecipefb7252f0": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -35,7 +35,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "s392b48867": {
+    "s3b350e034": {
       "BucketName": "string",
       "Region": "string"
     }

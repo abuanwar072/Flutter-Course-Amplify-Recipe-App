@@ -8,27 +8,45 @@ part of 'search_item.dart';
 
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
+// ignore_for_file: type=lint
 
 extension GetSearchItemCollection on Isar {
   IsarCollection<String, SearchItem> get searchItems => this.collection();
 }
 
-const SearchItemSchema = IsarCollectionSchema(
-  schema:
-      '{"name":"SearchItem","idName":"id","properties":[{"name":"id","type":"String"},{"name":"searchItem","type":"String"},{"name":"createdAt","type":"DateTime"}]}',
+const SearchItemSchema = IsarGeneratedSchema(
+  schema: IsarSchema(
+    name: 'SearchItem',
+    idName: 'id',
+    embedded: false,
+    properties: [
+      IsarPropertySchema(
+        name: 'id',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'searchItem',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'createdAt',
+        type: IsarType.dateTime,
+      ),
+    ],
+    indexes: [],
+  ),
   converter: IsarObjectConverter<String, SearchItem>(
     serialize: serializeSearchItem,
     deserialize: deserializeSearchItem,
     deserializeProperty: deserializeSearchItemProp,
   ),
   embeddedSchemas: [],
-  hash: 7780378368234750768,
 );
 
 @isarProtected
 int serializeSearchItem(IsarWriter writer, SearchItem object) {
-  IsarCore.writeString(writer, 1, IsarCore.toNativeString(object.id));
-  IsarCore.writeString(writer, 2, IsarCore.toNativeString(object.searchItem));
+  IsarCore.writeString(writer, 1, object.id);
+  IsarCore.writeString(writer, 2, object.searchItem);
   IsarCore.writeLong(
       writer, 3, object.createdAt.toUtc().microsecondsSinceEpoch);
   return Isar.fastHash(object.id);
@@ -172,6 +190,38 @@ extension SearchItemQueryUpdate on IsarQuery<SearchItem> {
       _SearchItemQueryUpdateImpl(this, limit: 1);
 
   _SearchItemQueryUpdate get updateAll => _SearchItemQueryUpdateImpl(this);
+}
+
+class _SearchItemQueryBuilderUpdateImpl implements _SearchItemQueryUpdate {
+  const _SearchItemQueryBuilderUpdateImpl(this.query, {this.limit});
+
+  final QueryBuilder<SearchItem, SearchItem, QOperations> query;
+  final int? limit;
+
+  @override
+  int call({
+    Object? searchItem = ignore,
+    Object? createdAt = ignore,
+  }) {
+    final q = query.build();
+    try {
+      return q.updateProperties(limit: limit, {
+        if (searchItem != ignore) 2: searchItem as String?,
+        if (createdAt != ignore) 3: createdAt as DateTime?,
+      });
+    } finally {
+      q.close();
+    }
+  }
+}
+
+extension SearchItemQueryBuilderUpdate
+    on QueryBuilder<SearchItem, SearchItem, QOperations> {
+  _SearchItemQueryUpdate get updateFirst =>
+      _SearchItemQueryBuilderUpdateImpl(this, limit: 1);
+
+  _SearchItemQueryUpdate get updateAll =>
+      _SearchItemQueryBuilderUpdateImpl(this);
 }
 
 extension SearchItemQueryFilter

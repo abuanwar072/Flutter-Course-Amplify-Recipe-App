@@ -20,43 +20,31 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Theme(
-        data: ThemeData(
-          useMaterial3: true,
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            backgroundColor: AppColors.primary,
-          ),
-        ),
-        child: FloatingActionButton(
-          onPressed: () {
-            showModalBottomSheet(
-              isScrollControlled: true,
-              useSafeArea: true,
-              context: context,
-              builder: (context) {
-                return const AddRecipeScreen();
-              },
-            );
-          },
-          child: const Icon(
-            Icons.add,
-            color: Colors.white,
-          ),
-        ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          showModalBottomSheet(
+            isScrollControlled: true,
+            useSafeArea: true,
+            context: context,
+            builder: (context) {
+              return const AddRecipeScreen();
+            },
+          );
+        },
+        label: const Text('Add Recipe'),
       ),
       appBar: AppBar(
-        leadingWidth: 0,
-        leading: const SizedBox(),
         title: Text('Hello, ${getIt.get<AuthenticationRepository>().name} 👋'),
         centerTitle: false,
         actions: [
           IconButton(
             onPressed: () {
-              context.go('/notifications');
+              context.push('/notifications');
             },
-            icon: FutureBuilder<bool>(
-              future:
-                  getIt.get<NotificationRepository>().hasUnseenNotification(),
+            icon: StreamBuilder<bool>(
+              stream: getIt
+                  .get<NotificationRepository>()
+                  .listenUnseenNotifications(),
               builder: (context, snapshot) {
                 if (snapshot.hasData && snapshot.data!) {
                   return Badge(
@@ -103,6 +91,15 @@ class HomeScreen extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final recipes = snapshot.data!;
+                  if (recipes.isEmpty) {
+                    return Center(
+                      child: Text(
+                        '\n\n\nYou don\'t have any recipes (yet).\n\nAdd them by clicking the "Add Recipe" button below.',
+                        style: Theme.of(context).textTheme.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
                   return Column(
                     children: [
                       ...List.generate(
@@ -115,7 +112,7 @@ class HomeScreen extends StatelessWidget {
                             child: RecipeCard(
                               press: () {
                                 context.push(
-                                  '/recipe/${recipe.id}/${recipe.isFavorited}',
+                                  '/recipe/${recipe.id}',
                                 );
                               },
                               onBookmarked: () {
@@ -125,6 +122,11 @@ class HomeScreen extends StatelessWidget {
                                       id: recipe.id,
                                       isFavorited: !recipe.isFavorited,
                                     );
+                              },
+                              onDismissed: (_) {
+                                getIt
+                                    .get<RecipeRepository>()
+                                    .deleteRecipe(recipe.id);
                               },
                               title: recipe.title,
                               image: recipe.image,

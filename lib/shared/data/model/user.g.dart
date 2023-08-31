@@ -8,34 +8,56 @@ part of 'user.dart';
 
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, invalid_use_of_protected_member, lines_longer_than_80_chars, constant_identifier_names, avoid_js_rounded_ints, no_leading_underscores_for_local_identifiers, require_trailing_commas, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_in_if_null_operators, library_private_types_in_public_api, prefer_const_constructors
+// ignore_for_file: type=lint
 
 extension GetUserCollection on Isar {
   IsarCollection<String, User> get users => this.collection();
 }
 
-const UserSchema = IsarCollectionSchema(
-  schema:
-      '{"name":"User","idName":"id","properties":[{"name":"id","type":"String"},{"name":"name","type":"String"},{"name":"email","type":"String"},{"name":"profilePicture","type":"String"}]}',
+const UserSchema = IsarGeneratedSchema(
+  schema: IsarSchema(
+    name: 'User',
+    idName: 'id',
+    embedded: false,
+    properties: [
+      IsarPropertySchema(
+        name: 'id',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'name',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'email',
+        type: IsarType.string,
+      ),
+      IsarPropertySchema(
+        name: 'profilePicture',
+        type: IsarType.string,
+      ),
+    ],
+    indexes: [],
+  ),
   converter: IsarObjectConverter<String, User>(
     serialize: serializeUser,
     deserialize: deserializeUser,
     deserializeProperty: deserializeUserProp,
   ),
   embeddedSchemas: [],
-  hash: -6934898223713039112,
 );
 
 @isarProtected
 int serializeUser(IsarWriter writer, User object) {
-  IsarCore.writeString(writer, 1, IsarCore.toNativeString(object.id));
-  IsarCore.writeString(writer, 2, IsarCore.toNativeString(object.name));
-  IsarCore.writeString(writer, 3, IsarCore.toNativeString(object.email));
+  IsarCore.writeString(writer, 1, object.id);
+  IsarCore.writeString(writer, 2, object.name);
+  IsarCore.writeString(writer, 3, object.email);
   {
     final value = object.profilePicture;
     if (value == null) {
       IsarCore.writeNull(writer, 4);
     } else {
-      IsarCore.writeString(writer, 4, IsarCore.toNativeString(value));
+      IsarCore.writeString(writer, 4, value);
     }
   }
   return Isar.fastHash(object.id);
@@ -175,6 +197,38 @@ extension UserQueryUpdate on IsarQuery<User> {
   _UserQueryUpdate get updateFirst => _UserQueryUpdateImpl(this, limit: 1);
 
   _UserQueryUpdate get updateAll => _UserQueryUpdateImpl(this);
+}
+
+class _UserQueryBuilderUpdateImpl implements _UserQueryUpdate {
+  const _UserQueryBuilderUpdateImpl(this.query, {this.limit});
+
+  final QueryBuilder<User, User, QOperations> query;
+  final int? limit;
+
+  @override
+  int call({
+    Object? name = ignore,
+    Object? email = ignore,
+    Object? profilePicture = ignore,
+  }) {
+    final q = query.build();
+    try {
+      return q.updateProperties(limit: limit, {
+        if (name != ignore) 2: name as String?,
+        if (email != ignore) 3: email as String?,
+        if (profilePicture != ignore) 4: profilePicture as String?,
+      });
+    } finally {
+      q.close();
+    }
+  }
+}
+
+extension UserQueryBuilderUpdate on QueryBuilder<User, User, QOperations> {
+  _UserQueryUpdate get updateFirst =>
+      _UserQueryBuilderUpdateImpl(this, limit: 1);
+
+  _UserQueryUpdate get updateAll => _UserQueryBuilderUpdateImpl(this);
 }
 
 extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {

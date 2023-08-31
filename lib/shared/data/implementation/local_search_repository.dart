@@ -1,20 +1,16 @@
-import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:amplify_recipe/shared/data/database/isar_provider.dart';
+import 'package:amplify_recipe/shared/data/model/recipe.dart';
 import 'package:amplify_recipe/shared/data/model/search_item.dart';
 import 'package:amplify_recipe/shared/data/search_repository.dart';
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 
 class LocalSearchRepository extends SearchRepository {
-  late Isar isar;
-
   LocalSearchRepository() {
-    getApplicationDocumentsDirectory().then((dir) {
-      isar = Isar.open(
-        schemas: [SearchItemSchema],
-        directory: dir.path,
-      );
-    });
+    isar = IsarProvider.isar;
   }
+
+  late Isar isar;
 
   @override
   Future<void> deleteAllSearchItems() async {
@@ -26,7 +22,7 @@ class LocalSearchRepository extends SearchRepository {
     isar.write((isar) {
       isar.searchItems.put(
         SearchItem(
-          id: UUID.getUUID(),
+          id: const Uuid().v4(),
           searchItem: searchItem,
           createdAt: DateTime.now(),
         ),
@@ -43,11 +39,17 @@ class LocalSearchRepository extends SearchRepository {
 
   @override
   Future<List<SearchItem>> getSearchItems() {
-    return isar.readAsync(
-      (isar) => isar.searchItems
-          .where()
-          .sortByCreatedAtDesc()
-          .findAll(limit: 3)
-    );
+    return isar.readAsync((isar) =>
+        isar.searchItems.where().sortByCreatedAtDesc().findAll(limit: 3));
+  }
+
+  @override
+  Future<List<Recipe>> searchRecipes(String searchTerm) async {
+    return isar.recipes
+        .where()
+        .titleContains(searchTerm, caseSensitive: false)
+        .or()
+        .descriptionContains(searchTerm, caseSensitive: false)
+        .findAll();
   }
 }
