@@ -2,6 +2,8 @@
 
 Welcome to our Complete Flutter Course. If you've been searching for the best Flutter course online, look no further. This comprehensive guide will not only teach you the basics but will elevate your Flutter skills to the next level. 
 
+### (Watch the full course on YouTube for FREE!)[https://youtu.be/2j5ONMbX7xE]
+
 
 This is your one-stop spot to master on:\
 📁 Project Structure \
