@@ -21,9 +21,9 @@ This is your one-stop spot to master on:\
 [🔥 Complate source code:](https://cutt.ly/PwkRT3yZ)
 
 [☁️ AWS Amplify:](https://aws.amazon.com/amplify/) \
-[📄 AWS Amplify Doc:](https://docs.amplify.aws/lib/q/platform/flutter/) \
+[📄 AWS Amplify Doc:](https://docs.amplify.aws/lib/q/platform/flutter/) 
 
-**👨‍💻 Instructor:** \
+**👨‍💻 Instructor:** 
 
 Muhammed Salih Guler (Sr. Dev Advocate at AWS Amplify | Flutter/Dart GDE) \
 Follow him on [Twitter](https://twitter.com/salihgueler) & [Linkedin](https://www.linkedin.com/in/salihgueler/)
