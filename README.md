@@ -1,16 +1,22 @@
-# amplify_recipe
+# Complete Flutter Course: Take Your Flutter Skills to the Next Level for FREE!
 
-A new Flutter project.
+Welcome to our Complete Flutter Course. If you've been searching for the best Flutter course online, look no further. This comprehensive guide will not only teach you the basics but will elevate your Flutter skills to the next level. This is your one-stop spot to master on:
+📁 Project Structure
+🔐 Email & Social Logins
+🔔 Push Notifications
+🛠 CRUD Operations
+☁️ AWSAmplify
+...and that's just scratching the surface! We cover many more advanced topics to give you an edge in Flutter app development.
 
-## Getting Started
+**Useful links:**
 
-This project is a starting point for a Flutter application.
+[🔗 Function link: ](https://gist.github.com/salihgueler/e9be9fa6cc9ece30ba05764146850f74)
+[🔗 Custom policy:](https://gist.github.com/salihgueler/2b44dd5494bdbfbd288a033af21bff9d)
 
-A few resources to get you started if this is your first Flutter project:
+[🔥 Complate source code:](https://cutt.ly/PwkRT3yZ)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+[☁️ AWS Amplify:](https://aws.amazon.com/amplify/)
+[📄 AWS Amplify Doc:](https://docs.amplify.aws/lib/q/platform/flutter/)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**👨‍💻 Instructor:** Muhammed Salih Guler (Sr. Dev Advocate at AWS Amplify | Flutter/Dart GDE)
+Follow him on [Twitter](https://twitter.com/salihgueler) & [Linkedin](https://www.linkedin.com/in/salihgueler/)
